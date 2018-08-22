@@ -1,11 +1,17 @@
 package models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "dinosaurs")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Dinosaur {
 
     private boolean hungry;
     private int stomach;
     private String species;
     private int strength;
+    private int id;
 
     public Dinosaur(String species, int strength) {
         this.species = species;
@@ -17,6 +23,18 @@ public abstract class Dinosaur {
     public Dinosaur(){
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "hungry")
     public boolean isHungry() {
         return hungry;
     }
@@ -25,6 +43,7 @@ public abstract class Dinosaur {
         this.hungry = hungry;
     }
 
+    @Column(name = "stomach")
     public int getStomach() {
         return stomach;
     }
@@ -33,6 +52,7 @@ public abstract class Dinosaur {
         this.stomach = stomach;
     }
 
+    @Column(name = "species")
     public String getSpecies() {
         return species;
     }
@@ -41,6 +61,7 @@ public abstract class Dinosaur {
         this.species = species;
     }
 
+    @Column(name = "strength")
     public int getStrength() {
         return strength;
     }

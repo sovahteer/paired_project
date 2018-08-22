@@ -9,7 +9,7 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <!--<property name="hibernate.connection.username"></property>-->
         <!--<property name="hibernate.connection.password"></property>-->
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/employeedb</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/jurassic_parkdb</property>
         <property name="connection_pool_size">1</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
