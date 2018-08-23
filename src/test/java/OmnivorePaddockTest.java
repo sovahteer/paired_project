@@ -21,13 +21,8 @@ public class OmnivorePaddockTest {
     @Test
     public void canAddDinosaurs() {
         assertEquals(0, omnivorePaddock.getDinosaurs().size());
-        omnivorePaddock.addDinosaurToPaddock(DinosaurType.VELOCIRAPTOR);
+        omnivorePaddock.addDinosaurToPaddock();
         assertEquals(1, omnivorePaddock.getDinosaurs().size());
     }
 
-    @Test
-    public void doesntAddDinosaursIfWrongType(){
-        omnivorePaddock.addDinosaurToPaddock(DinosaurType.TRICERATOPS);
-        assertEquals(0, omnivorePaddock.getDinosaurs().size());
-    }
 }
