@@ -55,7 +55,7 @@ public abstract class Dinosaur {
     }
 
     @Enumerated(value = EnumType.STRING)
-
+    @Column(name = "species")
     public DinosaurType getSpecies() {
         return species;
     }

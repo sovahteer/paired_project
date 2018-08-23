@@ -13,6 +13,7 @@ public class MainController {
     public static void main(String[] args) {
         Seeds.seedData();
         AdminController adminController = new AdminController();
+        DinosaursController dinosaursController = new DinosaursController();
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
