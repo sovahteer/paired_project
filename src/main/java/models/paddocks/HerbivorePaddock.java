@@ -1,4 +1,4 @@
 package models.paddocks;
 
-public class HerbivorePaddock {
+public class HerbivorePaddock extends Paddock{
 }
