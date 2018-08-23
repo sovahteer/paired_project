@@ -17,5 +17,9 @@
         <mapping class="models.dinosaurs.Herbivore"></mapping>
         <mapping class="models.dinosaurs.Omnivore"></mapping>
         <mapping class="models.dinosaurs.Carnivore"></mapping>
+        <mapping class="models.paddocks.Paddock"></mapping>
+        <mapping class="models.paddocks.HerbivorePaddock"></mapping>
+        <mapping class="models.paddocks.OmnivorePaddock"></mapping>
+        <mapping class="models.paddocks.CarnivorePaddock"></mapping>
     </session-factory>
 </hibernate-configuration>

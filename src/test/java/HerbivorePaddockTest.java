@@ -14,7 +14,7 @@ public class HerbivorePaddockTest {
     @Before
     public void before() {
         triceratops = new Herbivore(DinosaurType.TRICERATOPS);
-        herbivorePaddock = new HerbivorePaddock();
+        herbivorePaddock = new HerbivorePaddock("Herbivores");
     }
 
     @Test

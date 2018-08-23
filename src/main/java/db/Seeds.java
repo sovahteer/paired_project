@@ -9,7 +9,7 @@ public class Seeds {
     public static void main(String[] args) {
         Carnivore carnivoreTRex = new Carnivore(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
-        Herbivore herbivoreTriceratops = new Herbivore(DinosaurType.TRICERATOPS);
-        DBHelper.save(herbivoreTriceratops);
+//        Herbivore herbivoreTriceratops = new Herbivore(DinosaurType.TRICERATOPS);
+//        DBHelper.save(herbivoreTriceratops);
     }
 }

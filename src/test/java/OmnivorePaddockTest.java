@@ -15,7 +15,7 @@ public class OmnivorePaddockTest {
     @Before
     public void before() {
         velociraptor = new Omnivore(DinosaurType.VELOCIRAPTOR);
-        omnivorePaddock = new OmnivorePaddock(DinosaurType.VELOCIRAPTOR);
+        omnivorePaddock = new OmnivorePaddock("Omnivores enclosure", DinosaurType.VELOCIRAPTOR);
     }
 
     @Test

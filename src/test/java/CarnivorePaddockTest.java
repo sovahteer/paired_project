@@ -11,7 +11,7 @@ public class CarnivorePaddockTest {
     @Before
     public void before() {
 
-        carnivorePaddock = new CarnivorePaddock(DinosaurType.TREX);
+        carnivorePaddock = new CarnivorePaddock("Carnivores", DinosaurType.TREX);
     }
 
     @Test

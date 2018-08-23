@@ -16,4 +16,5 @@ public class Herbivore extends Dinosaur {
 
     public Herbivore() {
     }
+
 }
