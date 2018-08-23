@@ -13,7 +13,7 @@ public class OmnivorePaddock extends Paddock{
     }
 
 
-    public void addDinosaurToPaddock(){
+    public void createDinosaurInPaddock(){
         Omnivore newOmnivore = new Omnivore(this.dinoType);
         this.dinosaurs.add(newOmnivore);
     }

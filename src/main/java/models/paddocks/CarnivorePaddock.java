@@ -12,7 +12,7 @@ public class CarnivorePaddock extends Paddock{
     }
 
 
-    public void addDinosaurToPaddock(){
+    public void createDinosaurInPaddock(){
         Carnivore newCarnivore = new Carnivore(this.dinoType);
         this.dinosaurs.add(newCarnivore);
     }

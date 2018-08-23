@@ -19,4 +19,6 @@ public abstract class Paddock {
     public void setDinosaurs(ArrayList<Dinosaur> dinosaurs) {
         this.dinosaurs = dinosaurs;
     }
+
+
 }
