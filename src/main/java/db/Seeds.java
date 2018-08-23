@@ -9,7 +9,7 @@ import models.paddocks.Paddock;
 
 public class Seeds {
 
-    public static void main(String[] args) {
+    public static void seedData() {
         Carnivore carnivoreTRex = new Carnivore(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
         Herbivore herbivoreTriceratops = new Herbivore(DinosaurType.TRICERATOPS);
