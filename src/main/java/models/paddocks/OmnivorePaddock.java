@@ -1,6 +1,7 @@
 package models.paddocks;
 
 import models.Enums.DinosaurType;
+import models.dinosaurs.Dinosaur;
 import models.dinosaurs.Omnivore;
 
 
@@ -18,4 +19,7 @@ public class OmnivorePaddock extends Paddock{
         this.dinosaurs.add(newOmnivore);
     }
 
+    public void addDinosaurToPaddock(Omnivore omnivore) {
+        this.dinosaurs.add(omnivore);
+    }
 }

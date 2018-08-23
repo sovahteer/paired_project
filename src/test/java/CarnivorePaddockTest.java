@@ -1,6 +1,5 @@
 
 import models.Enums.DinosaurType;
-import models.dinosaurs.Carnivore;
 import models.paddocks.CarnivorePaddock;
 import org.junit.Before;
 import org.junit.Test;
