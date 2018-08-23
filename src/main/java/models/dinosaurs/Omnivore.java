@@ -1,4 +1,7 @@
-package models;
+package models.dinosaurs;
+
+import models.Enums.DinosaurType;
+import models.dinosaurs.Dinosaur;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,8 +10,8 @@ import javax.persistence.Table;
 @Table(name = "omnivores")
 public class Omnivore extends Dinosaur {
 
-    public Omnivore(String species, int strength) {
-        super(species, strength);
+    public Omnivore(DinosaurType species) {
+        super(species);
     }
 
     public Omnivore() {

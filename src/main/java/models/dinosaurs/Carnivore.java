@@ -1,4 +1,6 @@
-package models;
+package models.dinosaurs;
+
+import models.Enums.DinosaurType;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,8 +9,8 @@ import javax.persistence.Table;
 @Table(name = "carnivores")
 public class Carnivore extends Dinosaur {
 
-    public Carnivore(String species, int strength) {
-        super(species, strength);
+    public Carnivore(DinosaurType species) {
+        super(species);
     }
 
     public Carnivore() {

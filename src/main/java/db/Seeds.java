@@ -1,7 +1,7 @@
 package db;
 
-import models.Carnivore;
-import models.Herbivore;
+import models.dinosaurs.Carnivore;
+import models.dinosaurs.Herbivore;
 
 public class Seeds {
 

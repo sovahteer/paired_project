@@ -1,4 +1,6 @@
-package models;
+package models.dinosaurs;
+
+import models.Enums.DinosaurType;
 
 import javax.persistence.*;
 
@@ -9,13 +11,12 @@ public abstract class Dinosaur {
 
     private boolean hungry;
     private int stomach;
-    private String species;
+    private DinosaurType species;
     private int strength;
     private int id;
 
-    public Dinosaur(String species, int strength) {
+    public Dinosaur(DinosaurType species) {
         this.species = species;
-        this.strength = strength;
         this.stomach = 100;
         this.hungry = false;
     }
@@ -53,11 +54,11 @@ public abstract class Dinosaur {
     }
 
     @Column(name = "species")
-    public String getSpecies() {
+    public DinosaurType getSpecies() {
         return species;
     }
 
-    public void setSpecies(String species) {
+    public void setSpecies(DinosaurType species) {
         this.species = species;
     }
 
