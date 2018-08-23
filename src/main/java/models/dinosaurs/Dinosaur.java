@@ -1,6 +1,6 @@
 package models.dinosaurs;
 
-import models.Enums.DinosaurType;
+import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 
 import javax.persistence.*;
@@ -13,7 +13,6 @@ public abstract class Dinosaur {
     private boolean hungry;
     private int stomach;
     private DinosaurType species;
-    private int strength;
     private int id;
     private Paddock paddock;
 
@@ -63,15 +62,6 @@ public abstract class Dinosaur {
 
     public void setSpecies(DinosaurType species) {
         this.species = species;
-    }
-
-    @Column(name = "strength")
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
     }
 
     @ManyToOne

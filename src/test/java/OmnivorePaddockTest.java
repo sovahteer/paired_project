@@ -1,4 +1,4 @@
-import models.Enums.DinosaurType;
+import models.enums.DinosaurType;
 import models.dinosaurs.Omnivore;
 import models.paddocks.OmnivorePaddock;
 import org.junit.Before;

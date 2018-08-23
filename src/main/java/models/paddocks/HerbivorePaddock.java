@@ -1,6 +1,6 @@
 package models.paddocks;
 
-import models.Enums.DinosaurType;
+import models.enums.DinosaurType;
 import models.dinosaurs.Herbivore;
 
 import javax.persistence.Entity;

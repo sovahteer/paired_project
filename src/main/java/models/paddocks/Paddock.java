@@ -1,5 +1,6 @@
 package models.paddocks;
 
+import models.parks.Park;
 import models.dinosaurs.Dinosaur;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public abstract class Paddock {
     protected List<Dinosaur> dinosaurs;
     private int id;
     private String name;
+    private Park park;
 
 
     public Paddock(){}
@@ -21,8 +23,6 @@ public abstract class Paddock {
     public Paddock(String name) {
         this.dinosaurs = new ArrayList<>();
     }
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,5 +53,13 @@ public abstract class Paddock {
         this.dinosaurs = dinosaurs;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "park_id", nullable = true)
+    public Park getPark() {
+        return park;
+    }
 
+    public void setPark(Park park) {
+        this.park = park;
+    }
 }

@@ -1,6 +1,6 @@
 package models.dinosaurs;
 
-import models.Enums.DinosaurType;
+import models.enums.DinosaurType;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

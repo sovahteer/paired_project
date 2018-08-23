@@ -21,5 +21,6 @@
         <mapping class="models.paddocks.HerbivorePaddock"></mapping>
         <mapping class="models.paddocks.OmnivorePaddock"></mapping>
         <mapping class="models.paddocks.CarnivorePaddock"></mapping>
+        <mapping class="models.parks.Park"></mapping>
     </session-factory>
 </hibernate-configuration>

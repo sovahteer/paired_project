@@ -1,4 +1,4 @@
-package models.Enums;
+package models.enums;
 
 public enum DinosaurType {
     TRICERATOPS(30, "Triceratops"),
