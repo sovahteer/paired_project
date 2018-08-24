@@ -130,8 +130,6 @@ public class Paddock {
         } else {
             return;
         }
-
-
     }
 
 }
