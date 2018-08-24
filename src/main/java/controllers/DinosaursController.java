@@ -54,12 +54,18 @@ public class DinosaursController {
                 DBHelper.save(newDino);
                 res.redirect("/dinosaurs");
             } else {
-                res.redirect("/dinosaurs/new");
+                res.redirect("/dinosaurs/invalid_paddock");
+
             }
 
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/invalid_paddock", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
 
     }
 }

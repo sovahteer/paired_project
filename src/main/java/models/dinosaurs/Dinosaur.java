@@ -2,6 +2,7 @@ package models.dinosaurs;
 
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
+import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 
 import javax.persistence.*;
@@ -11,16 +12,16 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Dinosaur {
 
-    private boolean hungry;
     private int stomach;
     private DinosaurType species;
     private int id;
     private Paddock paddock;
+    private HungerLevelType hungerLevel;
 
     public Dinosaur(DinosaurType species) {
         this.species = species;
         this.stomach = 100;
-        this.hungry = false;
+        this.hungerLevel = HungerLevelType.FED;
     }
 
     public Dinosaur(){
@@ -37,13 +38,14 @@ public class Dinosaur {
         this.id = id;
     }
 
-    @Column(name = "hungry")
-    public boolean isHungry() {
-        return hungry;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "hunger_level")
+    public HungerLevelType getHungerLevel() {
+        return hungerLevel;
     }
 
-    public void setHungry(boolean hungry) {
-        this.hungry = hungry;
+    public void setHungerLevel(HungerLevelType hungerLevel) {
+        this.hungerLevel = hungerLevel;
     }
 
     @Column(name = "stomach")
