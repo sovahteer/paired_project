@@ -16,15 +16,15 @@ public class Seeds {
         Park park = new Park("YoloPark");
         DBHelper.save(park);
 
-        Paddock paddock = new Paddock( "T-Rex paddock", park, DietryType.CARNIVORE);
-        DBHelper.save(paddock);
+        Paddock carnivorePaddock = new Paddock( "T-Rex paddock", park, DietryType.CARNIVORE);
+        DBHelper.save(carnivorePaddock);
 
-        Paddock herbivorePaddock = new Paddock("Carnivores", park, DietryType.HERBIVORE);
+        Paddock herbivorePaddock = new Paddock("Herbivores", park, DietryType.HERBIVORE);
         DBHelper.save(herbivorePaddock);
 
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
-        DBDinosaur.addPaddockToDinosaur(carnivoreTRex, herbivorePaddock);
+        DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
 
         Dinosaur herbivoreTriceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         DBHelper.save(herbivoreTriceratops);

@@ -1,5 +1,6 @@
 package models.dinosaurs;
 
+import models.enums.DietryType;
 import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 
@@ -75,7 +76,30 @@ public class Dinosaur {
     }
 
     public void addPaddockToDinosaur(Paddock paddock) {
+        if (paddock.getDietryType() == this.getSpecies().getDietryType()) {
+            if (this.getSpecies().getDietryType() == DietryType.HERBIVORE) {
+                if (paddock.getDietryType() == DietryType.HERBIVORE) {
+                    setPaddock(paddock);
+                    paddock.addDinosaurToPaddock(this);
+                } else {
+                    return;
+                }
 
+            } else {
+                if (paddock.getDinosaurType() != null) {
+                    if(paddock.checkIfOfPaddockType(this) == true) {
+                        setPaddock(paddock);
+                        paddock.addDinosaurToPaddock(this);
+                    }
+                } else {
+                    this.setPaddock(paddock);
+                    paddock.setDinosaurType(this.species);
+                    paddock.addDinosaurToPaddock(this);
+                }
+            }
+        } else {
+            return;
+        }
     }
 
 }
