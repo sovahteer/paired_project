@@ -1,7 +1,7 @@
 package models.paddocks;
 
+import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
-import models.dinosaurs.Carnivore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,8 +30,22 @@ public class CarnivorePaddock extends Paddock{
     }
 
     public void createDinosaurInPaddock(){
-        Carnivore newCarnivore = new Carnivore(this.dinoType);
-        this.dinosaurs.add(newCarnivore);
+        Dinosaur newDinosaur = new Dinosaur(this.dinoType);
+            this.dinosaurs.add(newDinosaur);
     }
 
+    public boolean checkIfOfPaddockType(Dinosaur dinosaur) {
+        if(dinosaur.getSpecies() == dinoType) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void addDinosaurToPaddock(Dinosaur newDinosaur) {
+        DinosaurType dinoType = newDinosaur.getSpecies();
+        if(checkIfOfPaddockType(newDinosaur) == true) {
+            this.dinosaurs.add(newDinosaur);
+        }
+    }
 }

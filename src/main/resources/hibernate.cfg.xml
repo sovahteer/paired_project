@@ -14,12 +14,8 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <mapping class="models.dinosaurs.Dinosaur"></mapping>
-        <mapping class="models.dinosaurs.Herbivore"></mapping>
-        <mapping class="models.dinosaurs.Omnivore"></mapping>
-        <mapping class="models.dinosaurs.Carnivore"></mapping>
         <mapping class="models.paddocks.Paddock"></mapping>
         <mapping class="models.paddocks.HerbivorePaddock"></mapping>
-        <mapping class="models.paddocks.OmnivorePaddock"></mapping>
         <mapping class="models.paddocks.CarnivorePaddock"></mapping>
         <mapping class="models.parks.Park"></mapping>
     </session-factory>

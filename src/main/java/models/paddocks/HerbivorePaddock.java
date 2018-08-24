@@ -1,7 +1,8 @@
 package models.paddocks;
 
+import models.dinosaurs.Dinosaur;
+import models.enums.DietryType;
 import models.enums.DinosaurType;
-import models.dinosaurs.Herbivore;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -16,13 +17,26 @@ public class HerbivorePaddock extends Paddock{
 
     public HerbivorePaddock(){}
 
-    public void createDinosaurInPaddock(DinosaurType dinoType) {
-        Herbivore newHerbivore = new Herbivore(dinoType);
-        this.dinosaurs.add(newHerbivore);
+    public boolean checkIfHerbivore(Dinosaur dinosaur) {
+        if (dinosaur.getSpecies().getDietryType() == DietryType.HERBIVORE) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void addDinosaurToPaddock(Herbivore herbivore) {
-        this.dinosaurs.add(herbivore);
+    public void createDinosaurInPaddock(DinosaurType dinoType) {
+        Dinosaur newDinosaur = new Dinosaur(dinoType);
+        if(dinoType.getDietryType() == DietryType.HERBIVORE) {
+            this.dinosaurs.add(newDinosaur);
+        }
+
+    }
+
+    public void addDinosaurToPaddock(Dinosaur newDinosaur) {
+        if (checkIfHerbivore(newDinosaur) == true) {
+            this.dinosaurs.add(newDinosaur);
+        }
     }
 
 }

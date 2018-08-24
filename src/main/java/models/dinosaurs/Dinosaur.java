@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dinosaurs")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Dinosaur {
+public class Dinosaur {
 
     private boolean hungry;
     private int stomach;

@@ -1,7 +1,7 @@
 
+import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
 
-import models.dinosaurs.Herbivore;
 import models.paddocks.HerbivorePaddock;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,11 +9,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class HerbivorePaddockTest {
-    private Herbivore triceratops;
+    private Dinosaur triceratops;
     private HerbivorePaddock herbivorePaddock;
     @Before
     public void before() {
-        triceratops = new Herbivore(DinosaurType.TRICERATOPS);
+        triceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         herbivorePaddock = new HerbivorePaddock("Herbivores");
     }
 
