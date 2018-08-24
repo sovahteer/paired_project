@@ -8,7 +8,7 @@
 
     <select name="paddock" id="paddock">
         #foreach($paddock in $paddocks)
-        <option value="$paddock">$paddock.getName()</option>
+        <option value="$paddock.getId()">$paddock.getName()</option>
         #end
     </select>
 

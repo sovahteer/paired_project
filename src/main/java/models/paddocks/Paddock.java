@@ -70,14 +70,19 @@ public class Paddock {
         this.park = park;
     }
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "dietry_type")
     public DietryType getDietryType() {
         return dietryType;
     }
+
 
     public void setDietryType(DietryType dietryType) {
         this.dietryType = dietryType;
     }
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "dinosaur_type")
     public DinosaurType getDinosaurType() {
         return dinosaurType;
     }
@@ -106,7 +111,12 @@ public class Paddock {
         DinosaurType dinoType = newDinosaur.getSpecies();
         if (newDinosaur.getSpecies().getDietryType() == this.dietryType) {
             if (this.dietryType == DietryType.HERBIVORE) {
-                this.dinosaurs.add(newDinosaur);
+                if (newDinosaur.getSpecies().getDietryType() == DietryType.HERBIVORE) {
+                    this.dinosaurs.add(newDinosaur);
+                } else {
+                    return;
+                }
+
             } else {
                 if (this.dinosaurType != null) {
                     if(checkIfOfPaddockType(newDinosaur) == true) {

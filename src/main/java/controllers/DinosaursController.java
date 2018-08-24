@@ -45,9 +45,13 @@ public class DinosaursController {
         post("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             DinosaurType species = DinosaurType.valueOf(req.queryParams("species"));
-
+            int paddockId = Integer.parseInt(req.queryParams("paddock"));
             Dinosaur newDino = new Dinosaur(species);
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            paddock.addDinosaurToPaddock(newDino);
+            DBHelper.update(paddock);
             DBHelper.save(newDino);
+
             res.redirect("/dinosaurs");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());

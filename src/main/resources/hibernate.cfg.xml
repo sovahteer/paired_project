@@ -15,8 +15,6 @@
         <property name="show_sql">true</property>
         <mapping class="models.dinosaurs.Dinosaur"></mapping>
         <mapping class="models.paddocks.Paddock"></mapping>
-        <mapping class="models.paddocks.HerbivorePaddock"></mapping>
-        <mapping class="models.paddocks.CarnivorePaddock"></mapping>
         <mapping class="models.parks.Park"></mapping>
     </session-factory>
 </hibernate-configuration>

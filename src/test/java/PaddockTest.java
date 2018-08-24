@@ -46,4 +46,10 @@ public class PaddockTest {
         herbivorePaddock.addDinosaurToPaddock(trex);
         assertEquals(0, herbivorePaddock.getDinosaurs().size());
     }
+
+    @Test
+    public void wontAddHerbivoreToCarnivorePaddock() {
+        carnivorePaddock.addDinosaurToPaddock(triceratops);
+        assertEquals(0, herbivorePaddock.getDinosaurs().size());
+    }
 }
