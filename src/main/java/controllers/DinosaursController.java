@@ -6,11 +6,12 @@ import models.enums.DinosaurType;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.redirect;
 
 public class DinosaursController {
 
@@ -32,6 +33,15 @@ public class DinosaursController {
             DinosaurType[] dinosaurTypes = DinosaurType.values();
             model.put("dinosaurTypes", dinosaurTypes);
             model.put("template", "templates/dinosaurs/new.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/dinosaurs", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            DinosaurType species = DinosaurType.valueOf(req.queryParams("species"));
+            Dinosaur newDino = new Dinosaur(species);
+            DBHelper.save(newDino);
+            res.redirect("/dinosaurs");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
     }
