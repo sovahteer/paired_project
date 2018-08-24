@@ -6,6 +6,8 @@ import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 
+import java.util.List;
+
 public class Seeds {
 
     public static void seedData() {
@@ -22,6 +24,9 @@ public class Seeds {
         Paddock herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
         DBHelper.save(herbivorePaddock);
 
+        Paddock herbivorePaddock2 = new Paddock("Herbivore Park", park, DietaryType.HERBIVORE);
+        DBHelper.save(herbivorePaddock2);
+
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
         DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
@@ -30,7 +35,7 @@ public class Seeds {
         DBHelper.save(herbivoreTriceratops);
         DBDinosaur.addPaddockToDinosaur(herbivoreTriceratops, herbivorePaddock);
 
-
+        List<Paddock> herbivorePaddocksFound = DBDinosaur.getAllPaddocksByDietaryType(DietaryType.HERBIVORE);
 
     }
 }
