@@ -1,5 +1,7 @@
 package models.paddocks;
 
+import models.enums.DietryType;
+import models.enums.DinosaurType;
 import models.parks.Park;
 import models.dinosaurs.Dinosaur;
 
@@ -10,20 +12,23 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "paddock")
-public abstract class Paddock {
+public class Paddock {
 
     protected List<Dinosaur> dinosaurs;
     private int id;
     private String name;
     private Park park;
-
+    private DietryType dietryType;
+    private DinosaurType dinosaurType;
 
     public Paddock(){}
 
-    public Paddock(String name, Park park) {
+    public Paddock(String name, Park park, DietryType dietryType) {
         this.dinosaurs = new ArrayList<>();
+        this.dietryType = dietryType;
         this.park = park;
         this.name = name;
+        this.dinosaurType = null;
     }
 
     @Id
@@ -64,4 +69,59 @@ public abstract class Paddock {
     public void setPark(Park park) {
         this.park = park;
     }
+
+    public DietryType getDietryType() {
+        return dietryType;
+    }
+
+    public void setDietryType(DietryType dietryType) {
+        this.dietryType = dietryType;
+    }
+
+    public DinosaurType getDinosaurType() {
+        return dinosaurType;
+    }
+
+    public void setDinosaurType(DinosaurType dinosaurType) {
+        this.dinosaurType = dinosaurType;
+    }
+
+    public boolean checkIfOfPaddockType(Dinosaur dinosaur) {
+        if(dinosaur.getSpecies() == dinosaurType) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkIfHerbivore(Dinosaur dinosaur) {
+        if(dinosaur.getSpecies().getDietryType() == DietryType.HERBIVORE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void addDinosaurToPaddock(Dinosaur newDinosaur) {
+        DinosaurType dinoType = newDinosaur.getSpecies();
+        if (newDinosaur.getSpecies().getDietryType() == this.dietryType) {
+            if (this.dietryType == DietryType.HERBIVORE) {
+                this.dinosaurs.add(newDinosaur);
+            } else {
+                if (this.dinosaurType != null) {
+                    if(checkIfOfPaddockType(newDinosaur) == true) {
+                        this.dinosaurs.add(newDinosaur);
+                    }
+                } else {
+                    this.dinosaurs.add(newDinosaur);
+                    setDinosaurType(dinoType);
+                }
+            }
+        } else {
+            return;
+        }
+
+
+    }
+
 }

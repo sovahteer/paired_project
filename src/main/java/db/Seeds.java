@@ -1,16 +1,16 @@
 package db;
 
 import models.dinosaurs.Dinosaur;
+import models.enums.DietryType;
 import models.enums.DinosaurType;
-import models.parks.Park;
-import models.paddocks.CarnivorePaddock;
 import models.paddocks.Paddock;
+import models.parks.Park;
 
 public class Seeds {
 
     public static void seedData() {
         DBHelper.deleteAll(Dinosaur.class);
-        DBHelper.deleteAll(CarnivorePaddock.class);
+        DBHelper.deleteAll(Paddock.class);
         DBHelper.deleteAll(Park.class);
 
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
@@ -19,7 +19,7 @@ public class Seeds {
         DBHelper.save(herbivoreTriceratops);
         Park park = new Park();
         DBHelper.save(park);
-        CarnivorePaddock paddock = new CarnivorePaddock( "T-Rex paddock", park, DinosaurType.TREX);
+        Paddock paddock = new Paddock( "T-Rex paddock", park, DietryType.CARNIVORE);
         DBHelper.save(paddock);
 
     }
