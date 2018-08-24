@@ -17,7 +17,8 @@ The user must be able to add paddocks, add / remove dinosaurs to paddocks, feed 
 * Dinosaurs can randomly rampage and break out of their paddocks.
 * Visitors can enter / exit the park if the dinosaurs are not rampaging.
 * View the number of visitors in the park at a given time.
-* Anything else you can dream up!
+* Be able to search for Dinosaurs within the park.
+* Quiz?
 
 #
 

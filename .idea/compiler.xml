@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="paired_project" />
+        <module name="spark_with_hibernate_start" />
       </profile>
     </annotationProcessing>
   </component>
