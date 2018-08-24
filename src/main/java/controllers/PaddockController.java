@@ -50,19 +50,6 @@ public class PaddockController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get("/paddocks/:id", (req, res) -> {
-            String strId = req.params(":id");
-            Integer intId = Integer.parseInt(strId);
-            Paddock paddock = DBHelper.find(intId, Paddock.class);
-
-            Map<String, Object> model = new HashMap<>();
-
-            model.put("paddock", paddock);
-            model.put("template", "templates/managers/show.vtl");
-
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
 
             post("/paddocks", (req, res) -> {
             int parkId = Integer.parseInt(req.queryParams("park"));
