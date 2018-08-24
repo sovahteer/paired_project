@@ -8,20 +8,15 @@
     <label for="park">Park</label>
     <select id="park" name="park">
         #foreach( $park in $park )
-        <option value="$park.getId()">.getId()</option>
+        <option value="$park.getId()">$park.getName()</option>
         #end
     </select>
 
-    <label for="diet_type">Diet</label>
-    <select id="diet_type" name="diet_type">
-        #foreach( $diet_type in $diet_types )
-        <option value="$dietry_Type.values()">$department.valueOf()</option>
+    <label for="dietryType">Diet</label>
+    <select id="dietryType" name="dietryType">
+        #foreach( $dietryType in $dietryTypes )
+        <option value="$dietryType">$dietryType.getDiet()</option>
         #end
     </select>
-
-
-
-
-
 
 </form>
