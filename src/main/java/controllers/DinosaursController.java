@@ -68,5 +68,18 @@ public class DinosaursController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaurToEdit = DBHelper.find(dinosaurId, Dinosaur.class);
+            DinosaurType[] dinosaurTypes = DinosaurType.values();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            Park park = new Park();
+            model.put("dinosaurTypes", dinosaurTypes);
+            model.put("paddocks", paddocks);
+            model.put("dinosaurToEdit", dinosaurToEdit);
+            model.put("template", "templates/dinosaurs/edit.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
     }
 }
