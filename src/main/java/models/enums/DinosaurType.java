@@ -1,20 +1,20 @@
 package models.enums;
 
 public enum DinosaurType {
-    TRICERATOPS(30, "Triceratops", DietryType.HERBIVORE),
-    TREX(100, "T-Rex", DietryType.CARNIVORE),
-    VELOCIRAPTOR(50, "Velociraptor", DietryType.OMNIVORE),
-    BRACHIOSAURUS(60, "Brachiosaurus", DietryType.HERBIVORE);
+    TRICERATOPS(30, "Triceratops", DietaryType.HERBIVORE),
+    TREX(100, "T-Rex", DietaryType.CARNIVORE),
+    VELOCIRAPTOR(50, "Velociraptor", DietaryType.OMNIVORE),
+    BRACHIOSAURUS(60, "Brachiosaurus", DietaryType.HERBIVORE);
 
 
     private final int strength;
     private final String name;
-    private final DietryType dietryType;
+    private final DietaryType dietaryType;
 
-    DinosaurType(int strength, String name, DietryType dietryType) {
+    DinosaurType(int strength, String name, DietaryType dietaryType) {
         this.strength = strength;
         this.name = name;
-        this.dietryType = dietryType;
+        this.dietaryType = dietaryType;
     }
 
     public int getStrength(){
@@ -25,7 +25,7 @@ public enum DinosaurType {
         return name;
     }
 
-    public DietryType getDietryType() {
-        return dietryType;
+    public DietaryType getDietaryType() {
+        return dietaryType;
     }
 }

@@ -1,7 +1,7 @@
 package db;
 
 import models.dinosaurs.Dinosaur;
-import models.enums.DietryType;
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 import models.parks.Park;
@@ -16,10 +16,10 @@ public class Seeds {
         Park park = new Park("YoloPark");
         DBHelper.save(park);
 
-        Paddock carnivorePaddock = new Paddock( "T-Rex paddock", park, DietryType.CARNIVORE);
+        Paddock carnivorePaddock = new Paddock( "T-Rex paddock", park, DietaryType.CARNIVORE);
         DBHelper.save(carnivorePaddock);
 
-        Paddock herbivorePaddock = new Paddock("Herbivores", park, DietryType.HERBIVORE);
+        Paddock herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
         DBHelper.save(herbivorePaddock);
 
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);

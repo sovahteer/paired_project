@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum DietryType {
+public enum DietaryType {
     CARNIVORE,
     HERBIVORE,
     OMNIVORE;

@@ -1,6 +1,6 @@
 package models.dinosaurs;
 
-import models.enums.DietryType;
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 
@@ -78,9 +78,9 @@ public class Dinosaur {
 
     public boolean checkIfCompatible(Paddock paddock) {
         boolean compatible = false;
-        if (paddock.getDietryType() == this.getSpecies().getDietryType()) {
-            if (this.getSpecies().getDietryType() == DietryType.HERBIVORE) {
-                if (paddock.getDietryType() == DietryType.HERBIVORE) {
+        if (paddock.getDietaryType() == this.getSpecies().getDietaryType()) {
+            if (this.getSpecies().getDietaryType() == DietaryType.HERBIVORE) {
+                if (paddock.getDietaryType() == DietaryType.HERBIVORE) {
                     compatible = true;
                 } else {
                     compatible = false;

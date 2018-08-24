@@ -1,6 +1,6 @@
 
 import models.dinosaurs.Dinosaur;
-import models.enums.DietryType;
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 import models.parks.Park;
@@ -22,8 +22,8 @@ public class DinosaurTest {
         triceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         velociraptor = new Dinosaur(DinosaurType.VELOCIRAPTOR);
         park = new Park();
-        carnivorePaddock = new Paddock("Carnivores", park, DietryType.CARNIVORE);
-        herbivorePaddock = new Paddock("Herbivores", park, DietryType.HERBIVORE);
+        carnivorePaddock = new Paddock("Carnivores", park, DietaryType.CARNIVORE);
+        herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
     }
 
 
