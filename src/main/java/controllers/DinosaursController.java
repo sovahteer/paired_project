@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
+import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import spark.ModelAndView;

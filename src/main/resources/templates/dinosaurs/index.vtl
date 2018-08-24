@@ -8,7 +8,7 @@
     #foreach($dinosaur in $dinosaurs)
     <tr>
         <td>$dinosaur.getSpecies().getName()</td>
-        <td>$hungerLevel</td>
+        <td>$dinosaur.getHungerLevel().getHumanReadable()</td>
 
         #if($dinosaur.getPaddock())
         <td>$dinosaur.getPaddock().getName()</td>
