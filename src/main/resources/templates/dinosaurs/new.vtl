@@ -6,5 +6,11 @@
         #end
     </select>
 
+    <select name="paddock" id="paddock">
+        #foreach($paddock in $paddocks)
+        <option value="$paddock">$paddock.getName()</option>
+        #end
+    </select>
+
     <input type="submit" value="Create">
 </form>

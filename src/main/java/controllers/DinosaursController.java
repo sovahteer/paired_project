@@ -3,9 +3,12 @@ package controllers;
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
+import models.paddocks.Paddock;
+import models.parks.Park;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +34,10 @@ public class DinosaursController {
         get("/dinosaurs/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             DinosaurType[] dinosaurTypes = DinosaurType.values();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            Park park = new Park();
             model.put("dinosaurTypes", dinosaurTypes);
+            model.put("paddocks", paddocks);
             model.put("template", "templates/dinosaurs/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -39,10 +45,13 @@ public class DinosaursController {
         post("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             DinosaurType species = DinosaurType.valueOf(req.queryParams("species"));
+
             Dinosaur newDino = new Dinosaur(species);
             DBHelper.save(newDino);
             res.redirect("/dinosaurs");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
     }
 }

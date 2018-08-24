@@ -17,9 +17,10 @@ public class Seeds {
         DBHelper.save(carnivoreTRex);
         Dinosaur herbivoreTriceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         DBHelper.save(herbivoreTriceratops);
-        Paddock paddock = new CarnivorePaddock( "T-Rex paddock", DinosaurType.TREX);
-        DBHelper.save(paddock);
         Park park = new Park();
         DBHelper.save(park);
+        CarnivorePaddock paddock = new CarnivorePaddock( "T-Rex paddock", park, DinosaurType.TREX);
+        DBHelper.save(paddock);
+
     }
 }

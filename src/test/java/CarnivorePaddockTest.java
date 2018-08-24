@@ -2,6 +2,7 @@
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
 import models.paddocks.CarnivorePaddock;
+import models.parks.Park;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,13 +12,15 @@ public class CarnivorePaddockTest {
     private Dinosaur trex;
     private Dinosaur triceratops;
     private Dinosaur velociraptor;
+    private Park park;
     private CarnivorePaddock carnivorePaddock;
     @Before
     public void before() {
         trex = new Dinosaur(DinosaurType.TREX);
         triceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         velociraptor = new Dinosaur(DinosaurType.VELOCIRAPTOR);
-        carnivorePaddock = new CarnivorePaddock("Carnivores", DinosaurType.TREX);
+        park = new Park();
+        carnivorePaddock = new CarnivorePaddock("Carnivores", park, DinosaurType.TREX);
     }
 
     @Test

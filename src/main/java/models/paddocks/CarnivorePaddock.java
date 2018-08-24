@@ -2,6 +2,7 @@ package models.paddocks;
 
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
+import models.parks.Park;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +13,8 @@ import javax.persistence.Table;
 public class CarnivorePaddock extends Paddock{
     private DinosaurType dinoType;
 
-    public CarnivorePaddock(String name, DinosaurType dinoType) {
-        super(name);
+    public CarnivorePaddock(String name, Park park, DinosaurType dinoType) {
+        super(name, park);
         this.dinoType = dinoType;
     }
 

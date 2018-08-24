@@ -20,8 +20,10 @@ public abstract class Paddock {
 
     public Paddock(){}
 
-    public Paddock(String name) {
+    public Paddock(String name, Park park) {
         this.dinosaurs = new ArrayList<>();
+        this.park = park;
+        this.name = name;
     }
 
     @Id
@@ -37,7 +39,7 @@ public abstract class Paddock {
 
     @Column(name = "name")
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
