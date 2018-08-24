@@ -107,9 +107,7 @@ public class Paddock {
         }
     }
 
-    public void addDinosaurToPaddock(Dinosaur dinosaur) {
-        this.dinosaurs.add(dinosaur);
-    }
+
 
 
 

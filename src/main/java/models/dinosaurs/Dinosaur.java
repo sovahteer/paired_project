@@ -75,31 +75,43 @@ public class Dinosaur {
         this.paddock = paddock;
     }
 
-    public void addPaddockToDinosaur(Paddock paddock) {
+
+    public boolean checkIfCompatible(Paddock paddock) {
+        boolean compatible = false;
         if (paddock.getDietryType() == this.getSpecies().getDietryType()) {
             if (this.getSpecies().getDietryType() == DietryType.HERBIVORE) {
                 if (paddock.getDietryType() == DietryType.HERBIVORE) {
-                    setPaddock(paddock);
-                    paddock.addDinosaurToPaddock(this);
+                    compatible = true;
                 } else {
-                    return;
+                    compatible = false;
                 }
 
             } else {
                 if (paddock.getDinosaurType() != null) {
                     if(paddock.checkIfOfPaddockType(this) == true) {
-                        setPaddock(paddock);
-                        paddock.addDinosaurToPaddock(this);
+                        compatible = true;
                     }
                 } else {
-                    this.setPaddock(paddock);
-                    paddock.setDinosaurType(this.species);
-                    paddock.addDinosaurToPaddock(this);
+                    compatible = true;
                 }
             }
         } else {
-            return;
+            compatible = false;
+        }
+        return compatible;
+    }
+
+    public void addPaddockToDinosaur(Paddock paddock) {
+        if (checkIfCompatible(paddock)){
+            setPaddock(paddock);
         }
     }
 
+    public boolean checkIfPaddockAssigned() {
+        if (this.paddock != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

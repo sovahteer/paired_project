@@ -49,10 +49,14 @@ public class DinosaursController {
             Dinosaur newDino = new Dinosaur(species);
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             newDino.addPaddockToDinosaur(paddock);
-            DBHelper.update(paddock);
-            DBHelper.save(newDino);
+            if (newDino.checkIfPaddockAssigned() == true) {
+                DBHelper.update(paddock);
+                DBHelper.save(newDino);
+                res.redirect("/dinosaurs");
+            } else {
+                res.redirect("/dinosaurs/new");
+            }
 
-            res.redirect("/dinosaurs");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
