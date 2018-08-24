@@ -1,0 +1,27 @@
+<p class="pageHeader">New Paddock</p>
+
+<form action="paddocks" method = "post">
+
+    <label for="name" id="name">Name</label>
+    <input class="inputbox" type="text" name="name" required="true">
+
+    <label for="park">Park</label>
+    <select id="park" name="park">
+        #foreach( $park in $park )
+        <option value="$park.getId()">.getId()</option>
+        #end
+    </select>
+
+    <label for="diet_type">Diet</label>
+    <select id="diet_type" name="diet_type">
+        #foreach( $diet_type in $diet_types )
+        <option value="$dietry_Type.values()">$department.valueOf()</option>
+        #end
+    </select>
+
+
+
+
+
+
+</form>
