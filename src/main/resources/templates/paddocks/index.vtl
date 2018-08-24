@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Park</th>
+        <th>Name</th>
+        <th>Diet</th>
+        <th></th>
+    </tr>
+    #foreach($paddock in $paddocks)
+    <tr>
+        <td>$paddock.getPark().getId()</td>
+        <td>$paddock.getName()</td>
+        <td>$paddock.getDietryType()</td>
+    </tr>
+    #end
+</table>
+<a href="/paddock/new">Create a Paddock</a>

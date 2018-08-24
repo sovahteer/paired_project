@@ -24,29 +24,29 @@ public class PaddockController {
         get("/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-            model.put("template", "templates/paddocks/inex.vtl");
             model.put("paddocks", paddocks);
+            model.put("template", "templates/paddocks/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get("/paddocks/new", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            List<DinosaurType> dinosaurTypes = DBHelper.getAll(DinosaurType.class);
-            model.put("DinoType", dinosaurTypes);
-            model.put("templates", "template/layout.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
+//        get("/paddocks/new", (req, res) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            DinosaurType[] dinosaurTypes = DinosaurType.values();
+//            model.put("dinosaurTypes", dinosaurTypes);
+//            model.put("template", "templates/new.vtl");
+//            return new ModelAndView(model, "templates/layout.vtl");
+//        }, new VelocityTemplateEngine());
 
-        post("/paddocks", (req, res) -> {
-            int parkId = Integer.parseInt(req.queryParams("park"));
-            DietryType dietryType = DietryType.valueOf(req.queryParams("diet_type"));
-            Park park = DBHelper.find(parkId, Park.class);
-            String name = req.queryParams("name");
-            Paddock paddock = new Paddock(name, park, dietryType);
-            DBHelper.save(paddock);
-            res.redirect("/paddocks");
-            return null;
-        }, new VelocityTemplateEngine());
+//        post("/paddocks", (req, res) -> {
+//            int parkId = Integer.parseInt(req.queryParams("park"));
+//            DietryType dietryType = DietryType.valueOf(req.queryParams("diet_type"));
+//            Park park = DBHelper.find(parkId, Park.class);
+//            String name = req.queryParams("name");
+//            Paddock paddock = new Paddock(name, park, dietryType);
+//            DBHelper.save(paddock);
+//            res.redirect("/paddocks");
+//            return null;
+//        }, new VelocityTemplateEngine());
     }
 
 
