@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
+import models.enums.DinosaurType;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -28,6 +29,8 @@ public class DinosaursController {
 
         get("/dinosaurs/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            DinosaurType[] dinosaurTypes = DinosaurType.values();
+            model.put("dinosaurTypes", dinosaurTypes);
             model.put("template", "templates/dinosaurs/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());

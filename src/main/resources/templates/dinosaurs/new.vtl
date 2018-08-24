@@ -1,6 +1,10 @@
 <form action="/dinosaurs" method="post">
 
-    <option value="Species"></option>
-    <label for=""></label>
+    <select name="species" id="species">
+        #foreach($dinosaurType in $dinosaurTypes)
+        <option value="$dinosaurType.getName()">$dinosaurType.getName()</option>
+        #end
+    </select>
+
     <input type="submit" value="Create">
 </form>
