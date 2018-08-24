@@ -14,6 +14,7 @@ public class MainController {
         Seeds.seedData();
         AdminController adminController = new AdminController();
         DinosaursController dinosaursController = new DinosaursController();
+        PaddockController paddockController = new PaddockController();
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
