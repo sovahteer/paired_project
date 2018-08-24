@@ -2,6 +2,7 @@
 import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
+import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import org.junit.Before;
@@ -41,5 +42,12 @@ public class DinosaurTest {
         assertEquals(false, trex.checkIfPaddockAssigned());
         trex.addPaddockToDinosaur(carnivorePaddock);
         assertEquals(true, trex.checkIfPaddockAssigned());
+    }
+
+    @Test
+    public void canAssignHungerLevel() {
+        velociraptor.setStomach(10);
+        velociraptor.assignHungerLevel();
+        assertEquals(HungerLevelType.STARVING, velociraptor.getHungerLevel());
     }
 }

@@ -1,5 +1,6 @@
 package models.dinosaurs;
 
+import db.DBHelper;
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.enums.HungerLevelType;
@@ -21,7 +22,7 @@ public class Dinosaur {
     public Dinosaur(DinosaurType species) {
         this.species = species;
         this.stomach = 100;
-        this.hungerLevel = HungerLevelType.FED;
+        assignHungerLevel();
     }
 
     public Dinosaur(){
@@ -114,6 +115,18 @@ public class Dinosaur {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void assignHungerLevel() {
+        if (this.stomach <= 20) {
+            setHungerLevel(HungerLevelType.STARVING);
+        } else if (this.stomach > 20 && this.stomach <= 50) {
+            setHungerLevel(HungerLevelType.HUNGRY);
+        } else if (this.stomach > 50 && this.stomach <= 80) {
+            setHungerLevel(HungerLevelType.FED);
+        } else if (this.stomach > 80) {
+            setHungerLevel(HungerLevelType.FULL);
         }
     }
 }
