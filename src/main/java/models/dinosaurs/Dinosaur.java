@@ -101,6 +101,5 @@ public class Dinosaur {
             return;
         }
     }
->>>>>>> develop
 
 }
