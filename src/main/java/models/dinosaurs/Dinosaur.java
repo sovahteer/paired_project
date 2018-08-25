@@ -106,6 +106,9 @@ public class Dinosaur {
 
     public void eat(FoodType foodtype){
         this.stomach += foodtype.getNutrition();
+        if (this.stomach >= 100){
+            this.stomach = 100;
+        }
     }
 
 }
