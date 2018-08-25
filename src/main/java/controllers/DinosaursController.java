@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
+import models.enums.FoodType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import spark.ModelAndView;
@@ -42,6 +43,18 @@ public class DinosaursController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/:id/feed", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Dinosaur dinosaur = DBHelper.find(intId, Dinosaur.class);
+            FoodType[] foodTypes = FoodType.values();
+            model.put("dinosaur", dinosaur);
+            model.put("foodTypes", foodTypes);
+            model.put("template", "templates/dinosaurs/feed.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         post("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             DinosaurType species = DinosaurType.valueOf(req.queryParams("species"));
@@ -55,6 +68,7 @@ public class DinosaursController {
             res.redirect("/dinosaurs");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
 
 
     }
