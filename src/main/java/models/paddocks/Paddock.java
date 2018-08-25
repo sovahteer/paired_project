@@ -51,7 +51,7 @@ public class Paddock {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "paddock", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paddock", fetch = FetchType.EAGER)
     public List<Dinosaur> getDinosaurs() {
         return dinosaurs;
     }
@@ -99,6 +99,14 @@ public class Paddock {
         }
     }
 
+    public boolean checkIfDinosaurTypeAssigned() {
+        if(this.dinosaurType != null) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
     public boolean checkIfHerbivore(Dinosaur dinosaur) {
         if(dinosaur.getSpecies().getDietaryType() == DietaryType.HERBIVORE) {
             return true;
@@ -108,6 +116,15 @@ public class Paddock {
     }
 
 
+    public void assignDinosaurType(DinosaurType dinosaurType) {
+        if(!checkIfDinosaurTypeAssigned()) {
+            this.setDinosaurType(dinosaurType);
+        }
+    }
+
+    public void addDinoToPaddock(Dinosaur dinosaur) {
+        this.dinosaurs.add(dinosaur);
+    }
 
 
 

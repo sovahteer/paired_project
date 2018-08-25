@@ -30,10 +30,14 @@ public class Seeds {
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
         DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
+        DBHelper.update(carnivorePaddock);
 
         Dinosaur herbivoreTriceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         DBHelper.save(herbivoreTriceratops);
         DBDinosaur.addPaddockToDinosaur(herbivoreTriceratops, herbivorePaddock);
+//
+        DBHelper.update(herbivorePaddock);
+
 
         List<Paddock> herbivorePaddocksFound = DBDinosaur.getAllPaddocksByDietaryType(DietaryType.HERBIVORE);
 

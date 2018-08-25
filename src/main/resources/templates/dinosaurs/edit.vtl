@@ -1,14 +1,6 @@
 <form action="/dinosaurs/$dinosaurToEdit.getId()" method="post">
 
-    <select name="species" id="species">
-        #foreach($dinosaurType in $dinosaurTypes)
-        <option value="$dinosaurType"
-            #if($dinosaurType == $dinosaurToEdit.getSpecies())
-                    selected="selected"
-            #end
-        >$dinosaurType.getName()</option>
-        #end
-    </select>
+    $dinosaurToEdit.getSpecies().getName()
 
     <select name="paddock" id="paddock">
         #foreach($paddock in $paddocks)

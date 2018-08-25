@@ -14,6 +14,7 @@ public class DinosaurTest {
     private Dinosaur trex;
     private Dinosaur triceratops;
     private Dinosaur velociraptor;
+    private Dinosaur giganotosaurus;
     private Park park;
     private Paddock carnivorePaddock;
     private Paddock herbivorePaddock;
@@ -22,9 +23,11 @@ public class DinosaurTest {
         trex = new Dinosaur(DinosaurType.TREX);
         triceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         velociraptor = new Dinosaur(DinosaurType.VELOCIRAPTOR);
+        giganotosaurus = new Dinosaur(DinosaurType.GIGANOTOSAURUS);
         park = new Park();
         carnivorePaddock = new Paddock("Carnivores", park, DietaryType.CARNIVORE);
         herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
+
     }
 
 
@@ -36,6 +39,26 @@ public class DinosaurTest {
         assertEquals("Carnivores", trex.getPaddock().getName());
     }
 
+//    @Test
+//    public void wontAddCarnivoreOfDifferentTypeToCarnivorePaddock() {
+//        trex
+//    }
+
+    @Test
+    public void wontAddHerbivoreToCarnivorePaddock(){
+        triceratops.addPaddockToDinosaur(carnivorePaddock);
+        assertEquals(false, triceratops.checkIfPaddockAssigned());
+        triceratops.addPaddockToDinosaur(herbivorePaddock);
+        assertEquals(true, triceratops.checkIfPaddockAssigned());
+    }
+
+    @Test
+    public void wontReassignPaddockToCarnivoreForHerbivore() {
+        triceratops.addPaddockToDinosaur(herbivorePaddock);
+        assertEquals(DietaryType.HERBIVORE, triceratops.getPaddock().getDietaryType());
+        triceratops.addPaddockToDinosaur(carnivorePaddock);
+        assertEquals(DietaryType.HERBIVORE, triceratops.getPaddock().getDietaryType());
+    }
 
     @Test
     public void canCheckIfPaddockAssigned() {
@@ -50,4 +73,5 @@ public class DinosaurTest {
         velociraptor.assignHungerLevel();
         assertEquals(HungerLevelType.STARVING, velociraptor.getHungerLevel());
     }
+
 }

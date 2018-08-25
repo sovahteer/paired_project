@@ -83,7 +83,7 @@ public class Dinosaur {
         boolean compatible = false;
         if (paddock.getDietaryType() == this.getSpecies().getDietaryType()) {
             if (this.getSpecies().getDietaryType() == DietaryType.HERBIVORE) {
-                if (paddock.getDietaryType() == DietaryType.HERBIVORE) {
+                if (paddock.checkIfHerbivore(this)) {
                     compatible = true;
                 } else {
                     compatible = false;
@@ -91,7 +91,7 @@ public class Dinosaur {
 
             } else {
                 if (paddock.getDinosaurType() != null) {
-                    if(paddock.checkIfOfPaddockType(this) == true) {
+                    if(paddock.checkIfOfPaddockType(this)) {
                         compatible = true;
                     }
                 } else {
@@ -103,10 +103,14 @@ public class Dinosaur {
         }
         return compatible;
     }
-
+//check if compatible with paddock
     public void addPaddockToDinosaur(Paddock paddock) {
         if (checkIfCompatible(paddock)){
+            if (!paddock.checkIfHerbivore(this)) {
+                paddock.assignDinosaurType(this.getSpecies());
+            }
             setPaddock(paddock);
+            paddock.addDinoToPaddock(this);
         }
     }
 
@@ -130,3 +134,7 @@ public class Dinosaur {
         }
     }
 }
+
+
+//sprawdz czy dino jest roslinozerca
+//jesli nie, to dodaj
