@@ -4,6 +4,7 @@ import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
 import models.paddocks.Paddock;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -24,6 +25,21 @@ public class DBDinosaur {
         Criteria cr = session.createCriteria(Paddock.class);
         cr.add(Restrictions.eq("dietaryType", dietaryType));
         results = cr.list();
+        return results;
+    }
+
+    public static List<Dinosaur> getAllDinoForPaddock(Paddock paddock){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Dinosaur> results = null;
+        try{
+            Criteria cr = session.createCriteria(Dinosaur.class);
+            cr.add(Restrictions.eq("paddock", paddock));
+            results = cr.list();
+        }catch(HibernateException e){
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
         return results;
     }
 }
