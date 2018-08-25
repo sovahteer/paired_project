@@ -58,7 +58,6 @@ public class DinosaursController {
                 res.redirect("/dinosaurs/invalid_paddock");
 
             }
-
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -80,6 +79,26 @@ public class DinosaursController {
             model.put("dinosaurToEdit", dinosaurToEdit);
             model.put("template", "templates/dinosaurs/edit.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/dinosaurs/:id/delete", (req, res) -> {
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
+            DBHelper.delete(dinosaur);
+            res.redirect("/dinosaurs");
+            return null;
+        }, new VelocityTemplateEngine());
+
+        ///still not working
+        post("/dinosaurs/:id", (req, res) -> {
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
+            DinosaurType dinosaurType = DinosaurType.valueOf(req.queryParams("species"));
+            int paddockId = Integer.parseInt(req.queryParams("paddock.getId()"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            dinosaur.setPaddock(paddock);
+            dinosaur.setSpecies(dinosaurType);
+            return null;
         }, new VelocityTemplateEngine());
     }
 }
