@@ -2,6 +2,7 @@ package models.dinosaurs;
 
 import models.enums.DietryType;
 import models.enums.DinosaurType;
+import models.enums.FoodType;
 import models.paddocks.Paddock;
 
 import javax.persistence.*;
@@ -100,6 +101,11 @@ public class Dinosaur {
         } else {
             return;
         }
+    }
+
+
+    public void eat(FoodType foodtype){
+        this.stomach += foodtype.getNutrition();
     }
 
 }
