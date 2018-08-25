@@ -1,13 +1,13 @@
 <p class="pageHeader">New Paddock</p>
 
-<form action="paddocks" method = "post">
+<form action="/paddocks" method = "post">
 
     <label for="name" id="name">Name</label>
     <input class="inputbox" type="text" name="name" required="true">
 
     <label for="park">Park</label>
     <select id="park" name="park">
-        #foreach( $park in $park )
+        #foreach( $park in $parks )
         <option value="$park.getId()">$park.getName()</option>
         #end
     </select>
@@ -18,5 +18,7 @@
         <option value="$dietryType">$dietryType.getDiet()</option>
         #end
     </select>
+
+    <input type="submit" value="Create">
 
 </form>

@@ -13,7 +13,7 @@ public class Seeds {
         DBHelper.deleteAll(Paddock.class);
         DBHelper.deleteAll(Park.class);
 
-        Park park = new Park();
+        Park park = new Park("Late-Cretaceous Park");
         DBHelper.save(park);
 
         Paddock paddock = new Paddock( "T-Rex paddock", park, DietryType.CARNIVORE);
