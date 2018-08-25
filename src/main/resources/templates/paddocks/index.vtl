@@ -7,7 +7,7 @@
     </tr>
     #foreach($paddock in $paddocks)
     <tr>
-        <td>$paddock.getPark().getId()</td>
+        <td>$paddock.getPark().getName()</td>
         <td>$paddock.getName()</td>
         <td>$paddock.getDietryType()</td>
         <td><a href="/paddocks/$paddock.getId()/edit" class="button center">Edit</a></td>

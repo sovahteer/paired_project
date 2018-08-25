@@ -5,12 +5,8 @@
     <label for="name" id="name">Name</label>
     <input class="inputbox" type="text" name="name" required="true">
 
-    <label for="park">Park</label>
-    <select id="park" name="park">
-        #foreach( $park in $parks )
-        <option value="$park.getId()">$park.getName()</option>
-        #end
-    </select>
+
+    <input type="hidden" name="park" id="park" value="$park.getId()"/>
 
     <label for="dietryType">Diet</label>
     <select id="dietryType" name="dietryType">
