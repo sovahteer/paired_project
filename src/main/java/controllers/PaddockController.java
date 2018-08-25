@@ -1,15 +1,11 @@
 package controllers;
 
 import db.DBHelper;
-import models.dinosaurs.Dinosaur;
-import models.enums.DietryType;
-import models.enums.DinosaurType;
+import models.enums.DietaryType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +29,9 @@ public class PaddockController {
             Map<String, Object> model = new HashMap<>();
             List<Park> parks = DBHelper.getAll(Park.class);
             Park park = parks.get(0);
-            DietryType[] dietryTypes = DietryType.values();
+            DietaryType[] dietaryTypes = DietaryType.values();
             model.put("park", park);
-            model.put("dietryTypes", dietryTypes);
+            model.put("dietryTypes", dietaryTypes);
             model.put("template", "templates/paddocks/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -58,7 +54,7 @@ public class PaddockController {
             Paddock paddock= DBHelper.find(intId, Paddock.class);
             List<Park> parks = DBHelper.getAll(Park.class);
             Park park = parks.get(0);
-            DietryType[] dietryTypes = DietryType.values();
+            DietaryType[] dietryTypes = DietaryType.values();
 
             Map<String, Object> model = new HashMap<>();
             model.put("dietryTypes", dietryTypes);
@@ -71,7 +67,7 @@ public class PaddockController {
             Map<String, Object> model = new HashMap<>();
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(parkId, Park.class);
-            DietryType dietryType = DietryType.valueOf(req.queryParams("dietryType"));
+            DietaryType dietryType = DietaryType.valueOf(req.queryParams("dietryType"));
             String name = req.queryParams("name");
             Paddock newPaddock = new Paddock(name, park, dietryType);
             DBHelper.save(newPaddock);
@@ -84,11 +80,11 @@ public class PaddockController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(intId, Paddock.class);
-            DietryType dietryType = DietryType.valueOf(req.queryParams("dietryType"));
+            DietaryType dietryType = DietaryType.valueOf(req.queryParams("dietryType"));
             String name = req.queryParams("name");
 
             paddock.setName(name);
-            paddock.setDietryType(dietryType);
+            paddock.setDietaryType(dietryType);
 
 
             DBHelper.update(paddock);

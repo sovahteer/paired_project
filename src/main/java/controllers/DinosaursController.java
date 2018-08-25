@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
+import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import spark.ModelAndView;
@@ -49,13 +50,36 @@ public class DinosaursController {
             Dinosaur newDino = new Dinosaur(species);
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             newDino.addPaddockToDinosaur(paddock);
-            DBHelper.update(paddock);
-            DBHelper.save(newDino);
+            if (newDino.checkIfPaddockAssigned() == true) {
+                DBHelper.update(paddock);
+                DBHelper.save(newDino);
+                res.redirect("/dinosaurs");
+            } else {
+                res.redirect("/dinosaurs/invalid_paddock");
 
-            res.redirect("/dinosaurs");
+            }
+
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/invalid_paddock", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaurToEdit = DBHelper.find(dinosaurId, Dinosaur.class);
+            DinosaurType[] dinosaurTypes = DinosaurType.values();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            Park park = new Park();
+            model.put("dinosaurTypes", dinosaurTypes);
+            model.put("paddocks", paddocks);
+            model.put("dinosaurToEdit", dinosaurToEdit);
+            model.put("template", "templates/dinosaurs/edit.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
     }
 }

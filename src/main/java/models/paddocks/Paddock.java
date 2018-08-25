@@ -1,6 +1,6 @@
 package models.paddocks;
 
-import models.enums.DietryType;
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.parks.Park;
 import models.dinosaurs.Dinosaur;
@@ -18,14 +18,14 @@ public class Paddock {
     private int id;
     private String name;
     private Park park;
-    private DietryType dietryType;
+    private DietaryType dietaryType;
     private DinosaurType dinosaurType;
 
     public Paddock(){}
 
-    public Paddock(String name, Park park, DietryType dietryType) {
+    public Paddock(String name, Park park, DietaryType dietaryType) {
         this.dinosaurs = new ArrayList<>();
-        this.dietryType = dietryType;
+        this.dietaryType = dietaryType;
         this.park = park;
         this.name = name;
         this.dinosaurType = null;
@@ -71,14 +71,14 @@ public class Paddock {
     }
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "dietry_type")
-    public DietryType getDietryType() {
-        return dietryType;
+    @Column(name = "dietary_type")
+    public DietaryType getDietaryType() {
+        return dietaryType;
     }
 
 
-    public void setDietryType(DietryType dietryType) {
-        this.dietryType = dietryType;
+    public void setDietaryType(DietaryType dietaryType) {
+        this.dietaryType = dietaryType;
     }
 
     @Enumerated(value = EnumType.STRING)
@@ -100,16 +100,14 @@ public class Paddock {
     }
 
     public boolean checkIfHerbivore(Dinosaur dinosaur) {
-        if(dinosaur.getSpecies().getDietryType() == DietryType.HERBIVORE) {
+        if(dinosaur.getSpecies().getDietaryType() == DietaryType.HERBIVORE) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void addDinosaurToPaddock(Dinosaur dinosaur) {
-        this.dinosaurs.add(dinosaur);
-    }
+
 
 
 
