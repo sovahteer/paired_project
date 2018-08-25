@@ -10,7 +10,11 @@
         <td>$paddock.getPark().getName()</td>
         <td>$paddock.getName()</td>
         <td>$paddock.getDietryType()</td>
+        <td><td><a href="/paddocks/$paddock.getId()" class="button center">Details</a></td></td>
         <td><a href="/paddocks/$paddock.getId()/edit" class="button center">Edit</a></td>
+        <td><form action="/paddocks/$paddock.getId()/delete" method="post">
+            <input type="submit" value="delete" class="button">
+        </form></td>
     </tr>
     #end
 </table>
