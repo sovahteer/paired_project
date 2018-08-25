@@ -107,31 +107,12 @@ public class Paddock {
         }
     }
 
-    public void addDinosaurToPaddock(Dinosaur newDinosaur) {
-        DinosaurType dinoType = newDinosaur.getSpecies();
-        if (newDinosaur.getSpecies().getDietryType() == this.dietryType) {
-            if (this.dietryType == DietryType.HERBIVORE) {
-                if (newDinosaur.getSpecies().getDietryType() == DietryType.HERBIVORE) {
-                    this.dinosaurs.add(newDinosaur);
-                } else {
-                    return;
-                }
-
-            } else {
-                if (this.dinosaurType != null) {
-                    if(checkIfOfPaddockType(newDinosaur) == true) {
-                        this.dinosaurs.add(newDinosaur);
-                    }
-                } else {
-                    this.dinosaurs.add(newDinosaur);
-                    setDinosaurType(dinoType);
-                }
-            }
-        } else {
-            return;
-        }
-
-
+    public void addDinosaurToPaddock(Dinosaur dinosaur) {
+        this.dinosaurs.add(dinosaur);
     }
+
+
+
+
 
 }

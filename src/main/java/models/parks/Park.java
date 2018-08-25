@@ -10,10 +10,16 @@ import java.util.List;
 public class Park {
     private List<Paddock> paddocks;
     private int id;
+    private String name;
 
+
+    public Park(String name) {
+        this.name = name;
+    }
 
     public Park() {
     }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +42,12 @@ public class Park {
     }
 
 
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

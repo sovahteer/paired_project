@@ -48,7 +48,7 @@ public class DinosaursController {
             int paddockId = Integer.parseInt(req.queryParams("paddock"));
             Dinosaur newDino = new Dinosaur(species);
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
-            paddock.addDinosaurToPaddock(newDino);
+            newDino.addPaddockToDinosaur(paddock);
             DBHelper.update(paddock);
             DBHelper.save(newDino);
 
