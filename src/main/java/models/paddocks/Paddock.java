@@ -4,6 +4,8 @@ import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.parks.Park;
 import models.dinosaurs.Dinosaur;
+import models.visitors.Visit;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class Paddock {
     private Park park;
     private DietaryType dietaryType;
     private DinosaurType dinosaurType;
+    private List<Visit> visits;
 
     public Paddock(){}
 
@@ -29,6 +32,7 @@ public class Paddock {
         this.park = park;
         this.name = name;
         this.dinosaurType = null;
+        this.visits = new ArrayList<>();
     }
 
     @Id
@@ -91,6 +95,20 @@ public class Paddock {
         this.dinosaurType = dinosaurType;
     }
 
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToMany
+    @JoinTable(name = "visits_paddocks",
+            joinColumns = {@JoinColumn(name = "paddock_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "visit_id", nullable = false, updatable = false)}
+    )
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
+    }
+
     public boolean checkIfOfPaddockType(Dinosaur dinosaur) {
         if(dinosaur.getSpecies() == dinosaurType) {
             return true;
@@ -126,7 +144,9 @@ public class Paddock {
         this.dinosaurs.add(dinosaur);
     }
 
-
+    public void addVisitToPaddock(Visit visit) {
+        this.visits.add(visit);
+    }
 
 
 
