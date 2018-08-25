@@ -24,6 +24,20 @@ public class DinosaursController {
     }
 
     private static void setupEndpoint(){
+
+        get("/dinosaurs/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaurToEdit = DBHelper.find(dinosaurId, Dinosaur.class);
+            DinosaurType[] dinosaurTypes = DinosaurType.values();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            model.put("dinosaurTypes", dinosaurTypes);
+            model.put("paddocks", paddocks);
+            model.put("dinosaurToEdit", dinosaurToEdit);
+            model.put("template", "templates/dinosaurs/edit.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         get("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
@@ -41,6 +55,37 @@ public class DinosaursController {
             model.put("paddocks", paddocks);
             model.put("template", "templates/dinosaurs/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        get("/dinosaurs/invalid_paddock", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        post("/dinosaurs/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
+            DinosaurType dinosaurType = DinosaurType.valueOf(req.queryParams("species"));
+            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            dinosaur.setPaddock(paddock);
+            dinosaur.setSpecies(dinosaurType);
+            DBHelper.update(dinosaur);
+            res.redirect("/dinosaurs");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        post("/dinosaurs/:id/delete", (req, res) -> {
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
+            DBHelper.delete(dinosaur);
+            res.redirect("/dinosaurs");
+            return null;
         }, new VelocityTemplateEngine());
 
         post("/dinosaurs", (req, res) -> {
@@ -61,44 +106,5 @@ public class DinosaursController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get("/dinosaurs/invalid_paddock", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
-        get("/dinosaurs/:id/edit", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int dinosaurId = Integer.parseInt(req.params(":id"));
-            Dinosaur dinosaurToEdit = DBHelper.find(dinosaurId, Dinosaur.class);
-            DinosaurType[] dinosaurTypes = DinosaurType.values();
-            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-            Park park = new Park();
-            model.put("dinosaurTypes", dinosaurTypes);
-            model.put("paddocks", paddocks);
-            model.put("dinosaurToEdit", dinosaurToEdit);
-            model.put("template", "templates/dinosaurs/edit.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
-        post("/dinosaurs/:id/delete", (req, res) -> {
-            int dinosaurId = Integer.parseInt(req.params(":id"));
-            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
-            DBHelper.delete(dinosaur);
-            res.redirect("/dinosaurs");
-            return null;
-        }, new VelocityTemplateEngine());
-
-        ///still not working
-        post("/dinosaurs/:id", (req, res) -> {
-            int dinosaurId = Integer.parseInt(req.params(":id"));
-            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
-            DinosaurType dinosaurType = DinosaurType.valueOf(req.queryParams("species"));
-            int paddockId = Integer.parseInt(req.queryParams("paddock.getId()"));
-            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
-            dinosaur.setPaddock(paddock);
-            dinosaur.setSpecies(dinosaurType);
-            return null;
-        }, new VelocityTemplateEngine());
     }
 }

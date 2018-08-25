@@ -1,0 +1,20 @@
+<p class="pageHeader">New Paddock</p>
+
+<form action="/paddocks" method = "post">
+
+    <label for="name" id="name">Name</label>
+    <input class="inputbox" type="text" name="name" required="true">
+
+
+    <input type="hidden" name="park" id="park" value="$park.getId()"/>
+
+    <label for="dietaryType">Diet</label>
+    <select id="dietaryType" name="dietaryType">
+        #foreach( $dietaryType in $dietaryTypes )
+        <option value="$dietaryType">$dietaryType.getDiet()</option>
+        #end
+    </select>
+
+    <input type="submit" value="Create">
+
+</form>

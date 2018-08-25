@@ -2,10 +2,12 @@ package models.enums;
 
 public enum DinosaurType {
     TRICERATOPS(30, "Triceratops", DietaryType.HERBIVORE),
+    STEGOSAURUS(40, "Stegosaurus", DietaryType.HERBIVORE),
     TREX(100, "T-Rex", DietaryType.CARNIVORE),
     VELOCIRAPTOR(50, "Velociraptor", DietaryType.OMNIVORE),
-    BRACHIOSAURUS(60, "Brachiosaurus", DietaryType.HERBIVORE);
-
+    BRACHIOSAURUS(60, "Brachiosaurus", DietaryType.HERBIVORE),
+    SPINOSAURUS(60, "Spinosaurus", DietaryType.CARNIVORE),
+    GIGANOTOSAURUS(80, "Giganotosaurus", DietaryType.CARNIVORE);
 
     private final int strength;
     private final String name;
