@@ -15,6 +15,7 @@ public class Visitor {
     private String name;
     private List<Visit> visits;
     private String username;
+    private String email;
 
     public Visitor(String name, String username) {
         this.name = name;
@@ -62,5 +63,14 @@ public class Visitor {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Column(name="email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

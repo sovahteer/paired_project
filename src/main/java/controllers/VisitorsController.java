@@ -63,17 +63,31 @@ public class VisitorsController {
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String username = req.queryParams("username");
+            String email = req.queryParams("email");
             if(!DBVisitor.checkIfVisitorByUsernameExists(username)) {
                 Visitor visitor = new Visitor(name, username);
+                visitor.setEmail(email);
                 DBHelper.save(visitor);
                 res.redirect("/visitors/login");
             } else {
                 res.redirect("/visitors/user_taken");
             }
-
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        post("/visitors/login", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String username = req.queryParams("username");
+
+            if(DBVisitor.checkIfVisitorByUsernameExists(username)){
+                Visitor foundVisitor = DBVisitor.findVisitorByUsername(username);
+                model.put("foundVisitor", foundVisitor);
+                res.redirect("/visitors/" + foundVisitor.getId());
+            }else{
+                model.put("template", "templates/visitors/invalid_username.vtl");
+            }
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
 
 
     }
