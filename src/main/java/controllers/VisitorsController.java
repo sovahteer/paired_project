@@ -1,5 +1,7 @@
 package controllers;
 import db.DBHelper;
+import db.DBVisit;
+import db.DBVisitor;
 import models.visitors.Visit;
 import models.visitors.Visitor;
 import spark.ModelAndView;
@@ -41,6 +43,12 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/visitors/user_taken", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/visitors/user_taken.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //show
         get("visitors/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -55,11 +63,17 @@ public class VisitorsController {
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String username = req.queryParams("username");
-            Visitor visitor = new Visitor(name, username);
-            DBHelper.save(visitor);
-            res.redirect("/visitors/login");
+            if(!DBVisitor.checkIfVisitorByUsernameExists(username)) {
+                Visitor visitor = new Visitor(name, username);
+                DBHelper.save(visitor);
+                res.redirect("/visitors/login");
+            } else {
+                res.redirect("/visitors/user_taken");
+            }
+
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
 
 
     }

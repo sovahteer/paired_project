@@ -69,5 +69,9 @@ public class Seeds {
         List<Paddock> allPaddockss = DBPark.getAllPaddocksForPark(park);
         List<Dinosaur> allDino = DBDinosaur.getAllDinoForPaddock(carnivorePaddock);
         List<Dinosaur> allFromPark = DBPark.getAllDinoForPark(park);
+
+        Visitor foundVisitor = DBVisitor.findVisitorByUsername("mikey");
+        boolean visitorExistence = DBVisitor.checkIfVisitorByUsernameExists("mikey");
+        boolean visitorExistenceFalse = DBVisitor.checkIfVisitorByUsernameExists("jolo");
     }
 }
