@@ -5,6 +5,8 @@ import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.paddocks.Paddock;
 import models.parks.Park;
+import models.visitors.Visit;
+import models.visitors.Visitor;
 
 import java.util.List;
 
@@ -14,9 +16,19 @@ public class Seeds {
         DBHelper.deleteAll(Dinosaur.class);
         DBHelper.deleteAll(Paddock.class);
         DBHelper.deleteAll(Park.class);
+        DBHelper.deleteAll(Visit.class);
+        DBHelper.deleteAll(Visitor.class);
 
         Park park = new Park("YoloPark");
         DBHelper.save(park);
+        Park parkTest = new Park("FunPark");
+
+        Paddock funPaddock = new Paddock( "Test Paddock", parkTest, DietaryType.CARNIVORE);
+        DBHelper.save(funPaddock);
+
+        Dinosaur bigDino = new Dinosaur(DinosaurType.GIGANOTOSAURUS);
+        DBHelper.save(bigDino);
+        DBDinosaur.addPaddockToDinosaur(bigDino, funPaddock);
 
         Paddock carnivorePaddock = new Paddock( "T-Rex paddock", park, DietaryType.CARNIVORE);
         DBHelper.save(carnivorePaddock);
@@ -39,7 +51,23 @@ public class Seeds {
         DBHelper.update(herbivorePaddock);
 
 
+
+        Dinosaur herbivoreBroDino = new Dinosaur(DinosaurType.BRACHIOSAURUS);
+        DBHelper.save(herbivoreBroDino);
+        DBDinosaur.addPaddockToDinosaur(herbivoreBroDino, herbivorePaddock);
+
+
         List<Paddock> herbivorePaddocksFound = DBDinosaur.getAllPaddocksByDietaryType(DietaryType.HERBIVORE);
 
+        Visitor visitorMike = new Visitor("Mike", "mikey");
+        DBHelper.save(visitorMike);
+        Visit visit = new Visit(visitorMike);
+        DBHelper.save(visit);
+        DBVisit.addPaddockToVisit(visit, carnivorePaddock);
+
+
+        List<Paddock> allPaddockss = DBPark.getAllPaddocksForPark(park);
+        List<Dinosaur> allDino = DBDinosaur.getAllDinoForPaddock(carnivorePaddock);
+        List<Dinosaur> allFromPark = DBPark.getAllDinoForPark(park);
     }
 }

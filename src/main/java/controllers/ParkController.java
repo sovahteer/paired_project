@@ -12,7 +12,7 @@ public class ParkController {
         startEndpoints();
     }
 
-    private static void startEndpoints(){
+    private static void startEndpoints() {
         get("/park", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/park/index.vtl");
