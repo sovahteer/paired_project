@@ -167,7 +167,9 @@ public class Paddock {
         Double averageStomachLevel = DBPark.getAverageStomachLevelByPaddock(this);
         int roundedStomachLevel =  (int) Math.round(averageStomachLevel);
         HungerLevelType hungerLevel = DBDinosaur.checkHungerLevel(roundedStomachLevel);
-        if(hungerLevel == HungerLevelType.STARVING) {
+        Double averageStrength = DBPark.getAverageStrengthByPaddock(this);
+        int roundedStrengthLevel = (int) Math.round(averageStrength);
+        if(hungerLevel == HungerLevelType.STARVING && roundedStrengthLevel > 30) {
             this.setInRampage(true);
             DBHelper.update(this);
         }

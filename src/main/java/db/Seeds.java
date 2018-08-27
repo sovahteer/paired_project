@@ -48,6 +48,10 @@ public class Seeds {
         DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
         DBHelper.update(carnivorePaddock);
 
+        Dinosaur carnivoreTrex2 = new Dinosaur(DinosaurType.TREX);
+        DBHelper.save(carnivorePaddock);
+        DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
+
         Dinosaur herbivoreTriceratops = new Dinosaur(DinosaurType.TRICERATOPS);
         DBHelper.save(herbivoreTriceratops);
         DBDinosaur.addPaddockToDinosaur(herbivoreTriceratops, herbivorePaddock);
@@ -84,8 +88,10 @@ public class Seeds {
         visit.passageOfTime(park);
         visit.passageOfTime(park);
         visit.passageOfTime(park);
+        visit.passageOfTime(park);
         double averageHunger = DBPark.getAverageStomachLevelByPaddock(herbivorePaddock);
         double averageStrength = DBPark.getAverageStrengthByPaddock(herbivorePaddock);
         carnivorePaddock.rampageCheck();
+        herbivorePaddock.rampageCheck();
     }
 }

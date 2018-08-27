@@ -72,6 +72,9 @@ public class Visit {
         for (Dinosaur dinosaur: allDinos) {
             dinosaur.getOlder();
             dinosaur.getHungry();
+            if(dinosaur.getStomach() < 0) {
+                dinosaur.setStomach(0);
+            }
             DBHelper.update(dinosaur);
         }
     }
