@@ -1,10 +1,7 @@
 
 import models.dinosaurs.Dinosaur;
-import models.enums.DinosaurType;
-import models.enums.FoodType;
-import models.enums.DietaryType;
+import models.enums.*;
 
-import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import org.junit.Before;
@@ -105,5 +102,24 @@ public class DinosaurTest {
         assertEquals(0, triceratops.getAge());
         triceratops.getOlder();
         assertEquals(10, triceratops.getAge());
+    }
+
+    @Test
+    public void canGetMaturityLevel() {
+        assertEquals(AgeType.HATCHLING.getHumanREadable(), triceratops.displayMaturityLevel());
+    }
+
+    @Test
+    public void canGetMaturityForAdult(){
+        assertEquals(AgeType.HATCHLING.getHumanREadable(), triceratops.displayMaturityLevel());
+        triceratops.setAge(55);
+        assertEquals(AgeType.ADULT.getHumanREadable(), triceratops.displayMaturityLevel());
+    }
+
+    @Test
+    public void canGetMaturityForAdolescent(){
+        assertEquals(AgeType.HATCHLING.getHumanREadable(), triceratops.displayMaturityLevel());
+        triceratops.setAge(49);
+        assertEquals(AgeType.ADOLESCENT.getHumanREadable(), triceratops.displayMaturityLevel());
     }
 }

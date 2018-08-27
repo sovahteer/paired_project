@@ -20,8 +20,8 @@ public class Visitor {
 
 
     public Visitor(String firstName, String lastName, String username, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName.toUpperCase();
+        this.lastName = lastName.toUpperCase();
         this.visits = new ArrayList<>();
         this.username = username;
         this.email = email;

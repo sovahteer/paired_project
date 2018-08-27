@@ -1,9 +1,6 @@
 package models.dinosaurs;
 
-import models.enums.DietaryType;
-import models.enums.DinosaurType;
-import models.enums.FoodType;
-import models.enums.HungerLevelType;
+import models.enums.*;
 import models.paddocks.Paddock;
 
 import javax.persistence.*;
@@ -177,6 +174,18 @@ public class Dinosaur {
         } else {
             setAge(100);
         }
+    }
+
+    public String displayMaturityLevel(){
+        String maturity = "";
+        AgeType[] values = AgeType.values();
+        for (int i = 0; i <= values.length - 1; i++) {
+            if(age <= values[i].getAgeThreshold()) {
+                maturity = values[i].getHumanREadable();
+                return maturity;
+            }
+        }
+        return maturity;
     }
 }
 
