@@ -1,11 +1,10 @@
 <p class="pageHeader">Feed $dinosaur.getSpecies().getName()</p>
-
 <form action="/dinosaurs/$dinosaur.getId()/feed" method="post">
 
     <label for="foodType" id="foodType">Select a Food</label>
     <select name ="foodType">
         #foreach ($foodType in $foodTypes)
-        <option>$foodType.getName()</option>
+        <option value="$foodType">$foodType.getName()</option>
         #end
     </select>
 
