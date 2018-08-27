@@ -15,14 +15,14 @@
         #else
         <td>No paddock assigned</td>
         #end
-        <td><a href="dinosaurs/$dinosaur.getId()">Details</a></td>
-        <td><a href="/dinosaurs/$dinosaur.getId()/edit">Transfer</a></td>
+        <td><a href="/admin/dinosaurs/$dinosaur.getId()">Details</a></td>
+        <td><a href="/admin/dinosaurs/$dinosaur.getId()/edit">Transfer</a></td>
         <td>
-            <form action="/dinosaurs/$dinosaur.getId()/delete" method="post">
+            <form action="/admin/dinosaurs/$dinosaur.getId()/delete" method="post">
                 <input type="submit" value="Delete">
             </form>
         </td>
     </tr>
     #end
 </table>
-<a href="/dinosaurs/new">Add a dinosaur</a>
+<a href="/admin/dinosaurs/new">Add a dinosaur</a>
