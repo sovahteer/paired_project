@@ -89,6 +89,7 @@ public class Seeds {
         visit.passageOfTime(park);
         visit.passageOfTime(park);
         visit.passageOfTime(park);
+        visit.passageOfTime(park);
         double averageHunger = DBPark.getAverageStomachLevelByPaddock(herbivorePaddock);
         double averageStrength = DBPark.getAverageStrengthByPaddock(herbivorePaddock);
         carnivorePaddock.rampageCheck();
