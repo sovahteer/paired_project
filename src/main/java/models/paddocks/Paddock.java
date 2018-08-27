@@ -28,6 +28,7 @@ public class Paddock {
     private DinosaurType dinosaurType;
     private List<Visit> visits;
     private boolean inRampage;
+    private boolean accessibleToVisitors;
 
     public Paddock(){}
 
@@ -39,6 +40,7 @@ public class Paddock {
         this.dinosaurType = null;
         this.visits = new ArrayList<>();
         this.inRampage = false;
+        this.accessibleToVisitors = false;
     }
 
     @Id
@@ -122,6 +124,24 @@ public class Paddock {
 
     public void setInRampage(boolean inRampage) {
         this.inRampage = inRampage;
+    }
+
+
+    @Column(name="accessibility_to_visitors")
+    public boolean isAccessibleToVisitors() {
+        return accessibleToVisitors;
+    }
+
+    public void setAccessibleToVisitors(boolean accessibleToVisitors) {
+        this.accessibleToVisitors = accessibleToVisitors;
+    }
+
+    public void makeAvailableForVisits() {
+        setAccessibleToVisitors(true);
+    }
+
+    public void makeNotAvailableForVisit() {
+        setAccessibleToVisitors(false);
     }
 
     public boolean checkIfOfPaddockType(Dinosaur dinosaur) {

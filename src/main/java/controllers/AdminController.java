@@ -50,6 +50,26 @@ public class AdminController {
             res.redirect("/paddocks/" + paddockId);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        post("/admin/:id/approve", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int paddockId = Integer.parseInt(req.params(":id"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            paddock.makeAvailableForVisits();
+            DBHelper.update(paddock);
+            res.redirect("/paddocks/" + paddockId);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/admin/:id/no_entry", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int paddockId = Integer.parseInt(req.params(":id"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            paddock.makeNotAvailableForVisit();
+            DBHelper.update(paddock);
+            res.redirect("/paddocks/" + paddockId);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
     }
 
 

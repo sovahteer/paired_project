@@ -4,6 +4,18 @@
         <dd>$paddock.getName()</dd>
         <dt>Diet:</dt>
         <dd>$paddock.getDietaryType().getHumanReadable()</dd>
+        #if(!$paddock.isAccessibleToVisitors())
+            <p>No entry</p>
+            <form action="/admin/$paddock.getId()/approve", method="post">
+                <input type="submit" value="Allow visitors">
+            </form>
+
+        #else
+            <p>Visits allowed</p>
+            <form action="/admin/$paddock.getId()/no_entry", method="post">
+                <input type="submit" value="No entry">
+            </form>
+        #end
     </dl>
 
     <table>
