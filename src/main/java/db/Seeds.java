@@ -3,6 +3,7 @@ package db;
 import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
+import models.information.Info;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import models.visitors.Visit;
@@ -18,6 +19,7 @@ public class Seeds {
         DBHelper.deleteAll(Park.class);
         DBHelper.deleteAll(Visit.class);
         DBHelper.deleteAll(Visitor.class);
+        DBHelper.deleteAll(Info.class);
 
         Park park = new Park("YoloPark");
         DBHelper.save(park);
@@ -94,5 +96,20 @@ public class Seeds {
         double averageStrength = DBPark.getAverageStrengthByPaddock(herbivorePaddock);
         carnivorePaddock.rampageCheck();
         herbivorePaddock.rampageCheck();
+
+        Info infoTrex = new Info(DinosaurType.TREX);
+        DBHelper.save(infoTrex);
+        infoTrex.setText("The Tyrannosaurus rex was one of the largest of the land predator dinosaurs. The T-rex measured up to 43 feet long and weighed as much as 7.5 tons. The dinosaur is often used in movie and films such as Jurassic Park due to its size and overall fearsome image. ");
+        DBHelper.update(infoTrex);
+        Info infoTrex2 = new Info(DinosaurType.TREX);
+        DBHelper.save(infoTrex);
+        infoTrex2.setText("The Tyrannosaurus had a life span of around 30 years.");
+        DBHelper.update(infoTrex2);
+        Info infoTrex3 = new Info(DinosaurType.TREX);
+        DBHelper.save(infoTrex3);
+        infoTrex3.setText("The Tyrannosaurus' arms were too short to reach its mouth.");
+        DBHelper.update(infoTrex3);
+
+
     }
 }

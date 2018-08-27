@@ -18,5 +18,6 @@
         <mapping class="models.parks.Park"></mapping>
         <mapping class="models.visitors.Visitor"></mapping>
         <mapping class="models.visitors.Visit"></mapping>
+        <mapping class="models.information.Info"></mapping>
     </session-factory>
 </hibernate-configuration>
