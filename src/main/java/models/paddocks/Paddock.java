@@ -23,6 +23,7 @@ public class Paddock {
     private DietaryType dietaryType;
     private DinosaurType dinosaurType;
     private List<Visit> visits;
+    private boolean inRampage;
 
     public Paddock(){}
 
@@ -33,6 +34,7 @@ public class Paddock {
         this.name = name;
         this.dinosaurType = null;
         this.visits = new ArrayList<>();
+        this.inRampage = false;
     }
 
     @Id
@@ -107,6 +109,15 @@ public class Paddock {
 
     public void setVisits(List<Visit> visits) {
         this.visits = visits;
+    }
+
+    @Column(name="in_rampage")
+    public boolean isInRampage() {
+        return inRampage;
+    }
+
+    public void setInRampage(boolean inRampage) {
+        this.inRampage = inRampage;
     }
 
     public boolean checkIfOfPaddockType(Dinosaur dinosaur) {

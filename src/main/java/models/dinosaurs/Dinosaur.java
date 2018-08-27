@@ -1,5 +1,6 @@
 package models.dinosaurs;
 
+import db.DBPark;
 import models.enums.*;
 import models.paddocks.Paddock;
 
@@ -148,16 +149,24 @@ public class Dinosaur {
         }
     }
 
-    public void assignHungerLevel() {
-        if (this.stomach <= 20) {
-            setHungerLevel(HungerLevelType.STARVING);
-        } else if (this.stomach > 20 && this.stomach <= 50) {
-            setHungerLevel(HungerLevelType.HUNGRY);
-        } else if (this.stomach > 50 && this.stomach <= 80) {
-            setHungerLevel(HungerLevelType.FED);
-        } else if (this.stomach > 80) {
-            setHungerLevel(HungerLevelType.FULL);
+
+    public HungerLevelType checkHungerLevel(int value) {
+
+        HungerLevelType hungerLevel = null;
+        if (value <= 20) {
+            hungerLevel = HungerLevelType.STARVING;
+        } else if (value > 20 && value <= 50) {
+            hungerLevel = HungerLevelType.HUNGRY;
+        } else if (value > 50 && value <= 80) {
+            hungerLevel = HungerLevelType.FED;
+        } else if (value > 80) {
+            hungerLevel = HungerLevelType.FULL;
         }
+        return hungerLevel;
+    }
+
+    public void assignHungerLevel() {
+        setHungerLevel(checkHungerLevel(this.stomach));
     }
 
     public void getStronger(){
@@ -193,6 +202,10 @@ public class Dinosaur {
 
     public void getHungry() {
         setStomach(this.stomach - 10);
+    }
+
+    public void rampage() {
+
     }
 }
 
