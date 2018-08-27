@@ -19,11 +19,12 @@ public class Visitor {
     private String email;
 
 
-    public Visitor(String firstName, String lastName, String username) {
+    public Visitor(String firstName, String lastName, String username, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.visits = new ArrayList<>();
         this.username = username;
+        this.email = email;
     }
 
     public Visitor() {

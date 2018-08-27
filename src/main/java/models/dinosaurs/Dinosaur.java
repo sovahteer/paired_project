@@ -18,10 +18,14 @@ public class Dinosaur {
     private int id;
     private Paddock paddock;
     private HungerLevelType hungerLevel;
+    private int age;
+    private int defaultStrength;
 
     public Dinosaur(DinosaurType species) {
         this.species = species;
         this.stomach = 100;
+        this.age = 0;
+        this.defaultStrength = 10;
         assignHungerLevel();
     }
 
@@ -78,6 +82,23 @@ public class Dinosaur {
         this.paddock = paddock;
     }
 
+    @Column(name = "age")
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Column(name = "strength")
+    public int getDefaultStrength() {
+        return defaultStrength;
+    }
+
+    public void setDefaultStrength(int defaultStrength) {
+        this.defaultStrength = defaultStrength;
+    }
 
     public boolean checkIfCompatible(Paddock paddock) {
         boolean compatible = false;
@@ -139,6 +160,18 @@ public class Dinosaur {
         } else if (this.stomach > 80) {
             setHungerLevel(HungerLevelType.FULL);
         }
+    }
+
+    public void getStronger(){
+        int maxStrength = this.species.getStrength();
+        int growthRatio = maxStrength / 10;
+        if (this.getDefaultStrength() <= (100 - growthRatio)){
+            setDefaultStrength(this.defaultStrength + growthRatio);
+        } else {
+            setDefaultStrength(100);
+        }
+
+
     }
 }
 

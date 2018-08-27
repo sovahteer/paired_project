@@ -109,7 +109,7 @@ public class VisitorsController {
             String username = req.queryParams("username");
             String email = req.queryParams("email");
             if(!DBVisitor.checkIfVisitorByUsernameExists(username)) {
-                Visitor visitor = new Visitor(firstName, lastName, username);
+                Visitor visitor = new Visitor(firstName, lastName, username, email);
                 visitor.setEmail(email);
                 DBHelper.save(visitor);
                 res.redirect("/visitors/login");

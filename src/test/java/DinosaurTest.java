@@ -87,10 +87,16 @@ public class DinosaurTest {
     }
 
     @Test
-    public void canEat(){
+    public void wontEatIfFull(){
+        assertEquals(100, brachiosaurus.getStomach());
         brachiosaurus.eat(FoodType.LEAVES);
-        assertEquals(110, brachiosaurus.getStomach());
+        assertEquals(100, brachiosaurus.getStomach());
     }
 
-
+    @Test
+    public void canGetStronger() {
+        assertEquals(10, triceratops.getDefaultStrength());
+        triceratops.getStronger();
+        assertEquals(13, triceratops.getDefaultStrength());
+    }
 }
