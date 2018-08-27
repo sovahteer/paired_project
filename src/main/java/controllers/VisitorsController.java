@@ -88,12 +88,14 @@ public class VisitorsController {
         post("/visitors/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String email = req.queryParams("email");
-            String name = req.queryParams("name");
+            String firstName = req.queryParams("firstName");
+            String lastName = req.queryParams("lastName");
             String username = req.queryParams("username");
             int visitorId = Integer.parseInt(req.params(":id"));
             Visitor visitor = DBHelper.find(visitorId, Visitor.class);
+            visitor.setfirstName(firstName);
             visitor.setEmail(email);
-            visitor.setName(name);
+            visitor.setLastName(lastName);
             visitor.setUsername(username);
             DBHelper.update(visitor);
             res.redirect("/visitors/" + visitor.getId());
@@ -102,11 +104,12 @@ public class VisitorsController {
         //create
         post("/visitors", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            String name = req.queryParams("name");
+            String firstName = req.queryParams("firstName");
+            String lastName = req.queryParams("lastName");
             String username = req.queryParams("username");
             String email = req.queryParams("email");
             if(!DBVisitor.checkIfVisitorByUsernameExists(username)) {
-                Visitor visitor = new Visitor(name, username);
+                Visitor visitor = new Visitor(firstName, lastName, username);
                 visitor.setEmail(email);
                 DBHelper.save(visitor);
                 res.redirect("/visitors/login");

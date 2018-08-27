@@ -59,7 +59,7 @@ public class Seeds {
 
         List<Paddock> herbivorePaddocksFound = DBDinosaur.getAllPaddocksByDietaryType(DietaryType.HERBIVORE);
 
-        Visitor visitorMike = new Visitor("Mike", "mikey");
+        Visitor visitorMike = new Visitor("Mike", "Thorpe", "mikey");
         DBHelper.save(visitorMike);
         Visit visit = new Visit(visitorMike);
         DBHelper.save(visit);
