@@ -1,9 +1,11 @@
 
+import db.DBHelper;
 import models.dinosaurs.Dinosaur;
 import models.enums.*;
 
 import models.paddocks.Paddock;
 import models.parks.Park;
+import models.visitors.Visit;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +21,7 @@ public class DinosaurTest {
     Park park;
     Paddock carnivorePaddock;
     Paddock herbivorePaddock;
+    Visit visit;
 
     @Before
     public void before() {
@@ -30,7 +33,7 @@ public class DinosaurTest {
         park = new Park();
         carnivorePaddock = new Paddock("Carnivores", park, DietaryType.CARNIVORE);
         herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
-
+        visit = new Visit();
     }
 
 
@@ -122,4 +125,14 @@ public class DinosaurTest {
         triceratops.setAge(49);
         assertEquals(AgeType.ADOLESCENT.getHumanREadable(), triceratops.displayMaturityLevel());
     }
+
+    @Test
+    public void canGetStrongerWhenOlder(){
+        assertEquals(10, triceratops.getDefaultStrength());
+        triceratops.getOlder();
+        assertEquals(13, triceratops.getDefaultStrength());
+    }
+
+
+
 }

@@ -137,6 +137,7 @@ public class Dinosaur {
         if (this.stomach > 100){
             this.stomach = 100;
         }
+        assignHungerLevel();
     }
 
     public boolean checkIfPaddockAssigned() {
@@ -171,9 +172,11 @@ public class Dinosaur {
     public void getOlder() {
         if(this.age <= 90) {
             setAge(this.age + 10);
+
         } else {
             setAge(100);
         }
+        getStronger();
     }
 
     public String displayMaturityLevel(){
@@ -186,6 +189,10 @@ public class Dinosaur {
             }
         }
         return maturity;
+    }
+
+    public void getHungry() {
+        setStomach(this.stomach - 10);
     }
 }
 
