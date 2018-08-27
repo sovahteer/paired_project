@@ -15,4 +15,6 @@ public enum HungerLevelType {
     public String getHumanReadable() {
         return humanReadable;
     }
+
+
 }

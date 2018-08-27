@@ -2,6 +2,7 @@ package db;
 
 import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
+import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -41,5 +42,21 @@ public class DBDinosaur {
             session.close();
         }
         return results;
+    }
+
+
+    public static HungerLevelType checkHungerLevel(int value) {
+
+        HungerLevelType hungerLevel = null;
+        if (value <= 20) {
+            hungerLevel = HungerLevelType.STARVING;
+        } else if (value > 20 && value <= 50) {
+            hungerLevel = HungerLevelType.HUNGRY;
+        } else if (value > 50 && value <= 80) {
+            hungerLevel = HungerLevelType.FED;
+        } else if (value > 80) {
+            hungerLevel = HungerLevelType.FULL;
+        }
+        return hungerLevel;
     }
 }

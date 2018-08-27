@@ -1,7 +1,11 @@
 package models.paddocks;
 
+import db.DBDinosaur;
+import db.DBHelper;
+import db.DBPark;
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
+import models.enums.HungerLevelType;
 import models.parks.Park;
 import models.dinosaurs.Dinosaur;
 import models.visitors.Visit;
@@ -159,6 +163,14 @@ public class Paddock {
         this.visits.add(visit);
     }
 
-
+    public void rampageCheck() {
+        Double averageStomachLevel = DBPark.getAverageStomachLevelByPaddock(this);
+        int roundedStomachLevel =  (int) Math.round(averageStomachLevel);
+        HungerLevelType hungerLevel = DBDinosaur.checkHungerLevel(roundedStomachLevel);
+        if(hungerLevel == HungerLevelType.STARVING) {
+            this.setInRampage(true);
+            DBHelper.update(this);
+        }
+    }
 
 }
