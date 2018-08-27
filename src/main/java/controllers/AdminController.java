@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Random;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 
 public class AdminController {
@@ -37,6 +38,16 @@ public class AdminController {
             model.put("paddock", paddock);
             model.put("randomNumber", randomNumber);
             model.put("template", "templates/admin/system_check.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/admin/:id/restore_order", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int paddockId = Integer.parseInt(req.params(":id"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            paddock.restoreOrder();
+            DBHelper.update(paddock);
+            res.redirect("/paddocks/" + paddockId);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
     }

@@ -175,4 +175,8 @@ public class Paddock {
         }
     }
 
+    public void restoreOrder() {
+        setInRampage(false);
+    }
+
 }

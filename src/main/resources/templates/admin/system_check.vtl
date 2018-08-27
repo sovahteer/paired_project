@@ -5,6 +5,13 @@
         #else
             <span>$randomNumber</span> visitors. </p>
         #end
+        <form action="/admin/$paddock.getId()/restore_order", method="post">
+            <input type="submit" value="Send incident response team!">
+        </form>
+
+
 #else
     <p>The dinosaurs are in the enclosure.</p>
 #end
+
+<a href="/admin">Go back</a>
