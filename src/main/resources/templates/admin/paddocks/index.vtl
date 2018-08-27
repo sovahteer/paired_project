@@ -8,10 +8,10 @@
     <tr>
         <td>$paddock.getName()</td>
         <td>$paddock.getDietaryType()</td>
-        <td><a href="/paddocks/$paddock.getId()" class="button center">Details</a></td>
-        <td><a href="/paddocks/$paddock.getId()/edit" class="button center">Edit</a></td>
+        <td><a href="/admin/paddocks/$paddock.getId()" class="button center">Details</a></td>
+        <td><a href="/admin/paddocks/$paddock.getId()/edit" class="button center">Edit</a></td>
         <td>
-            <form action="/paddocks/$paddock.getId()/delete" method="post">
+            <form action="/admin/paddocks/$paddock.getId()/delete" method="post">
                 <input type="submit" value="delete" class="button">
             </form>
         </td>
@@ -19,4 +19,4 @@
     #end
 </table>
 
-<a href="/paddocks/new">Create a Paddock</a>
+<a href="/admin/paddocks/new">Create a Paddock</a>

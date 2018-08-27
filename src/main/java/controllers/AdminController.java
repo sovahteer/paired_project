@@ -3,6 +3,7 @@ package controllers;
 import db.DBDinosaur;
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.enums.FoodType;
 import models.paddocks.Paddock;
@@ -53,7 +54,7 @@ public class AdminController {
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             paddock.restoreOrder();
             DBHelper.update(paddock);
-            res.redirect("/paddocks/" + paddockId);
+            res.redirect("/admin/paddocks/" + paddockId);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -63,7 +64,7 @@ public class AdminController {
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             paddock.makeAvailableForVisits();
             DBHelper.update(paddock);
-            res.redirect("/paddocks/" + paddockId);
+            res.redirect("/admin/paddocks/" + paddockId);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -73,7 +74,7 @@ public class AdminController {
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             paddock.makeNotAvailableForVisit();
             DBHelper.update(paddock);
-            res.redirect("/paddocks/" + paddockId);
+            res.redirect("/admin/paddocks/" + paddockId);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -205,8 +206,6 @@ public class AdminController {
         post("/admin/dinosaurs/:id/feed", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int dinosaurId = Integer.parseInt(req.params(":id"));
-//            int paddockId = Integer.parseInt(req.queryParams("paddock"));
-//            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
             int paddockId = dinosaur.getPaddock().getId();
             FoodType foodType = FoodType.valueOf(req.queryParams("foodType"));
@@ -214,6 +213,91 @@ public class AdminController {
             DBHelper.update(dinosaur);
             res.redirect("/admin/paddocks/"+paddockId);
             return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        get("/admin/paddocks/:id/edit", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock= DBHelper.find(intId, Paddock.class);
+            List<Park> parks = DBHelper.getAll(Park.class);
+            Park park = parks.get(0);
+            DietaryType[] dietaryTypes = DietaryType.values();
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("dietaryTypes", dietaryTypes);
+            model.put("template", "templates/admin/paddocks/edit.vtl");
+            model.put("paddock", paddock);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        get("/admin/paddocks", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            model.put("paddocks", paddocks);
+            model.put("template", "templates/admin/paddocks/index.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get("/admin/paddocks/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Park> parks = DBHelper.getAll(Park.class);
+            Park park = parks.get(0);
+            DietaryType[] dietaryTypes = DietaryType.values();
+            model.put("park", park);
+            model.put("dietaryTypes", dietaryTypes);
+            model.put("template", "templates/admin/paddocks/new.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get("/admin/paddocks/:id", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock = DBHelper.find(intId, Paddock.class);
+            List<Dinosaur> dinosaurs = DBDinosaur.getAllDinoForPaddock(paddock);
+            Map<String, Object> model = new HashMap<>();
+            model.put("dinosaurs", dinosaurs);
+            model.put("paddock", paddock);
+            model.put("template", "templates/admin/paddocks/show.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+
+        post("/admin/paddocks", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int parkId = Integer.parseInt(req.queryParams("park"));
+            Park park = DBHelper.find(parkId, Park.class);
+            DietaryType dietaryType = DietaryType.valueOf(req.queryParams("dietaryType"));
+            String name = req.queryParams("name");
+            Paddock newPaddock = new Paddock(name, park, dietaryType);
+            DBHelper.save(newPaddock);
+
+            res.redirect("/admin/paddocks");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/admin/paddocks/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock = DBHelper.find(intId, Paddock.class);
+            DietaryType dietaryType = DietaryType.valueOf(req.queryParams("dietaryType"));
+            String name = req.queryParams("name");
+            paddock.setName(name);
+            paddock.setDietaryType(dietaryType);
+            DBHelper.update(paddock);
+            res.redirect("/admin/paddocks");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post ("/admin/paddocks/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Paddock paddockToDelete = DBHelper.find(id, Paddock.class);
+            DBHelper.delete(paddockToDelete);
+            res.redirect("/admin/paddocks");
+            return null;
         }, new VelocityTemplateEngine());
     }
 
