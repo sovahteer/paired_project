@@ -41,6 +41,8 @@ public class Seeds {
 
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
+        carnivoreTRex.setStomach(60);
+        DBHelper.update(carnivoreTRex);
         DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
         DBHelper.update(carnivorePaddock);
 

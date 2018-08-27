@@ -1,6 +1,8 @@
 package controllers;
 
+import db.DBDinosaur;
 import db.DBHelper;
+import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
 import models.paddocks.Paddock;
 import models.parks.Park;
@@ -57,9 +59,9 @@ public class PaddockController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(intId, Paddock.class);
-
+            List<Dinosaur> dinosaurs = DBDinosaur.getAllDinoForPaddock(paddock);
             Map<String, Object> model = new HashMap<>();
-
+            model.put("dinosaurs", dinosaurs);
             model.put("paddock", paddock);
             model.put("template", "templates/paddocks/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

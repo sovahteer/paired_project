@@ -1,4 +1,19 @@
 <div>
-    <p> Name: $paddock.getFirstName()</p>
+    <p> Name: $paddock.getName()</p>
     <p> Diet: $paddock.getDietaryType()</p>
+
+    <table>
+        <tr>
+            <th>Species</th>
+            <th>Diet</th>
+        </tr>
+        #foreach ($dinosaur in $dinosaurs)
+        <tr>
+        <td>$dinosaur.getSpecies().getName()</td>
+        <td>$dinosaur.getHungerLevel().getHumanReadable()</td>
+            <td><a href="/dinosaurs/$dinosaur.getId()/feed">Feed</a></td>
+        </tr>
+        #end
+
+    </table>
 </div>

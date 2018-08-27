@@ -137,13 +137,16 @@ public class DinosaursController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        post("/dinosaur/:id", (req, res) -> {
+        post("/dinosaurs/:id/feed", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int dinosaurId = Integer.parseInt(req.queryParams("dinosaur"));
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+//            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+//            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
             FoodType foodType = FoodType.valueOf(req.queryParams("foodType"));
             dinosaur.eat(foodType);
-            res.redirect("/dinosaurs/:id");
+            DBHelper.update(dinosaur);
+            res.redirect("/paddocks/:id");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
