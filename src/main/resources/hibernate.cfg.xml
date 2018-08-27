@@ -16,5 +16,7 @@
         <mapping class="models.dinosaurs.Dinosaur"></mapping>
         <mapping class="models.paddocks.Paddock"></mapping>
         <mapping class="models.parks.Park"></mapping>
+        <mapping class="models.visitors.Visitor"></mapping>
+        <mapping class="models.visitors.Visit"></mapping>
     </session-factory>
 </hibernate-configuration>

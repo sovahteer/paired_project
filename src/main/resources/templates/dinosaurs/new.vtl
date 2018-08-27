@@ -1,12 +1,13 @@
 <form action="/dinosaurs" method="post">
-
-    <select name="species" id="species">
+    <label for="species" id="species">Species</label>
+    <select name="species">
         #foreach($dinosaurType in $dinosaurTypes)
         <option value="$dinosaurType">$dinosaurType.getName()</option>
         #end
     </select>
 
-    <select name="paddock" id="paddock">
+    <label for="paddock" id="paddock">Paddock</label>
+    <select name="paddock">
         #foreach($paddock in $paddocks)
         <option value="$paddock.getId()">$paddock.getName()</option>
         #end

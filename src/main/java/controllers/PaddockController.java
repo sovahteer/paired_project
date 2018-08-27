@@ -1,15 +1,11 @@
 package controllers;
 
 import db.DBHelper;
-import models.dinosaurs.Dinosaur;
-import models.enums.DietryType;
-import models.enums.DinosaurType;
+import models.enums.DietaryType;
 import models.paddocks.Paddock;
 import models.parks.Park;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +17,23 @@ public class PaddockController {
     public PaddockController(){ setupEndpoints();}
 
     private static void setupEndpoints() {
+
+        get("/paddocks/:id/edit", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Paddock paddock= DBHelper.find(intId, Paddock.class);
+            List<Park> parks = DBHelper.getAll(Park.class);
+            Park park = parks.get(0);
+            DietaryType[] dietaryTypes = DietaryType.values();
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("dietaryTypes", dietaryTypes);
+            model.put("template", "templates/paddocks/edit.vtl");
+            model.put("paddock", paddock);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
         get("/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
@@ -33,9 +46,9 @@ public class PaddockController {
             Map<String, Object> model = new HashMap<>();
             List<Park> parks = DBHelper.getAll(Park.class);
             Park park = parks.get(0);
-            DietryType[] dietryTypes = DietryType.values();
+            DietaryType[] dietaryTypes = DietaryType.values();
             model.put("park", park);
-            model.put("dietryTypes", dietryTypes);
+            model.put("dietaryTypes", dietaryTypes);
             model.put("template", "templates/paddocks/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
@@ -52,28 +65,15 @@ public class PaddockController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get("/paddocks/:id/edit", (req, res) -> {
-            String strId = req.params(":id");
-            Integer intId = Integer.parseInt(strId);
-            Paddock paddock= DBHelper.find(intId, Paddock.class);
-            List<Park> parks = DBHelper.getAll(Park.class);
-            Park park = parks.get(0);
-            DietryType[] dietryTypes = DietryType.values();
 
-            Map<String, Object> model = new HashMap<>();
-            model.put("dietryTypes", dietryTypes);
-            model.put("template", "templates/paddocks/edit.vtl");
-            model.put("paddock", paddock);
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
 
         post("/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int parkId = Integer.parseInt(req.queryParams("park"));
             Park park = DBHelper.find(parkId, Park.class);
-            DietryType dietryType = DietryType.valueOf(req.queryParams("dietryType"));
+            DietaryType dietaryType = DietaryType.valueOf(req.queryParams("dietaryType"));
             String name = req.queryParams("name");
-            Paddock newPaddock = new Paddock(name, park, dietryType);
+            Paddock newPaddock = new Paddock(name, park, dietaryType);
             DBHelper.save(newPaddock);
 
             res.redirect("/paddocks");
@@ -81,19 +81,17 @@ public class PaddockController {
         }, new VelocityTemplateEngine());
 
         post("/paddocks/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock = DBHelper.find(intId, Paddock.class);
-            DietryType dietryType = DietryType.valueOf(req.queryParams("dietryType"));
+            DietaryType dietaryType = DietaryType.valueOf(req.queryParams("dietaryType"));
             String name = req.queryParams("name");
-
             paddock.setName(name);
-            paddock.setDietryType(dietryType);
-
-
+            paddock.setDietaryType(dietaryType);
             DBHelper.update(paddock);
             res.redirect("/paddocks");
-            return null;
+            return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post ("/paddocks/:id/delete", (req, res) -> {

@@ -8,10 +8,10 @@
 
     <input type="hidden" name="park" id="park" value="$park.getId()"/>
 
-    <label for="dietryType">Diet</label>
-    <select id="dietryType" name="dietryType">
-        #foreach( $dietryType in $dietryTypes )
-        <option value="$dietryType">$dietryType.getDiet()</option>
+    <label for="dietaryType">Diet</label>
+    <select id="dietaryType" name="dietaryType">
+        #foreach( $dietaryType in $dietaryTypes )
+        <option value="$dietaryType">$dietaryType.getDiet()</option>
         #end
     </select>
 

@@ -1,0 +1,19 @@
+<form action="/dinosaurs/$dinosaurToEdit.getId()" method="post">
+
+    $dinosaurToEdit.getSpecies().getName()
+
+    <select name="paddock" id="paddock">
+        #foreach($paddock in $paddocks)
+        <option value="$paddock.getId()"
+            #if($paddock.getId() == $dinosaurToEdit.getPaddock().getId())
+                selected="selected"
+            #end
+        >$paddock.getName()</option>
+        #end
+    </select>
+
+
+
+    <input type="submit" value="Submit changes">
+
+</form>
