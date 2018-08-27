@@ -99,4 +99,11 @@ public class DinosaurTest {
         triceratops.getStronger();
         assertEquals(13, triceratops.getDefaultStrength());
     }
+
+    @Test
+    public void canGetOlder() {
+        assertEquals(0, triceratops.getAge());
+        triceratops.getOlder();
+        assertEquals(10, triceratops.getAge());
+    }
 }

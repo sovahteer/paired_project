@@ -170,8 +170,13 @@ public class Dinosaur {
         } else {
             setDefaultStrength(100);
         }
-
-
+    }
+    public void getOlder() {
+        if(this.age <= 90) {
+            setAge(this.age + 10);
+        } else {
+            setAge(100);
+        }
     }
 }
 
