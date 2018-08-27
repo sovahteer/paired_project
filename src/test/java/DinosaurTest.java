@@ -1,12 +1,11 @@
 
+import db.DBHelper;
 import models.dinosaurs.Dinosaur;
-import models.enums.DinosaurType;
-import models.enums.FoodType;
-import models.enums.DietaryType;
+import models.enums.*;
 
-import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import models.parks.Park;
+import models.visitors.Visit;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +21,7 @@ public class DinosaurTest {
     Park park;
     Paddock carnivorePaddock;
     Paddock herbivorePaddock;
+    Visit visit;
 
     @Before
     public void before() {
@@ -33,7 +33,7 @@ public class DinosaurTest {
         park = new Park();
         carnivorePaddock = new Paddock("Carnivores", park, DietaryType.CARNIVORE);
         herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
-
+        visit = new Visit();
     }
 
 
@@ -106,4 +106,33 @@ public class DinosaurTest {
         triceratops.getOlder();
         assertEquals(10, triceratops.getAge());
     }
+
+    @Test
+    public void canGetMaturityLevel() {
+        assertEquals(AgeType.HATCHLING.getHumanREadable(), triceratops.displayMaturityLevel());
+    }
+
+    @Test
+    public void canGetMaturityForAdult(){
+        assertEquals(AgeType.HATCHLING.getHumanREadable(), triceratops.displayMaturityLevel());
+        triceratops.setAge(55);
+        assertEquals(AgeType.ADULT.getHumanREadable(), triceratops.displayMaturityLevel());
+    }
+
+    @Test
+    public void canGetMaturityForAdolescent(){
+        assertEquals(AgeType.HATCHLING.getHumanREadable(), triceratops.displayMaturityLevel());
+        triceratops.setAge(49);
+        assertEquals(AgeType.ADOLESCENT.getHumanREadable(), triceratops.displayMaturityLevel());
+    }
+
+    @Test
+    public void canGetStrongerWhenOlder(){
+        assertEquals(10, triceratops.getDefaultStrength());
+        triceratops.getOlder();
+        assertEquals(13, triceratops.getDefaultStrength());
+    }
+
+
+
 }

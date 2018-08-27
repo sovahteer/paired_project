@@ -117,7 +117,7 @@ public class VisitorsController {
                 res.redirect("/visitors/user_taken");
             }
             return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
+        });
 
 
 

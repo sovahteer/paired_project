@@ -1,6 +1,11 @@
 package models.visitors;
 
+import db.DBDinosaur;
+import db.DBHelper;
+import db.DBPark;
+import models.dinosaurs.Dinosaur;
 import models.paddocks.Paddock;
+import models.parks.Park;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -60,5 +65,14 @@ public class Visit {
 
     public void addPaddockToVisit(Paddock paddock) {
         this.paddocks.add(paddock);
+    }
+
+    public void passageOfTime(Park park) {
+        List<Dinosaur> allDinos = DBPark.getAllDinoForPark(park);
+        for (Dinosaur dinosaur: allDinos) {
+            dinosaur.getOlder();
+            dinosaur.getHungry();
+            DBHelper.update(dinosaur);
+        }
     }
 }

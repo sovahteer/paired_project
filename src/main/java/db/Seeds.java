@@ -43,6 +43,7 @@ public class Seeds {
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
         DBHelper.save(carnivoreTRex);
         carnivoreTRex.setStomach(60);
+        carnivoreTRex.assignHungerLevel();
         DBHelper.update(carnivoreTRex);
         DBDinosaur.addPaddockToDinosaur(carnivoreTRex, carnivorePaddock);
         DBHelper.update(carnivorePaddock);
@@ -76,5 +77,7 @@ public class Seeds {
         Visitor foundVisitor = DBVisitor.findVisitorByUsername("mikey");
         boolean visitorExistence = DBVisitor.checkIfVisitorByUsernameExists("mikey");
         boolean visitorExistenceFalse = DBVisitor.checkIfVisitorByUsernameExists("jolo");
+
+        visit.passageOfTime(park);
     }
 }

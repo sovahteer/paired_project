@@ -5,11 +5,11 @@ public enum AgeType {
     ADOLESCENT(50, "Adolescent"),
     ADULT(80, "Adult");
 
-    private final int ageTreshold;
+    private final int ageThreshold;
     private final String humanREadable;
 
-    AgeType(int ageTreshold, String humanReadable) {
-        this.ageTreshold = ageTreshold;
+    AgeType(int ageThreshold, String humanReadable) {
+        this.ageThreshold = ageThreshold;
         this.humanREadable = humanReadable;
     }
 
@@ -17,7 +17,7 @@ public enum AgeType {
         return humanREadable;
     }
 
-    public int getAgeTreshold() {
-        return ageTreshold;
+    public int getAgeThreshold() {
+        return ageThreshold;
     }
 }

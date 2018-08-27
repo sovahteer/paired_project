@@ -1,9 +1,6 @@
 package models.dinosaurs;
 
-import models.enums.DietaryType;
-import models.enums.DinosaurType;
-import models.enums.FoodType;
-import models.enums.HungerLevelType;
+import models.enums.*;
 import models.paddocks.Paddock;
 
 import javax.persistence.*;
@@ -140,6 +137,7 @@ public class Dinosaur {
         if (this.stomach > 100){
             this.stomach = 100;
         }
+        assignHungerLevel();
     }
 
     public boolean checkIfPaddockAssigned() {
@@ -174,9 +172,27 @@ public class Dinosaur {
     public void getOlder() {
         if(this.age <= 90) {
             setAge(this.age + 10);
+
         } else {
             setAge(100);
         }
+        getStronger();
+    }
+
+    public String displayMaturityLevel(){
+        String maturity = "";
+        AgeType[] values = AgeType.values();
+        for (int i = 0; i <= values.length - 1; i++) {
+            if(age <= values[i].getAgeThreshold()) {
+                maturity = values[i].getHumanREadable();
+                return maturity;
+            }
+        }
+        return maturity;
+    }
+
+    public void getHungry() {
+        setStomach(this.stomach - 10);
     }
 }
 
