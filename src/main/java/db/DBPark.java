@@ -6,6 +6,8 @@ import models.parks.Park;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -45,5 +47,14 @@ public class DBPark {
             session.close();
         }
         return results;
+    }
+
+    public static Double getAverageStomachLevelByPaddock(Paddock paddock) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Dinosaur.class);
+        cr.add(Restrictions.eq("paddock", paddock));
+        cr.setProjection(Projections.avg("stomach"));
+        Double averageStomachLevel = (Double) cr.uniqueResult();
+        return averageStomachLevel;
     }
 }

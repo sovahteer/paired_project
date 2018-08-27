@@ -79,5 +79,8 @@ public class Seeds {
         boolean visitorExistenceFalse = DBVisitor.checkIfVisitorByUsernameExists("jolo");
 
         visit.passageOfTime(park);
+
+        double averageHunger = DBPark.getAverageStomachLevelByPaddock(herbivorePaddock);
+
     }
 }
