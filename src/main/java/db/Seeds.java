@@ -22,13 +22,14 @@ public class Seeds {
         Park park = new Park("YoloPark");
         DBHelper.save(park);
         Park parkTest = new Park("FunPark");
-
+        DBHelper.save(parkTest);
         Paddock funPaddock = new Paddock( "Test Paddock", parkTest, DietaryType.CARNIVORE);
         DBHelper.save(funPaddock);
 
         Dinosaur bigDino = new Dinosaur(DinosaurType.GIGANOTOSAURUS);
         DBHelper.save(bigDino);
         DBDinosaur.addPaddockToDinosaur(bigDino, funPaddock);
+        DBHelper.update(funPaddock);
 
         Paddock carnivorePaddock = new Paddock( "T-Rex paddock", park, DietaryType.CARNIVORE);
         DBHelper.save(carnivorePaddock);
@@ -61,7 +62,7 @@ public class Seeds {
 
         List<Paddock> herbivorePaddocksFound = DBDinosaur.getAllPaddocksByDietaryType(DietaryType.HERBIVORE);
 
-        Visitor visitorMike = new Visitor("Mike", "Thorpe", "mikey");
+        Visitor visitorMike = new Visitor("Mike", "Thorpe", "mikey", "mike@mike.com");
         DBHelper.save(visitorMike);
         Visit visit = new Visit(visitorMike);
         DBHelper.save(visit);
