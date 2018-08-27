@@ -1,0 +1,11 @@
+<form action="/visitors/$visitor.getId()" method="post">
+    <label for="firstName" id="firstName">First name</label>
+    <input type="text" name="firstName" value="$visitor.getFirstName()" required>
+    <label for="lastName" id="lastName">Last name</label>
+    <input type="text" name="lastName" value="$visitor.getLastName()" required>
+    <label for="username" id="username">Username</label>
+    <input type="text" name="username" value="$visitor.getUsername()" required>
+    <label for="email" id="email">Username</label>
+    <input type="text" name="email" value="$visitor.getEmail()" required>
+    <input type="submit" value="Create">
+</form>

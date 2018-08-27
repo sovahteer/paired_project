@@ -59,7 +59,6 @@ public class DBHelper {
         try {
             transaction = session.beginTransaction();
             result = (T) criteria.uniqueResult();
-            ;
             transaction.commit();
         } catch (HibernateException ex) {
             transaction.rollback();

@@ -1,5 +1,6 @@
 package controllers;
 
+import db.DBDinosaur;
 import db.DBHelper;
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
@@ -8,14 +9,12 @@ import models.paddocks.Paddock;
 import models.parks.Park;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static spark.Spark.get;
 import static spark.Spark.post;
-import static spark.Spark.redirect;
+
 
 public class DinosaursController {
 
@@ -24,6 +23,20 @@ public class DinosaursController {
     }
 
     private static void setupEndpoint(){
+
+        get("/dinosaurs/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaurToEdit = DBHelper.find(dinosaurId, Dinosaur.class);
+//            DinosaurType[] dinosaurTypes = DinosaurType.values();
+            List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+//            model.put("dinosaurTypes", dinosaurTypes);
+            model.put("paddocks", paddocks);
+            model.put("dinosaurToEdit", dinosaurToEdit);
+            model.put("template", "templates/dinosaurs/edit.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         get("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
@@ -55,6 +68,57 @@ public class DinosaursController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/invalid_paddock", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/dinosaurs/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
+            int paddockId = Integer.parseInt(req.queryParams("paddock"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+
+            //assign paddock.dinoType if not Herbivore
+            if (paddock.checkIfDinosaurTypeAssigned()) {
+                if(dinosaur.checkIfCompatible(paddock)){
+                    DBHelper.update(dinosaur);
+                    DBDinosaur.addPaddockToDinosaur(dinosaur, paddock);
+                    DBHelper.update(paddock);
+
+                    res.redirect("/dinosaurs");
+                } else {
+                    model.put("dinosaur", dinosaur);
+                    model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
+                }
+            } else {
+                if (dinosaur.checkIfCompatible(paddock)) {
+                    DBDinosaur.addPaddockToDinosaur(dinosaur, paddock);
+                    DBHelper.update(paddock);
+                    DBHelper.update(dinosaur);
+                    res.redirect("/dinosaurs");
+                } else {
+                    model.put("dinosaur", dinosaur);
+                    model.put("template", "templates/dinosaurs/invalid_paddock.vtl");
+                }
+
+            }
+
+
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        post("/dinosaurs/:id/delete", (req, res) -> {
+            int dinosaurId = Integer.parseInt(req.params(":id"));
+            Dinosaur dinosaur = DBHelper.find(dinosaurId, Dinosaur.class);
+            DBHelper.delete(dinosaur);
+            res.redirect("/dinosaurs");
+            return null;
+        }, new VelocityTemplateEngine());
+
         post("/dinosaurs", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             DinosaurType species = DinosaurType.valueOf(req.queryParams("species"));
@@ -62,10 +126,14 @@ public class DinosaursController {
             Dinosaur newDino = new Dinosaur(species);
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             newDino.addPaddockToDinosaur(paddock);
-            DBHelper.update(paddock);
-            DBHelper.save(newDino);
-
-            res.redirect("/dinosaurs");
+            //paddock not assigned if not compatible types, update and save only if assigned
+            if (newDino.checkIfPaddockAssigned() == true) {
+                DBHelper.update(paddock);
+                DBHelper.save(newDino);
+                res.redirect("/dinosaurs");
+            } else {
+                res.redirect("/dinosaurs/invalid_paddock");
+            }
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -78,8 +146,6 @@ public class DinosaursController {
             res.redirect("/dinosaurs/:id");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
-
 
     }
 }
