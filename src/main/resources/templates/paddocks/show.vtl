@@ -3,21 +3,28 @@
         <dt>Name:</dt>
         <dd>$paddock.getName()</dd>
         <dt>Diet:</dt>
-        <dd>$paddock.getDietaryType()</dd>
+        <dd>$paddock.getDietaryType().getHumanReadable()</dd>
     </dl>
 
     <table>
         <tr>
             <th>Species</th>
             <th>Diet</th>
+            <th>Hunger Level</th>
+            <th>Age</th>
         </tr>
         #foreach ($dinosaur in $dinosaurs)
+
             <tr>
                 <td>$dinosaur.getSpecies().getName()</td>
+                <td>$dinosaur.getSpecies().getDietaryType().getHumanReadable()</td>
                 <td>$dinosaur.getHungerLevel().getHumanReadable()</td>
+                <td>$dinosaur.displayMaturityLevel()</td>
                 <td><a href="/dinosaurs/$dinosaur.getId()/feed">Feed</a></td>
             </tr>
-        #end
 
+        #end
     </table>
 </div>
+
+

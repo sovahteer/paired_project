@@ -6,14 +6,14 @@ public enum DietaryType {
     HERBIVORE("Herbivore"),
     OMNIVORE("Omnivore");
 
-    private final String diet;
+    private final String humanReadable;
 
-    DietaryType(String diet) {
-        this.diet = diet;
+    DietaryType(String humanReadable) {
+        this.humanReadable = humanReadable;
     }
 
-    public String getDiet() {
-        return diet;
+    public String getHumanReadable() {
+        return humanReadable;
     }
 
 }

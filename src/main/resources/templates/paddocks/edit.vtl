@@ -11,7 +11,7 @@
     <label for="dietaryType">Diet</label>
     <select id="dietaryType" name="dietaryType">
         #foreach( $dietaryType in $dietaryTypes )
-        <option value="$dietaryType">$dietaryType.getDiet()</option>
+        <option value="$dietaryType">$dietaryType.getHumanReadable()</option>
         #end
     </select>
 

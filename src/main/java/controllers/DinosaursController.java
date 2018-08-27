@@ -56,6 +56,16 @@ public class DinosaursController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/dinosaurs/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Dinosaur dinosaur = DBHelper.find(intId, Dinosaur.class);
+            model.put("dinosaur", dinosaur);
+            model.put("template", "templates/dinosaurs/show.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         get("/dinosaurs/:id/feed", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String strId = req.params(":id");

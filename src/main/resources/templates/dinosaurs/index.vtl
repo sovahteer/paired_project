@@ -15,6 +15,7 @@
         #else
         <td>No paddock assigned</td>
         #end
+        <td><a href="dinosaurs/$dinosaur.getId()">Details</a></td>
         <td><a href="/dinosaurs/$dinosaur.getId()/edit">Transfer</a></td>
         <td>
             <form action="/dinosaurs/$dinosaur.getId()/delete" method="post">
