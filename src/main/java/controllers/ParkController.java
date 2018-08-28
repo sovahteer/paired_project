@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import models.enums.DietaryType;
 import models.paddocks.Paddock;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -21,6 +22,8 @@ public class ParkController {
             Map<String, Object> model = new HashMap<>();
             int paddockId = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            DietaryType herbivore = DietaryType.HERBIVORE;
+            model.put("herbivore", herbivore);
             model.put("paddock", paddock);
             model.put("template", "templates/park/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
