@@ -1,7 +1,10 @@
 package controllers;
 
+import db.DBDinosaur;
 import db.DBHelper;
+import db.DBPaddock;
 import db.DBVisit;
+import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
 import models.information.Info;
 import models.paddocks.Paddock;
@@ -12,7 +15,9 @@ import spark.template.velocity.VelocityTemplateEngine;
 
 import java.util.HashMap;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import static spark.Spark.get;
 public class ParkController {
@@ -28,6 +33,7 @@ public class ParkController {
             Visitor visitor = DBHelper.find(visitId, Visitor.class);
             int paddockId = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            paddock.rampageCheck();
             DietaryType herbivore = DietaryType.HERBIVORE;
             String herbivoreString = herbivore.getHumanReadable().toLowerCase();
             if(paddock.getDietaryType() == DietaryType.HERBIVORE){
@@ -37,7 +43,14 @@ public class ParkController {
                 Info randomInfoOnSpecies = Info.getRandomInfoOfSpecies(paddock.getDinosaurType());
                 model.put("randomInfoOnSpecies", randomInfoOnSpecies);
             }
+            int numberOfVisitors = DBHelper.getAll(Visitor.class).size();
+            Random random = new Random();
+            int randomNumber = random.nextInt(numberOfVisitors + 1);
+
+            List<Dinosaur> dinosaurs = DBDinosaur.getAllDinoForPaddock(paddock);
             Visit visit = DBVisit.getMostRecentVisit(visitor);
+            model.put("randomNumber", randomNumber);
+            model.put("dinosaurs", dinosaurs);
             model.put("visit", visit);
             model.put("visitor", visitor);
             model.put("herbivoreString", herbivoreString);

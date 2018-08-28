@@ -145,9 +145,7 @@ public class VisitorsController {
             Map<String, Object> model = new HashMap<>();
             int visitorId = Integer.parseInt(req.params(":id"));
             Visitor visitor = DBHelper.find(visitorId, Visitor.class);
-            List<Visit> allVisitsOfVisitor = DBVisitor.getVisitsOfVisitor(visitor);
-            int sizeOfVisits = allVisitsOfVisitor.size();
-            Visit visit = allVisitsOfVisitor.get(sizeOfVisits - 1);
+            Visit visit = DBVisit.getMostRecentVisit(visitor);
             List<Paddock> paddocks =  DBVisit.getAllPaddocksForVisit(visit);
             model.put("paddocks", paddocks);
             model.put("visitor", visitor);

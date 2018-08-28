@@ -176,7 +176,7 @@ public class Dinosaur {
         String maturity = "";
         AgeType[] values = AgeType.values();
         for (int i = 0; i <= values.length - 1; i++) {
-            if(age <= values[i].getAgeThreshold()) {
+            if(this.age <= values[i].getAgeThreshold()) {
                 maturity = values[i].getHumanREadable();
                 return maturity;
             }

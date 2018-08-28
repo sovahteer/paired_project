@@ -1,10 +1,13 @@
 package db;
 
 import models.dinosaurs.Dinosaur;
+import models.enums.AgeType;
 import models.enums.DietaryType;
+import models.enums.HungerLevelType;
 import models.paddocks.Paddock;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -42,5 +45,9 @@ public class DBPaddock {
         List<Paddock> result = cr.list();
         return result;
     }
+
+
+
+
 
 }

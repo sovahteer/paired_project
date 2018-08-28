@@ -9,7 +9,16 @@
     #end
 
     <h2>Breaking News</h2>
-    <p></p>
-
+    <p>There are <span>$dinosaurs.size()</span> dinosaurs living in this paddock.</p>
+        #if ($paddock.isInRampage())
+            <p>Some dinosaurs have broke free and are rampaging the area. They have eaten
+                #if($randomNumber == 1)
+                    <span>$randomNumber</span> visitor. </p>
+                #else
+                    <span>$randomNumber</span> visitors. </p>
+                #end
+        #else
+            <p>The dinosaurs are in the enclosure.</p>
+        #end
 
     <a href="/visitors/$visitor.getId()/visit">Go back to map</a>
