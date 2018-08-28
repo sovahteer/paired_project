@@ -135,6 +135,6 @@ public class Seeds {
         List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
 
         List<Visit> visits = DBVisitor.getVisitsOfVisitor(visitorMike);
-
+        List<Paddock> allPaddocksForVisit = DBVisit.getAllPaddocksForVisit(visit);
     }
 }
