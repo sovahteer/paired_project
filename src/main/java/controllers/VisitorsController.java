@@ -84,6 +84,25 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
 
+        get("/visitors/visits", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.queryParams("visitor_id"));
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/visitors/visits", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.queryParams("visitor_id"));
+            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
+
+            Visit visit = new Visit();
+            DBHelper.save(visit);
+            res.redirect("/park");
+
+            //send to park/$visitor.getId....
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         //update
         post("/visitors/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
@@ -118,6 +137,8 @@ public class VisitorsController {
             }
             return new ModelAndView(model, "templates/layout.vtl");
         });
+
+
 
 
 

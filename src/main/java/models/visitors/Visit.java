@@ -1,12 +1,14 @@
 package models.visitors;
 
 import db.DBHelper;
+import db.DBPaddock;
 import models.dinosaurs.Dinosaur;
 import models.paddocks.Paddock;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,7 @@ public class Visit {
     public Visit(Visitor visitor) {
         this.paddocks = new ArrayList<>();
         this.visitor = visitor;
+        assignShuffledPaddocks();
     }
 
     public Visit() {
@@ -74,5 +77,28 @@ public class Visit {
             }
             DBHelper.update(dinosaur);
         }
+    }
+
+    private static List<Paddock> listOfVisitablePaddocks(){
+        List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
+        Collections.shuffle(allowedToVisit);
+        List<Paddock> paddocks;
+        if (allowedToVisit.size() < 8){
+            paddocks = allowedToVisit.subList(0, allowedToVisit.size());
+        } else {
+            paddocks = allowedToVisit.subList(0, 8);
+        }
+        return paddocks;
+    }
+
+    public List<Paddock> shufflePaddocks(){
+        List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
+        Collections.shuffle(allowedToVisit);
+        List<Paddock> paddocks =  listOfVisitablePaddocks();
+        return paddocks;
+    }
+
+    public void assignShuffledPaddocks(){
+        setPaddocks(shufflePaddocks());
     }
 }

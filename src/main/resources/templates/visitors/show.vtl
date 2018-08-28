@@ -21,7 +21,8 @@
 <a href="/visitors/$visitor.getId()/edit">Edit details</a>
 
 
-<form action="/park">
+<form action="/visitors/visits" method="post">
+    <input type="hidden" value="$visitor.getId()" name="visitor_id">
     <input type="submit" value="Start exploring">
 </form>
 
