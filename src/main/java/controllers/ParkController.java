@@ -38,6 +38,7 @@ public class ParkController {
                 model.put("randomInfoOnSpecies", randomInfoOnSpecies);
             }
             Visit visit = DBVisit.getMostRecentVisit(visitor);
+            model.put("visit", visit);
             model.put("visitor", visitor);
             model.put("herbivoreString", herbivoreString);
             model.put("herbivore", herbivore);

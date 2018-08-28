@@ -141,11 +141,6 @@ public class VisitorsController {
         });
 
 
-
-
-
-
-///check
         get("/visitors/:id/visit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int visitorId = Integer.parseInt(req.params(":id"));
