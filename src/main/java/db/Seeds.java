@@ -142,5 +142,6 @@ public class Seeds {
         List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
 
         List<Paddock> allPaddocksForVisit = DBVisit.getAllPaddocksForVisit(visit);
+        String randomInfoOnSpecies = Info.getRandomInfoOfSpecies(DinosaurType.TREX);
     }
 }

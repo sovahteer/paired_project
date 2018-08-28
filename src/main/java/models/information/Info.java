@@ -1,10 +1,13 @@
 package models.information;
 
+import db.DBInformation;
 import models.dinosaurs.Dinosaur;
 import models.enums.DinosaurType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name="information")
@@ -52,4 +55,10 @@ public class Info {
         this.text = text;
     }
 
+    public static String getRandomInfoOfSpecies(DinosaurType species) {
+        List<Info> info = DBInformation.getAllInfoBySpecies(species);
+        Collections.shuffle(info);
+        String randomInfo = info.get(0).getText();
+        return randomInfo;
+    }
 }
