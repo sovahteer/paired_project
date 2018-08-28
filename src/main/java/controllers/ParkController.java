@@ -1,5 +1,7 @@
 package controllers;
 
+import db.DBHelper;
+import models.paddocks.Paddock;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -15,11 +17,12 @@ public class ParkController {
     }
 
     private static void startEndpoints() {
-        get("/park", (req, res) -> {
+        get("/park/paddocks/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-
-//            model.put("paddocks", paddocks);
-            model.put("template", "templates/park/index.vtl");
+            int paddockId = Integer.parseInt(req.params(":id"));
+            Paddock paddock = DBHelper.find(paddockId, Paddock.class);
+            model.put("paddock", paddock);
+            model.put("template", "templates/park/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
