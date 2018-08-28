@@ -148,5 +148,7 @@ public class Seeds {
         List<Paddock> allPaddocksForVisit = DBVisit.getAllPaddocksForVisit(visit);
         Info randomInfoOnSpecies = Info.getRandomInfoOfSpecies(DinosaurType.TREX);
         Info randomInfoOnHerbivore = Info.getRandomInfoOnHerbivore();
+        Visit recentVisit = DBVisit.getMostRecentVisit(visitorMike);
+
     }
 }

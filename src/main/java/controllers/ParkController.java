@@ -1,9 +1,12 @@
 package controllers;
 
 import db.DBHelper;
+import db.DBVisit;
 import models.enums.DietaryType;
 import models.information.Info;
 import models.paddocks.Paddock;
+import models.visitors.Visit;
+import models.visitors.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -19,8 +22,10 @@ public class ParkController {
     }
 
     private static void startEndpoints() {
-        get("/park/paddocks/:id", (req, res) -> {
+        get("/park/visits/:visit_id/paddocks/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
+            int visitId = Integer.parseInt(req.params(":visit_id"));
+            Visitor visitor = DBHelper.find(visitId, Visitor.class);
             int paddockId = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             DietaryType herbivore = DietaryType.HERBIVORE;
@@ -32,9 +37,8 @@ public class ParkController {
                 Info randomInfoOnSpecies = Info.getRandomInfoOfSpecies(paddock.getDinosaurType());
                 model.put("randomInfoOnSpecies", randomInfoOnSpecies);
             }
-
-
-
+            Visit visit = DBVisit.getMostRecentVisit(visitor);
+            model.put("visitor", visitor);
             model.put("herbivoreString", herbivoreString);
             model.put("herbivore", herbivore);
             model.put("paddock", paddock);

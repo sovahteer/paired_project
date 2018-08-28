@@ -55,7 +55,7 @@ public class Visit {
 
 
     @ManyToOne
-    @JoinColumn(name="ship_id", nullable=false)
+    @JoinColumn(name="visitor_id", nullable=false)
     public Visitor getVisitor() {
         return visitor;
     }
@@ -79,23 +79,15 @@ public class Visit {
             DBHelper.update(dinosaur);
         }
     }
-//<<<<<<< HEAD
-//
-//    private static List<Paddock> listOfVisitablePaddocks(){
-//        List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
-//        Collections.shuffle(allowedToVisit);
-//=======
-//take paddockst available for visits, limit to 8 or less depending on side
+
     private static List<Paddock> listOfVisitablePaddocks(){
         List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
-//>>>>>>> bug/refactor_visit_visitor
         List<Paddock> paddocks;
         if (allowedToVisit.size() < 8){
             paddocks = allowedToVisit.subList(0, allowedToVisit.size());
         } else {
             paddocks = allowedToVisit.subList(0, 8);
         }
-//<<<<<<< HEAD
         return paddocks;
     }
 
@@ -106,17 +98,8 @@ public class Visit {
         return paddocks;
     }
 
-//    public void assignShuffledPaddocks(){
-//        setPaddocks(shufflePaddocks());
-//=======
-//        Collections.shuffle(paddocks);
-//        return paddocks;
-//    }
-
-
 
     public void assignShuffledPaddocks(){
         setPaddocks(listOfVisitablePaddocks());
-//>>>>>>> bug/refactor_visit_visitor
     }
 }
