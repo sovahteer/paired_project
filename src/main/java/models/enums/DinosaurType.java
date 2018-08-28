@@ -7,7 +7,8 @@ public enum DinosaurType {
     VELOCIRAPTOR(50, "Velociraptor", DietaryType.OMNIVORE),
     BRACHIOSAURUS(60, "Brachiosaurus", DietaryType.HERBIVORE),
     SPINOSAURUS(60, "Spinosaurus", DietaryType.CARNIVORE),
-    GIGANOTOSAURUS(80, "Giganotosaurus", DietaryType.CARNIVORE);
+    GIGANOTOSAURUS(80, "Giganotosaurus", DietaryType.CARNIVORE),
+    PTEROSAUR(50, "Pterosaurus", DietaryType.CARNIVORE);
 
     private final int strength;
     private final String name;
