@@ -6,6 +6,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.List;
+
 public class DBVisitor {
     private static Session session;
 
@@ -27,5 +29,13 @@ public class DBVisitor {
         }
     }
 
-    ///test the methods
+    public static List<Visit> getVisitsOfVisitor(Visitor visitor) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Visit> results = null;
+        Criteria cr = session.createCriteria(Visit.class);
+        cr.add(Restrictions.eq("visitor", visitor));
+        results = cr.list();
+        return results;
+    }
+
 }

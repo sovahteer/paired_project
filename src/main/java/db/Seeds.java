@@ -133,5 +133,8 @@ public class Seeds {
         List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
         List<Paddock> shuffledPaddocksForVisit = visit.getPaddocks();
         List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
+
+        List<Visit> visits = DBVisitor.getVisitsOfVisitor(visitorMike);
+
     }
 }

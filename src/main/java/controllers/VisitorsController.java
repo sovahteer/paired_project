@@ -1,4 +1,5 @@
 package controllers;
+
 import db.DBHelper;
 import db.DBVisit;
 import db.DBVisitor;
@@ -27,7 +28,7 @@ public class VisitorsController {
             List<Visitor> visitors = DBHelper.getAll(Visitor.class);
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/visitors/index.vtl");
-            model.put("visitors", "visitors");
+            model.put("visitors", visitors);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -69,6 +70,13 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/visitors/:id/visits", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.params(":id"));
+
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         post("/visitors/login", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String username = req.queryParams("username");
@@ -87,6 +95,7 @@ public class VisitorsController {
         get("/visitors/visits", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int visitorId = Integer.parseInt(req.queryParams("visitor_id"));
+
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -96,9 +105,7 @@ public class VisitorsController {
             Visitor visitor = DBHelper.find(visitorId, Visitor.class);
             Visit visit = new Visit(visitor);
             DBHelper.save(visit);
-            res.redirect("/park");
-
-            //send to park/$visitor.getId....
+            res.redirect("/visitors/" + visitor.getId() + "visits");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
