@@ -1,0 +1,46 @@
+body {
+    background-image: url("/images/admin_background.png");
+    background-color: #E55E10;
+    background-attachment: fixed;
+}
+
+.logo img {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.buttons {
+
+}
+
+.buttons ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.buttons li {
+  padding: 50px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+nav {
+background: #404040;
+position: relative;
+
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0 auto;
+  text-align: center
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 auto;
+}

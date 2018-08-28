@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.get;
+import static spark.Spark.staticFileLocation;
+
 public class MainController {
 
     public static void main(String[] args) {
+        staticFileLocation("/public");
         Seeds.seedData();
         AdminController adminController = new AdminController();
         DinosaursController dinosaursController = new DinosaursController();
@@ -21,7 +24,7 @@ public class MainController {
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/home/index.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/home/layout.vtl");
         }, new VelocityTemplateEngine());
     }
 }

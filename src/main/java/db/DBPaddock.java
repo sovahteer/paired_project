@@ -1,6 +1,7 @@
 package db;
 
 import models.dinosaurs.Dinosaur;
+import models.enums.DietaryType;
 import models.paddocks.Paddock;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
