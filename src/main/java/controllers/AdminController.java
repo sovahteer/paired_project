@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBDinosaur;
 import db.DBHelper;
+import db.DBPaddock;
 import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
@@ -230,6 +231,7 @@ public class AdminController {
         get("/admin/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
+            List<Paddock> paddocksCanVisit = DBPaddock.filterByCanVisit();
             model.put("paddocks", paddocks);
             model.put("template", "templates/admin/paddocks/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
