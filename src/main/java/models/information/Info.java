@@ -1,11 +1,14 @@
 package models.information;
 
+import db.DBHelper;
 import db.DBInformation;
 import models.dinosaurs.Dinosaur;
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,10 +58,23 @@ public class Info {
         this.text = text;
     }
 
-    public static String getRandomInfoOfSpecies(DinosaurType species) {
+    public static Info getRandomInfoOfSpecies(DinosaurType species) {
         List<Info> info = DBInformation.getAllInfoBySpecies(species);
         Collections.shuffle(info);
-        String randomInfo = info.get(0).getText();
+        Info randomInfo = info.get(0);
+        return randomInfo;
+    }
+
+    public static Info getRandomInfoOnHerbivore() {
+        List<Info> allInfo = DBHelper.getAll(Info.class);
+        List<Info> infoByDiet = new ArrayList<>();
+        for (Info info: allInfo) {
+            if(info.species.getDietaryType() == DietaryType.HERBIVORE) {
+                infoByDiet.add(info);
+            }
+        }
+        Collections.shuffle(infoByDiet);
+        Info randomInfo = infoByDiet.get(0);
         return randomInfo;
     }
 }

@@ -1,5 +1,6 @@
 package db;
 
+import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.information.Info;
 import org.hibernate.Criteria;
@@ -19,4 +20,6 @@ public class DBInformation {
         results = cr.list();
         return results;
     }
+
+
 }

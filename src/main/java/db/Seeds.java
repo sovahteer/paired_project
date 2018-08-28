@@ -108,6 +108,10 @@ public class Seeds {
         infoPterosaur2.setText("The wing of the pterosaur was unique, a large membrane suspended from a hugely expanded fourth finger. Pterosaurs are largely regarded as the first vertebrates to achieve sustainable powered flight, although the largest relied mainly on the wind and gliding to stay in the air.");
         DBHelper.update(infoPterosaur2);
 
+        Info infoTriceratops = new Info(DinosaurType.TRICERATOPS);
+        DBHelper.save(infoTriceratops);
+        infoTriceratops.setText("To defend itself against meat eaters (predators) it had two long brow horns. These could grow to be at least 1 metre (3 feet) long. Triceratops would have been able to cause a lot of damage to an attacker!");
+        DBHelper.update(infoTriceratops);
 
 
 
@@ -142,6 +146,7 @@ public class Seeds {
         List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
 
         List<Paddock> allPaddocksForVisit = DBVisit.getAllPaddocksForVisit(visit);
-        String randomInfoOnSpecies = Info.getRandomInfoOfSpecies(DinosaurType.TREX);
+        Info randomInfoOnSpecies = Info.getRandomInfoOfSpecies(DinosaurType.TREX);
+        Info randomInfoOnHerbivore = Info.getRandomInfoOnHerbivore();
     }
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import db.DBHelper;
 import models.enums.DietaryType;
+import models.information.Info;
 import models.paddocks.Paddock;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -24,6 +25,15 @@ public class ParkController {
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             DietaryType herbivore = DietaryType.HERBIVORE;
             String herbivoreString = herbivore.getHumanReadable().toLowerCase();
+            if(paddock.getDietaryType() == DietaryType.HERBIVORE){
+                Info randomInfoHerbivore = Info.getRandomInfoOnHerbivore();
+                model.put("randomInfoHerbivore", randomInfoHerbivore);
+            } else {
+                Info randomInfoOnSpecies = Info.getRandomInfoOfSpecies(paddock.getDinosaurType());
+                model.put("randomInfoOnSpecies", randomInfoOnSpecies);
+            }
+
+
 
             model.put("herbivoreString", herbivoreString);
             model.put("herbivore", herbivore);

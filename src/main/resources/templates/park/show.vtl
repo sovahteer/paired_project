@@ -1,7 +1,10 @@
 
     #if($paddock.getDietaryType() == $herbivore)
 
-    <p>Welcome to <span>$herbivoreString</span> paddock!</p>
+        <h1>Welcome to <span>$herbivoreString</span> paddock!</h1>
+        <p>$randomInfoHerbivore.getText()</p>
     #else
-    <p>Welcome to <span>$paddock.getDinosaurType().getName()</span> paddock!</p>
+        <h1>Welcome to <span>$paddock.getDinosaurType().getName()</span> paddock!</h1>
+        <!--<p>$randomInfoOnSpecies.getText()</p>-->
     #end
+
