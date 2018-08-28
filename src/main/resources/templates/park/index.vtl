@@ -1,8 +1,8 @@
 
 <div class = paddocks>
-#foreach ($paddock in $paddocks)
     <ul>
-        <li><a href="/admin/paddocks/$paddock.getId()" class="button center"><img src="images/paddock_Btn.png"></a></li>
+        #foreach ($paddock in $paddocks)
+        <li><a href="/park/paddocks/$paddock.getId()" class="button center">Click $paddock.getName()</a></li>
+        #end
     </ul>
-    #end
 </div>
