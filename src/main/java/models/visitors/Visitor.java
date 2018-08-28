@@ -59,8 +59,7 @@ public class Visitor {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "visitor")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "visitor", fetch = FetchType.LAZY)
     public List<Visit> getVisits() {
         return visits;
     }

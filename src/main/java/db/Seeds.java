@@ -132,6 +132,6 @@ public class Seeds {
 //        visit.passageOfTime();
         List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
         List<Paddock> shuffledPaddocksForVisit = visit.getPaddocks();
-
+        List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
     }
 }

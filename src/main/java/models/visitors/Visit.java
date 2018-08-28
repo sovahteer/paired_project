@@ -22,7 +22,7 @@ public class Visit {
     public Visit(Visitor visitor) {
         this.paddocks = new ArrayList<>();
         this.visitor = visitor;
-        assignShuffledPaddocks();
+//        assignShuffledPaddocks();
     }
 
     public Visit() {
@@ -53,8 +53,9 @@ public class Visit {
         this.id = id;
     }
 
-   @ManyToOne
-   @JoinColumn(name = "visitor_id", nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "visitor_id", nullable = false)
     public Visitor getVisitor() {
         return visitor;
     }
@@ -81,7 +82,6 @@ public class Visit {
 
     private static List<Paddock> listOfVisitablePaddocks(){
         List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
-        Collections.shuffle(allowedToVisit);
         List<Paddock> paddocks;
         if (allowedToVisit.size() < 8){
             paddocks = allowedToVisit.subList(0, allowedToVisit.size());

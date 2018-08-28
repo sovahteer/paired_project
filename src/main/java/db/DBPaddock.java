@@ -36,6 +36,7 @@ public class DBPaddock {
     public static List<Paddock> filterByCanVisit(){
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Paddock.class);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         cr.add(Restrictions.eq("accessibleToVisitors", true));
         List<Paddock> result = cr.list();
         return result;
