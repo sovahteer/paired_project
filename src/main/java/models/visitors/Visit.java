@@ -22,13 +22,13 @@ public class Visit {
     public Visit(Visitor visitor) {
         this.paddocks = new ArrayList<>();
         this.visitor = visitor;
-//        assignShuffledPaddocks();
+        assignShuffledPaddocks();
     }
 
     public Visit() {
     }
 
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToMany
     @JoinTable(name = "visits_paddocks",
         joinColumns = {@JoinColumn(name = "visit_id", nullable = false, updatable = false)},
@@ -79,7 +79,7 @@ public class Visit {
             DBHelper.update(dinosaur);
         }
     }
-
+//take paddockst available for visits, limit to 8 or less depending on side
     private static List<Paddock> listOfVisitablePaddocks(){
         List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
         List<Paddock> paddocks;
@@ -88,17 +88,13 @@ public class Visit {
         } else {
             paddocks = allowedToVisit.subList(0, 8);
         }
+        Collections.shuffle(paddocks);
         return paddocks;
     }
 
-    public List<Paddock> shufflePaddocks(){
-        List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
-        Collections.shuffle(allowedToVisit);
-        List<Paddock> paddocks =  listOfVisitablePaddocks();
-        return paddocks;
-    }
+
 
     public void assignShuffledPaddocks(){
-        setPaddocks(shufflePaddocks());
+        setPaddocks(listOfVisitablePaddocks());
     }
 }
