@@ -1,7 +1,9 @@
 package controllers;
+
 import db.DBHelper;
 import db.DBVisit;
 import db.DBVisitor;
+import models.paddocks.Paddock;
 import models.visitors.Visit;
 import models.visitors.Visitor;
 import spark.ModelAndView;
@@ -23,11 +25,30 @@ public class VisitorsController {
     }
 
     public static void setupEndpoints(){
+
+        get("/visitors/visits", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.queryParams("visitor_id"));
+            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
+            model.put("template", "templates/visitors/visits/index.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        post("/visitors/visits", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.queryParams("visitor_id"));
+            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
+            Visit visit = new Visit(visitor);
+            DBHelper.save(visit);
+            res.redirect("/visitors/" + visitor.getId() + "/visit");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         get("/visitors", (req, res) -> {
             List<Visitor> visitors = DBHelper.getAll(Visitor.class);
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/visitors/index.vtl");
-            model.put("visitors", "visitors");
+            model.put("visitors", visitors);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -69,6 +90,7 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+
         post("/visitors/login", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String username = req.queryParams("username");
@@ -82,7 +104,6 @@ public class VisitorsController {
             }
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
 
         //update
         post("/visitors/:id", (req, res) -> {
@@ -119,6 +140,25 @@ public class VisitorsController {
             return new ModelAndView(model, "templates/layout.vtl");
         });
 
+
+
+
+
+
+///check
+        get("/visitors/:id/visit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.params(":id"));
+            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
+            List<Visit> allVisitsOfVisitor = DBVisitor.getVisitsOfVisitor(visitor);
+            int sizeOfVisits = allVisitsOfVisitor.size();
+            Visit visit = allVisitsOfVisitor.get(sizeOfVisits - 1);
+            List<Paddock> paddocks =  DBVisit.getAllPaddocksForVisit(visit);
+            model.put("paddocks", paddocks);
+            model.put("visitor", visitor);
+            model.put("template", "templates/visitors/visits/show.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
 
 
     }

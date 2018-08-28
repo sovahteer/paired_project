@@ -22,7 +22,6 @@ public class Visitor {
     public Visitor(String firstName, String lastName, String username, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.visits = new ArrayList<>();
         this.username = username;
         this.email = email;
     }
@@ -59,8 +58,16 @@ public class Visitor {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "visitor")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @OneToOne(mappedBy = "visitor", fetch = FetchType.LAZY)
+//    public Visit getVisit() {
+//        return visit;
+//    }
+//
+//    public void setVisit(Visit visit) {
+//        this.visit = visit;
+//    }
+
+    @OneToMany(mappedBy="visitor", fetch = FetchType.LAZY)
     public List<Visit> getVisits() {
         return visits;
     }

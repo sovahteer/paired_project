@@ -1,12 +1,10 @@
 package controllers;
-import db.DBPaddock;
-import models.paddocks.Paddock;
+
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import static spark.Spark.get;
@@ -24,5 +22,6 @@ public class ParkController {
             model.put("template", "templates/park/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
     }
 }

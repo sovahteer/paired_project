@@ -90,7 +90,7 @@ public class Paddock {
         this.dinosaurType = dinosaurType;
     }
 
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToMany
     @JoinTable(name = "visits_paddocks",
             joinColumns = {@JoinColumn(name = "paddock_id", nullable = false, updatable = false)},
