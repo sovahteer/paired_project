@@ -29,13 +29,13 @@ public class DBVisitor {
         }
     }
 
-    public static List<Visit> getVisitsOfVisitor(Visitor visitor) {
+    public static Visit getVisitOfVisitor(Visitor visitor) {
         session = HibernateUtil.getSessionFactory().openSession();
-        List<Visit> results = null;
+        Visit result = null;
         Criteria cr = session.createCriteria(Visit.class);
         cr.add(Restrictions.eq("visitor", visitor));
-        results = cr.list();
-        return results;
+        result = result;
+        return result;
     }
 
 }
