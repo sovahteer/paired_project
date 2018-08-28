@@ -33,4 +33,12 @@ public class DBPaddock {
         return averageStrength;
     }
 
+    public static List<Paddock> filterByCanVisit(){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Paddock.class);
+        cr.add(Restrictions.eq("accessibleToVisitors", true));
+        List<Paddock> result = cr.list();
+        return result;
+    }
+
 }

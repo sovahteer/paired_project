@@ -103,7 +103,9 @@ public class Seeds {
         DBHelper.save(infoTrex3);
         infoTrex3.setText("The Tyrannosaurus' arms were too short to reach its mouth.");
         DBHelper.update(infoTrex3);
-
+        carnivorePaddock.setAccessibleToVisitors(true);
+        DBHelper.update(carnivorePaddock);
+        List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
 
     }
 }
