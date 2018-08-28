@@ -1,7 +1,7 @@
 
-    #if($paddock.getDinosaurType().getDietaryType() == $herbivore)
+    #if($paddock.getDietaryType() == $herbivore)
 
-    <p>Welcome to <span>$herbivore()</span> s paddock!</p>
+    <p>Welcome to <span>$herbivoreString</span> paddock!</p>
     #else
     <p>Welcome to <span>$paddock.getDinosaurType().getName()</span> paddock!</p>
     #end

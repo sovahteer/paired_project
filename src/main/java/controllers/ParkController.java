@@ -23,6 +23,8 @@ public class ParkController {
             int paddockId = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             DietaryType herbivore = DietaryType.HERBIVORE;
+            String herbivoreString = herbivore.getHumanReadable();
+            model.put("herbivoreString", herbivoreString);
             model.put("herbivore", herbivore);
             model.put("paddock", paddock);
             model.put("template", "templates/park/show.vtl");
