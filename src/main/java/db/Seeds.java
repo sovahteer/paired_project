@@ -67,25 +67,7 @@ public class Seeds {
 
         Visitor visitorMike = new Visitor("Mike", "Thorpe", "mikey", "mike@mike.com");
         DBHelper.save(visitorMike);
-        Visit visit = new Visit(visitorMike);
-        DBHelper.save(visit);
-        DBVisit.addPaddockToVisit(visit, carnivorePaddock);
 
-
-        List<Dinosaur> allDino = DBDinosaur.getAllDinoForPaddock(carnivorePaddock);
-
-        Visitor foundVisitor = DBVisitor.findVisitorByUsername("mikey");
-        boolean visitorExistence = DBVisitor.checkIfVisitorByUsernameExists("mikey");
-        boolean visitorExistenceFalse = DBVisitor.checkIfVisitorByUsernameExists("jolo");
-
-        visit.passageOfTime();
-        visit.passageOfTime();
-        visit.passageOfTime();
-        visit.passageOfTime();
-        visit.passageOfTime();
-        visit.passageOfTime();
-        visit.passageOfTime();
-        visit.passageOfTime();
         double averageHunger = DBPaddock.getAverageStomachLevelByPaddock(herbivorePaddock);
         double averageStrength = DBPaddock.getAverageStrengthByPaddock(herbivorePaddock);
         carnivorePaddock.rampageCheck();
@@ -105,7 +87,28 @@ public class Seeds {
         DBHelper.update(infoTrex3);
         carnivorePaddock.setAccessibleToVisitors(true);
         DBHelper.update(carnivorePaddock);
+        herbivorePaddock.setAccessibleToVisitors(true);
+        DBHelper.update(herbivorePaddock);
+        Visit visit = new Visit(visitorMike);
+        DBHelper.save(visit);
+
+
+        List<Dinosaur> allDino = DBDinosaur.getAllDinoForPaddock(carnivorePaddock);
+
+        Visitor foundVisitor = DBVisitor.findVisitorByUsername("mikey");
+        boolean visitorExistence = DBVisitor.checkIfVisitorByUsernameExists("mikey");
+        boolean visitorExistenceFalse = DBVisitor.checkIfVisitorByUsernameExists("jolo");
+
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
         List<Paddock> allowedToVisit = DBPaddock.filterByCanVisit();
+        List<Paddock> shuffledPaddocksForVisit = visit.getPaddocks();
 
     }
 }
