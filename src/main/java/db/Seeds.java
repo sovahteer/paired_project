@@ -5,7 +5,6 @@ import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.information.Info;
 import models.paddocks.Paddock;
-import models.parks.Park;
 import models.visitors.Visit;
 import models.visitors.Visitor;
 
@@ -16,16 +15,13 @@ public class Seeds {
     public static void seedData() {
         DBHelper.deleteAll(Dinosaur.class);
         DBHelper.deleteAll(Paddock.class);
-        DBHelper.deleteAll(Park.class);
         DBHelper.deleteAll(Visit.class);
         DBHelper.deleteAll(Visitor.class);
         DBHelper.deleteAll(Info.class);
 
-        Park park = new Park("YoloPark");
-        DBHelper.save(park);
-        Park parkTest = new Park("FunPark");
-        DBHelper.save(parkTest);
-        Paddock funPaddock = new Paddock( "Test Paddock", parkTest, DietaryType.CARNIVORE);
+
+
+        Paddock funPaddock = new Paddock( "Test Paddock", DietaryType.CARNIVORE);
         DBHelper.save(funPaddock);
 
         Dinosaur bigDino = new Dinosaur(DinosaurType.GIGANOTOSAURUS);
@@ -33,13 +29,13 @@ public class Seeds {
         DBDinosaur.addPaddockToDinosaur(bigDino, funPaddock);
         DBHelper.update(funPaddock);
 
-        Paddock carnivorePaddock = new Paddock( "T-Rex paddock", park, DietaryType.CARNIVORE);
+        Paddock carnivorePaddock = new Paddock( "T-Rex paddock", DietaryType.CARNIVORE);
         DBHelper.save(carnivorePaddock);
 
-        Paddock herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
+        Paddock herbivorePaddock = new Paddock("Herbivores", DietaryType.HERBIVORE);
         DBHelper.save(herbivorePaddock);
 
-        Paddock herbivorePaddock2 = new Paddock("Herbivore Park", park, DietaryType.HERBIVORE);
+        Paddock herbivorePaddock2 = new Paddock("Herbivore Park", DietaryType.HERBIVORE);
         DBHelper.save(herbivorePaddock2);
 
         Dinosaur carnivoreTRex = new Dinosaur(DinosaurType.TREX);
@@ -76,24 +72,22 @@ public class Seeds {
         DBVisit.addPaddockToVisit(visit, carnivorePaddock);
 
 
-        List<Paddock> allPaddockss = DBPark.getAllPaddocksForPark(park);
         List<Dinosaur> allDino = DBDinosaur.getAllDinoForPaddock(carnivorePaddock);
-        List<Dinosaur> allFromPark = DBPark.getAllDinoForPark(park);
 
         Visitor foundVisitor = DBVisitor.findVisitorByUsername("mikey");
         boolean visitorExistence = DBVisitor.checkIfVisitorByUsernameExists("mikey");
         boolean visitorExistenceFalse = DBVisitor.checkIfVisitorByUsernameExists("jolo");
 
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        visit.passageOfTime(park);
-        double averageHunger = DBPark.getAverageStomachLevelByPaddock(herbivorePaddock);
-        double averageStrength = DBPark.getAverageStrengthByPaddock(herbivorePaddock);
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        visit.passageOfTime();
+        double averageHunger = DBPaddock.getAverageStomachLevelByPaddock(herbivorePaddock);
+        double averageStrength = DBPaddock.getAverageStrengthByPaddock(herbivorePaddock);
         carnivorePaddock.rampageCheck();
         herbivorePaddock.rampageCheck();
 
@@ -102,7 +96,7 @@ public class Seeds {
         infoTrex.setText("The Tyrannosaurus rex was one of the largest of the land predator dinosaurs. The T-rex measured up to 43 feet long and weighed as much as 7.5 tons. The dinosaur is often used in movie and films such as Jurassic Park due to its size and overall fearsome image. ");
         DBHelper.update(infoTrex);
         Info infoTrex2 = new Info(DinosaurType.TREX);
-        DBHelper.save(infoTrex);
+        DBHelper.save(infoTrex2);
         infoTrex2.setText("The Tyrannosaurus had a life span of around 30 years.");
         DBHelper.update(infoTrex2);
         Info infoTrex3 = new Info(DinosaurType.TREX);

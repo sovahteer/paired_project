@@ -1,8 +1,6 @@
 package models.dinosaurs;
 
 import db.DBDinosaur;
-import db.DBHelper;
-import db.DBPark;
 import models.enums.*;
 import models.paddocks.Paddock;
 

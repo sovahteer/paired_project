@@ -7,8 +7,6 @@ import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.enums.FoodType;
 import models.paddocks.Paddock;
-
-import models.parks.Park;
 import models.visitors.Visitor;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -103,7 +101,6 @@ public class AdminController {
             Map<String, Object> model = new HashMap<>();
             DinosaurType[] dinosaurTypes = DinosaurType.values();
             List<Paddock> paddocks = DBHelper.getAll(Paddock.class);
-            Park park = new Park();
             model.put("dinosaurTypes", dinosaurTypes);
             model.put("paddocks", paddocks);
             model.put("template", "templates/admin/dinosaurs/new.vtl");
@@ -220,8 +217,6 @@ public class AdminController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Paddock paddock= DBHelper.find(intId, Paddock.class);
-            List<Park> parks = DBHelper.getAll(Park.class);
-            Park park = parks.get(0);
             DietaryType[] dietaryTypes = DietaryType.values();
 
             Map<String, Object> model = new HashMap<>();
@@ -242,10 +237,7 @@ public class AdminController {
 
         get("/admin/paddocks/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Park> parks = DBHelper.getAll(Park.class);
-            Park park = parks.get(0);
             DietaryType[] dietaryTypes = DietaryType.values();
-            model.put("park", park);
             model.put("dietaryTypes", dietaryTypes);
             model.put("template", "templates/admin/paddocks/new.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -268,10 +260,9 @@ public class AdminController {
         post("/admin/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int parkId = Integer.parseInt(req.queryParams("park"));
-            Park park = DBHelper.find(parkId, Park.class);
             DietaryType dietaryType = DietaryType.valueOf(req.queryParams("dietaryType"));
             String name = req.queryParams("name");
-            Paddock newPaddock = new Paddock(name, park, dietaryType);
+            Paddock newPaddock = new Paddock(name, dietaryType);
             DBHelper.save(newPaddock);
 
             res.redirect("/admin/paddocks");

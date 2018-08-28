@@ -4,7 +4,6 @@ import models.dinosaurs.Dinosaur;
 import models.enums.*;
 
 import models.paddocks.Paddock;
-import models.parks.Park;
 import models.visitors.Visit;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,6 @@ public class DinosaurTest {
     Dinosaur velociraptor;
     Dinosaur giganotosaurus;
     Dinosaur brachiosaurus;
-    Park park;
     Paddock carnivorePaddock;
     Paddock herbivorePaddock;
     Visit visit;
@@ -30,9 +28,8 @@ public class DinosaurTest {
         velociraptor = new Dinosaur(DinosaurType.VELOCIRAPTOR);
         giganotosaurus = new Dinosaur(DinosaurType.GIGANOTOSAURUS);
         brachiosaurus = new Dinosaur(DinosaurType.BRACHIOSAURUS);
-        park = new Park();
-        carnivorePaddock = new Paddock("Carnivores", park, DietaryType.CARNIVORE);
-        herbivorePaddock = new Paddock("Herbivores", park, DietaryType.HERBIVORE);
+        carnivorePaddock = new Paddock("Carnivores", DietaryType.CARNIVORE);
+        herbivorePaddock = new Paddock("Herbivores", DietaryType.HERBIVORE);
         visit = new Visit();
     }
 

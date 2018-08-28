@@ -2,11 +2,10 @@ package models.paddocks;
 
 import db.DBDinosaur;
 import db.DBHelper;
-import db.DBPark;
+import db.DBPaddock;
 import models.enums.DietaryType;
 import models.enums.DinosaurType;
 import models.enums.HungerLevelType;
-import models.parks.Park;
 import models.dinosaurs.Dinosaur;
 import models.visitors.Visit;
 import org.hibernate.annotations.Cascade;
@@ -23,7 +22,6 @@ public class Paddock {
     protected List<Dinosaur> dinosaurs;
     private int id;
     private String name;
-    private Park park;
     private DietaryType dietaryType;
     private DinosaurType dinosaurType;
     private List<Visit> visits;
@@ -32,10 +30,9 @@ public class Paddock {
 
     public Paddock(){}
 
-    public Paddock(String name, Park park, DietaryType dietaryType) {
+    public Paddock(String name, DietaryType dietaryType) {
         this.dinosaurs = new ArrayList<>();
         this.dietaryType = dietaryType;
-        this.park = park;
         this.name = name;
         this.dinosaurType = null;
         this.visits = new ArrayList<>();
@@ -70,16 +67,6 @@ public class Paddock {
 
     public void setDinosaurs(List<Dinosaur> dinosaurs) {
         this.dinosaurs = dinosaurs;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "park_id", nullable = true)
-    public Park getPark() {
-        return park;
-    }
-
-    public void setPark(Park park) {
-        this.park = park;
     }
 
     @Enumerated(value = EnumType.STRING)
@@ -184,10 +171,10 @@ public class Paddock {
     }
 
     public void rampageCheck() {
-        Double averageStomachLevel = DBPark.getAverageStomachLevelByPaddock(this);
+        Double averageStomachLevel = DBPaddock.getAverageStomachLevelByPaddock(this);
         int roundedStomachLevel =  (int) Math.round(averageStomachLevel);
         HungerLevelType hungerLevel = DBDinosaur.checkHungerLevel(roundedStomachLevel);
-        Double averageStrength = DBPark.getAverageStrengthByPaddock(this);
+        Double averageStrength = DBPaddock.getAverageStrengthByPaddock(this);
         int roundedStrengthLevel = (int) Math.round(averageStrength);
         if(hungerLevel == HungerLevelType.STARVING && roundedStrengthLevel > 30) {
             this.setInRampage(true);
