@@ -13,6 +13,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -171,12 +172,14 @@ public class Paddock {
     }
 
     public void rampageCheck() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt(6);
         Double averageStomachLevel = DBPaddock.getAverageStomachLevelByPaddock(this);
         int roundedStomachLevel =  (int) Math.round(averageStomachLevel);
         HungerLevelType hungerLevel = DBDinosaur.checkHungerLevel(roundedStomachLevel);
         Double averageStrength = DBPaddock.getAverageStrengthByPaddock(this);
         int roundedStrengthLevel = (int) Math.round(averageStrength);
-        if(hungerLevel == HungerLevelType.STARVING && roundedStrengthLevel > 30) {
+        if(hungerLevel == HungerLevelType.STARVING && roundedStrengthLevel > 30 && randomNum > 3) {
             this.setInRampage(true);
             DBHelper.update(this);
         }

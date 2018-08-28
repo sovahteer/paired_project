@@ -27,10 +27,10 @@ public class ParkController {
     }
 
     private static void startEndpoints() {
-        get("/park/visits/:visit_id/paddocks/:id", (req, res) -> {
+        get("/park/visits/:visitor_id/paddocks/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int visitId = Integer.parseInt(req.params(":visit_id"));
-            Visitor visitor = DBHelper.find(visitId, Visitor.class);
+            int visitorId = Integer.parseInt(req.params(":visitor_id"));
+            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
             int paddockId = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
             paddock.rampageCheck();
@@ -49,6 +49,7 @@ public class ParkController {
 
             List<Dinosaur> dinosaurs = DBDinosaur.getAllDinoForPaddock(paddock);
             Visit visit = DBVisit.getMostRecentVisit(visitor);
+            visit.passageOfTime();
             model.put("randomNumber", randomNumber);
             model.put("dinosaurs", dinosaurs);
             model.put("visit", visit);
