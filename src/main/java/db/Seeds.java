@@ -134,7 +134,6 @@ public class Seeds {
         List<Paddock> shuffledPaddocksForVisit = visit.getPaddocks();
         List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
 
-        Visit visits = DBVisitor.getVisitOfVisitor(visitorMike);
         List<Paddock> allPaddocksForVisit = DBVisit.getAllPaddocksForVisit(visit);
     }
 }

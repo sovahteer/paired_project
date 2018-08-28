@@ -54,8 +54,8 @@ public class Visit {
     }
 
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "visitor_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name="ship_id", nullable=false)
     public Visitor getVisitor() {
         return visitor;
     }

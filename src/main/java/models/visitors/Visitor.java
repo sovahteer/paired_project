@@ -14,7 +14,7 @@ public class Visitor {
     private int id;
     private String firstName;
     private String lastName;
-    private Visit visit;
+    private List<Visit> visits;
     private String username;
     private String email;
 
@@ -22,7 +22,6 @@ public class Visitor {
     public Visitor(String firstName, String lastName, String username, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.visit = visit;
         this.username = username;
         this.email = email;
     }
@@ -59,13 +58,22 @@ public class Visitor {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "visitor", fetch = FetchType.LAZY)
-    public Visit getVisit() {
-        return visit;
+//    @OneToOne(mappedBy = "visitor", fetch = FetchType.LAZY)
+//    public Visit getVisit() {
+//        return visit;
+//    }
+//
+//    public void setVisit(Visit visit) {
+//        this.visit = visit;
+//    }
+
+    @OneToMany(mappedBy="visitor", fetch = FetchType.LAZY)
+    public List<Visit> getVisits() {
+        return visits;
     }
 
-    public void setVisit(Visit visit) {
-        this.visit = visit;
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 
     @Column(name="username")
