@@ -202,8 +202,3 @@ input {
 .dinoDeleteBtn{
     background-image: url ("/images/delete_btn.png");
 }
-
-.delete_image {
-    width: auto;
-    height: 100%;
-}
