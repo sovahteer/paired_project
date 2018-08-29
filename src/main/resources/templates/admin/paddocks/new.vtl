@@ -1,15 +1,14 @@
-<p class="pageHeader">New Paddock</p>
-
-<form class="form-container" action="/admin/paddocks" method = "post">
+<div class="blurry-image"></div>
+<form class="form-container small-form" action="/admin/paddocks" method = "post">
 
     <label for="name" id="name">Name</label>
-    <input class="inputbox" type="text" name="name" required="true">
+    <input class="input-field" type="text" name="name" required="true">
 
 
     <label for="dietaryType">Diet</label>
     <select id="dietaryType" name="dietaryType">
         #foreach( $dietaryType in $dietaryTypes )
-        <option value="$dietaryType">$dietaryType.getHumanReadable()</option>
+        <option  class="input-field" value="$dietaryType">$dietaryType.getHumanReadable()</option>
         #end
     </select>
 

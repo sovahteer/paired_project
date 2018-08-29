@@ -1,10 +1,11 @@
+<div class="blurry-image"></div>
 <p class="pageHeader">Feed $dinosaur.getSpecies().getName()</p>
-<form class="form-container" action="/admin/dinosaurs/$dinosaur.getId()/feed" method="post">
+<form class="form-container small-form" action="/admin/dinosaurs/$dinosaur.getId()/feed" method="post">
 
     <label for="foodType" id="foodType">Select a Food</label>
     <select name ="foodType">
         #foreach ($foodType in $foodTypes)
-        <option value="$foodType">$foodType.getName()</option>
+        <option class="input-field" value="$foodType">$foodType.getName()</option>
         #end
     </select>
 
