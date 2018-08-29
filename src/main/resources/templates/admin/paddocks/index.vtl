@@ -11,9 +11,15 @@
         <td><a href="/admin/paddocks/$paddock.getId()" class="button center">Details</a></td>
         <td><a href="/admin/paddocks/$paddock.getId()/edit" class="button center">Edit</a></td>
         <td>
-            <form action="/admin/paddocks/$paddock.getId()/delete" method="post">
-                <input type="submit" value="delete" class="button">
-            </form>
+            #if($paddock.getDinosaurs().size() == 0)
+                <form action="/admin/paddocks/$paddock.getId()/delete" method="post">
+                    <input type="submit" value="delete" class="button">
+                </form>
+            #else
+                <form action="/admin/paddocks/$paddock.getId()/dinosaurs/delete" method="post">
+                    <input type="submit" value="Delete all Dinos">
+                </form>
+            #end
         </td>
     </tr>
     #end
