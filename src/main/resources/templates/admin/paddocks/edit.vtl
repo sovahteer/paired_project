@@ -1,6 +1,6 @@
 <p class="pageHeader">Edit a Paddock</p>
 
-<form action="/admin/paddocks/$paddock.getId()" method="post">
+<form class="form-container" action="/admin/paddocks/$paddock.getId()" method="post">
 
     <label for="name">Name</label>
     <input class="inputbox" type="text" name="name" id="name" required="true" value="$paddock.getName()">
