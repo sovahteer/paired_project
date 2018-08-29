@@ -1,20 +1,24 @@
 <div class="blurry-image"></div>
 <div class="message-rampage">
+
     #if ($paddock.isInRampage())
+
         <p>Some dinosaurs have broke free and are rampaging the area. They have eaten
             #if($randomNumber == 1)
-                <span>$randomNumber</span> visitor. </p>
+                <span>$randomNumber</span> visitor.
             #else
-                <span>$randomNumber</span> visitors. </p>
+                <span>$randomNumber</span> visitors.
             #end
-            <form action="/admin/$paddock.getId()/restore_order", method="post">
-                <input type="submit" value="Send incident response team!">
-            </form>
+        </p>
+
+        <form action="/admin/$paddock.getId()/restore_order", method="post">
+            <input type="submit" value="Send incident response team!">
+        </form>
 
 
-    #else
-        <p>The dinosaurs are in the enclosure.</p>
-    #end
+        #else
+            <p>The dinosaurs are in the enclosure.</p>
+        #end
 
-    <a href="/admin">Go back</a>
+
 </div>
