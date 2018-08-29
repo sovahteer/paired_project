@@ -127,8 +127,6 @@ nav a {
   margin: 0 auto;
 }
 
-}
-
 .form-container {
   width: 40%;
   display: flex;
@@ -152,8 +150,26 @@ input {
 }
 
 .dinoTable {
+    font-family: 'Teko', sans-serif;
+    background-color: white;
     width: 50%;
     margin: 0 auto;
-    padding-top: 100px;
+    margin-top: 100px;
+    padding: 20px;
     text-align: center;
+    border-radius: 25px;
+}
+
+.dinoTable th{
+    font-size: 25px;
+}
+
+.dinoTable td{
+    font-family: 'Roboto', sans-serif;
+}
+
+.createDino {
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 25px;
 }
