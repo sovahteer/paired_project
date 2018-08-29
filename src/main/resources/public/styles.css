@@ -276,8 +276,9 @@ font-size: 30px;
 }
 
 .message-rampage {
+font-size: 30px;
   transform: translate(-50%, -500%);
   -moz-transform: translate(-50%, -500%);
--webkit-transform: translate(-50%, -500%);
+-webkit-transform: translate(28%, -736%);
 
 }

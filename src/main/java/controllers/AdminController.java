@@ -37,7 +37,10 @@ public class AdminController {
             Map<String, Object> model = new HashMap<>();
             int paddockId = Integer.parseInt(req.params(":id"));
             Paddock paddock = DBHelper.find(paddockId, Paddock.class);
-            paddock.rampageCheck();
+            if(paddock.getDinosaurs().size() > 0) {
+                paddock.rampageCheck();
+            }
+
             int numberOfVisitors = DBHelper.getAll(Visitor.class).size();
             Random random = new Random();
             int randomNumber = random.nextInt(numberOfVisitors + 1);
