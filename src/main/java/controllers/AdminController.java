@@ -30,7 +30,7 @@ public class AdminController {
         get("/admin", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/index.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/:id/system_check", (req, res) -> {
@@ -44,7 +44,7 @@ public class AdminController {
             model.put("paddock", paddock);
             model.put("randomNumber", randomNumber);
             model.put("template", "templates/admin/system_check.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post("/admin/:id/restore_order", (req, res) -> {
@@ -54,7 +54,7 @@ public class AdminController {
             paddock.restoreOrder();
             DBHelper.update(paddock);
             res.redirect("/admin/paddocks/" + paddockId);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post("/admin/:id/approve", (req, res) -> {
@@ -64,7 +64,7 @@ public class AdminController {
             paddock.makeAvailableForVisits();
             DBHelper.update(paddock);
             res.redirect("/admin/paddocks/" + paddockId);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post("/admin/:id/no_entry", (req, res) -> {
@@ -74,7 +74,7 @@ public class AdminController {
             paddock.makeNotAvailableForVisit();
             DBHelper.update(paddock);
             res.redirect("/admin/paddocks/" + paddockId);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/dinosaurs/:id/edit", (req, res) -> {
@@ -87,7 +87,7 @@ public class AdminController {
             model.put("paddocks", paddocks);
             model.put("dinosaurToEdit", dinosaurToEdit);
             model.put("template", "templates/admin/dinosaurs/edit.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/dinosaurs", (req, res) -> {
@@ -95,7 +95,7 @@ public class AdminController {
             List<Dinosaur> dinosaurs = DBHelper.getAll(Dinosaur.class);
             model.put("template", "templates/admin/dinosaurs/index.vtl");
             model.put("dinosaurs", dinosaurs);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/dinosaurs/new", (req, res) -> {
@@ -105,13 +105,13 @@ public class AdminController {
             model.put("dinosaurTypes", dinosaurTypes);
             model.put("paddocks", paddocks);
             model.put("template", "templates/admin/dinosaurs/new.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/dinosaurs/invalid_paddock", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("template", "templates/admin/dinosaurs/invalid_paddock.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
@@ -122,7 +122,7 @@ public class AdminController {
             Dinosaur dinosaur = DBHelper.find(intId, Dinosaur.class);
             model.put("dinosaur", dinosaur);
             model.put("template", "templates/admin/dinosaurs/show.vtl");
-            return new ModelAndView(model,"templates/layout.vtl");
+            return new ModelAndView(model,"templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/dinosaurs/:id/feed", (req, res) -> {
@@ -134,7 +134,7 @@ public class AdminController {
             model.put("dinosaur", dinosaur);
             model.put("foodTypes", foodTypes);
             model.put("template", "templates/admin/dinosaurs/feed.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
@@ -173,7 +173,7 @@ public class AdminController {
             }
 
 
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
@@ -200,7 +200,7 @@ public class AdminController {
             } else {
                 res.redirect("/admin/dinosaurs/invalid_paddock");
             }
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post("/admin/dinosaurs/:id/feed", (req, res) -> {
@@ -212,7 +212,7 @@ public class AdminController {
             dinosaur.eat(foodType);
             DBHelper.update(dinosaur);
             res.redirect("/admin/paddocks/"+paddockId);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
@@ -226,7 +226,7 @@ public class AdminController {
             model.put("dietaryTypes", dietaryTypes);
             model.put("template", "templates/admin/paddocks/edit.vtl");
             model.put("paddock", paddock);
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
@@ -236,7 +236,7 @@ public class AdminController {
             List<Paddock> paddocksCanVisit = DBPaddock.filterByCanVisit();
             model.put("paddocks", paddocks);
             model.put("template", "templates/admin/paddocks/index.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/paddocks/new", (req, res) -> {
@@ -244,7 +244,7 @@ public class AdminController {
             DietaryType[] dietaryTypes = DietaryType.values();
             model.put("dietaryTypes", dietaryTypes);
             model.put("template", "templates/admin/paddocks/new.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         get("/admin/paddocks/:id", (req, res) -> {
@@ -256,7 +256,7 @@ public class AdminController {
             model.put("dinosaurs", dinosaurs);
             model.put("paddock", paddock);
             model.put("template", "templates/admin/paddocks/show.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
 
@@ -269,7 +269,7 @@ public class AdminController {
             DBHelper.save(newPaddock);
 
             res.redirect("/admin/paddocks");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post("/admin/paddocks/:id", (req, res) -> {
@@ -283,7 +283,7 @@ public class AdminController {
             paddock.setDietaryType(dietaryType);
             DBHelper.update(paddock);
             res.redirect("/admin/paddocks");
-            return new ModelAndView(model, "templates/layout.vtl");
+            return new ModelAndView(model, "templates/admin/layout.vtl");
         }, new VelocityTemplateEngine());
 
         post ("/admin/paddocks/:id/delete", (req, res) -> {
