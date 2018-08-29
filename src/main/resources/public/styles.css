@@ -130,23 +130,27 @@ nav a {
 }
 
 .form-container {
+  font-family: 'Teko', sans-serif;
   width: 40%;
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 59px 30px;
+  margin-top: 30px;
+  padding: 45px 30px;
   border-radius: 25px;
   font-size: 27px;
   background-color: rgb(255,255,255, 0.92);
 }
 
 input {
+      margin-top: 10px;
+      margin-bottom: 10px;
       color: white;
       height: 30px;
       display: block;
       width: 100%;
       background: transparent;
-      border: none;
+      border: 1px solid #ccc;
       outline: none;
       text-align: left;
 }
