@@ -183,6 +183,12 @@ color: white;
   -webkit-transform: translate(-50%, -180%);
 }
 
+.middle-form {
+-webkit-transform: translate(-50%, -250%);
+  transform: translate(-50%, -250%);
+  -moz-transform: translate(-50%, -250%);
+}
+
 input {
       color: rgb(255 255 255);
       height: 30px;
@@ -257,28 +263,21 @@ input, email {
 font-family: 'Teko', sans-serif;
 }
 
-
-input, textarea {
-font-family: 'Teko', sans-serif;
-}
-
-label {
-font-family: 'Teko', sans-serif;
-}
-
-p, h1, a{
+input, textarea, label, p, h1, a{
 font-family: 'Teko', sans-serif;
 }
 
 
-.message p {
-font-size: 30px;
+.message, .message-rampage p {
+color: white;
+font-size: 20px;
 }
 
 .message-rampage {
-font-size: 30px;
-  transform: translate(-50%, -500%);
-  -moz-transform: translate(-50%, -500%);
--webkit-transform: translate(28%, -736%);
-
+  transform: translate(19%, -600%);
+  -moz-transform: translate(19%, -600%);
+    -webkit-transform: translate(19%, -600%);
+    position: absolute;
+    right: 0;
+    left: 0;
 }
