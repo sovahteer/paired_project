@@ -81,6 +81,8 @@ public class VisitorsController {
         }, new VelocityTemplateEngine());
 
         //edit
+
+
         get("/visitors/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int visitorId = Integer.parseInt(req.params(":id"));
@@ -102,6 +104,18 @@ public class VisitorsController {
             }else{
                 model.put("template", "templates/visitors/invalid_username.vtl");
             }
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get("/visitors/:id/visit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int visitorId = Integer.parseInt(req.params(":id"));
+            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
+            Visit visit = DBVisit.getMostRecentVisit(visitor);
+            List<Paddock> paddocks =  DBVisit.getAllPaddocksForVisit(visit);
+            model.put("paddocks", paddocks);
+            model.put("visitor", visitor);
+            model.put("template", "templates/visitors/visits/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
@@ -141,17 +155,7 @@ public class VisitorsController {
         });
 
 
-        get("/visitors/:id/visit", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int visitorId = Integer.parseInt(req.params(":id"));
-            Visitor visitor = DBHelper.find(visitorId, Visitor.class);
-            Visit visit = DBVisit.getMostRecentVisit(visitor);
-            List<Paddock> paddocks =  DBVisit.getAllPaddocksForVisit(visit);
-            model.put("paddocks", paddocks);
-            model.put("visitor", visitor);
-            model.put("template", "templates/visitors/visits/show.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
+
 
 
 
