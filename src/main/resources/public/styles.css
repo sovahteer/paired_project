@@ -151,3 +151,16 @@ input {
       text-align: left;
 }
 
+.dinoTable ul {
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+.dinoTable li {
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-right: 50px;
+
+}
+
