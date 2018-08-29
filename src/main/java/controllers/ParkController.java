@@ -2,7 +2,6 @@ package controllers;
 
 import db.DBDinosaur;
 import db.DBHelper;
-import db.DBPaddock;
 import db.DBVisit;
 import models.dinosaurs.Dinosaur;
 import models.enums.DietaryType;

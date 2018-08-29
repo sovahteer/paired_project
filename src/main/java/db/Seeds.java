@@ -114,6 +114,42 @@ public class Seeds {
         DBHelper.update(infoTriceratops);
 
 
+        Info infoTriceratops2 = new Info(DinosaurType.TRICERATOPS);
+        DBHelper.save(infoTriceratops2);
+        infoTriceratops2.setText("The Triceratops had rows and rows of teeth as well as a sharp hard beak, allowing them to slice and crush all sorts of vegetation. Despite their fearsome appearance, they didn't kill other dinosaurs for meat, but they likely would have defended themselves well from predators. It is thought that the triceratops were herding animals and that they wandered the plains on all fours in large herds eating plants as they went. Sort of like buffalo or cows do today.");
+        DBHelper.update(infoTriceratops2);
+
+
+        Info infoStegosaurus = new Info(DinosaurType.STEGOSAURUS);
+        DBHelper.save(infoStegosaurus);
+        infoStegosaurus.setText("In terms of size, the Stegosaurus was large and heavily built. On average, a fully grown Stegosaurus was around 9 metres (30ft) in length, 4 metres (14ft) in height and up to nearly 5 metric tons in weight.");
+        DBHelper.update(infoStegosaurus);
+
+        Info infoStegosaurus2 = new Info(DinosaurType.STEGOSAURUS);
+        DBHelper.save(infoStegosaurus2);
+        infoStegosaurus2.setText("The 17 plates found along the back of the Stegosaurus arose from the skin rather than being attached to the skeleton. The largest plates were around 60cm (2ft) tall and 60cm (2ft) wide.");
+        DBHelper.update(infoStegosaurus2);
+
+
+
+
+        Info infoSpinosaurus = new Info(DinosaurType.SPINOSAURUS);
+        DBHelper.save(infoSpinosaurus);
+        infoSpinosaurus.setText("The Spinosaurus was larger than the Tyrannosaurus Rex and may have been the largest carnivorous (meat eating) dinosaur ever.");
+        DBHelper.update(infoSpinosaurus);
+
+        Info infoSpinosaurus2 = new Info(DinosaurType.SPINOSAURUS);
+        DBHelper.save(infoSpinosaurus2);
+        infoSpinosaurus.setText("The Spinosaurus featured distinctive spines which grew over 1.5 metres (5 feet) long.");
+        DBHelper.update(infoSpinosaurus2);
+
+
+
+        Info infoBrachiosaurus = new Info(DinosaurType.BRACHIOSAURUS);
+        DBHelper.save(infoBrachiosaurus);
+        infoBrachiosaurus.setText("An adult Brachiosaurus was unlikely to have had any predators due to its large size. However, a young brachiosaurus would have been a target for the large carnivores present at the time, such as Allosaurus.");
+        DBHelper.update(infoBrachiosaurus);
+
 
         carnivorePaddock.setAccessibleToVisitors(true);
         DBHelper.update(carnivorePaddock);
@@ -121,6 +157,7 @@ public class Seeds {
         DBHelper.update(herbivorePaddock);
         Visit visit = new Visit(visitorMike);
         DBHelper.save(visit);
+
 
 
         List<Dinosaur> allDino = DBDinosaur.getAllDinoForPaddock(carnivorePaddock);
@@ -144,11 +181,12 @@ public class Seeds {
 
 
         List<Paddock> allPaddocks = DBHelper.getAll(Paddock.class);
-
         List<Paddock> allPaddocksForVisit = DBVisit.getAllPaddocksForVisit(visit);
         Info randomInfoOnSpecies = Info.getRandomInfoOfSpecies(DinosaurType.TREX);
         Info randomInfoOnHerbivore = Info.getRandomInfoOnHerbivore();
         Visit recentVisit = DBVisit.getMostRecentVisit(visitorMike);
+
+
 
     }
 }

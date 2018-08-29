@@ -108,6 +108,13 @@ public class AdminController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/admin/dinosaurs/invalid_paddock", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("template", "templates/admin/dinosaurs/invalid_paddock.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
         get("/admin/dinosaurs/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String strId = req.params(":id");
@@ -131,11 +138,6 @@ public class AdminController {
         }, new VelocityTemplateEngine());
 
 
-        get("/admin/dinosaurs/invalid_paddock", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            model.put("template", "templates/admin/dinosaurs/invalid_paddock.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
 
 
         post("/admin/dinosaurs/:id", (req, res) -> {
@@ -261,7 +263,6 @@ public class AdminController {
 
         post("/admin/paddocks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int parkId = Integer.parseInt(req.queryParams("park"));
             DietaryType dietaryType = DietaryType.valueOf(req.queryParams("dietaryType"));
             String name = req.queryParams("name");
             Paddock newPaddock = new Paddock(name, dietaryType);
