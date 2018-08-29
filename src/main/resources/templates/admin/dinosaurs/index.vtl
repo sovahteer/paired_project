@@ -1,4 +1,4 @@
-<table>
+<table class="dinoTable">
     <tr>
         <th>Species</th>
         <th>Hunger</th>
@@ -15,13 +15,9 @@
         #else
         <td>No paddock assigned</td>
         #end
-        <td><a href="/admin/dinosaurs/$dinosaur.getId()">Details</a></td>
-        <td><a href="/admin/dinosaurs/$dinosaur.getId()/edit">Transfer</a></td>
-        <td>
-            <form action="/admin/dinosaurs/$dinosaur.getId()/delete" method="post">
-                <input type="submit" value="Delete">
-            </form>
-        </td>
+        <td><a href="/admin/dinosaurs/$dinosaur.getId()"><img src="/images/details_btn.png"></a></td>
+        <td><a href="/admin/dinosaurs/$dinosaur.getId()/edit"><img src="/images/transfer_btn.png"></a></td>
+        <td><a href="/admin/dinosaurs/$dinosaur.getId()/delete"><img src="/images/delete_btn.png"></a></td>
     </tr>
     #end
 </table>
