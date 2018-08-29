@@ -27,6 +27,9 @@ body {
   width: 50%;
 }
 
+.content-container {
+ }
+
 .buttons {
 
 }
@@ -125,3 +128,26 @@ nav a {
 }
 
 }
+
+.form-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 59px 30px;
+  border-radius: 25px;
+  font-size: 27px;
+  background-color: rgb(255,255,255, 0.92);
+}
+
+input {
+      color: white;
+      height: 30px;
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      text-align: left;
+}
+
