@@ -230,3 +230,8 @@ input {
     top: 20%;
     left: 73%;
 }
+
+.loginBtn{
+    height: auto;
+    width: 200px;
+}
