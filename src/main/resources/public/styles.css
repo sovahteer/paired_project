@@ -256,6 +256,7 @@ color: rgb(200 200 200);
     margin-top: 100px;
     padding: 20px;
     text-align: center;
+
 }
 
 .message {
@@ -269,7 +270,7 @@ margin: auto;
   -webkit-transform: translate(-50%, -1200%);
   text-align: center;
   color: white;
-  font-size: 20px;
+
 }
 
 .go-back {
@@ -302,35 +303,20 @@ font-family: 'Teko', sans-serif;
 }
 
 
-.message-invalid-paddock, .message-rampage p {
+.message, .message-rampage p {
 color: white;
 font-size: 20px;
-    position: absolute;
-    right: 0;
-    left: 0;
 }
-
 
 .message-rampage {
   transform: translate(19%, -600%);
-  -moz-transform: translate(50%, -800%);
-    -webkit-transform: translate(50%, -800%);
+  -moz-transform: translate(19%, -600%);
+    -webkit-transform: translate(19%, -600%);
     position: absolute;
-    right: 50%;
-    left: 0%;
-    text-align: center;
-}
+    right: 0;
+    left: 0;
 
-.message-rampage p, .message-rampage form{
-position: relative;
-}
-
-.message-invalid-paddock {
-  transform: translate(0%, -1200%);
-  -moz-transform: translate(0%, -1200%);
-    -webkit-transform: translate(0%, -1200%);
- text-align: center;
-
+    border-radius: 25px;
 }
 
 .paddockTable th{
@@ -371,12 +357,5 @@ position: relative;
 .map .location2 {
     top: 20%;
     left: 73%;
-}
-
-.message-rampage div {
-padding-bottom: 20px;
-}
-
-.paddock-content {
 
 }
