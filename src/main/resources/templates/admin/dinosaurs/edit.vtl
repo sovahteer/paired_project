@@ -1,7 +1,7 @@
 <div class="blurry-image"></div>
 <form class="form-container small-form" action="/admin/dinosaurs/$dinosaurToEdit.getId()" method="post">
 
-    $dinosaurToEdit.getSpecies().getName()
+    <p>$dinosaurToEdit.getSpecies().getName()</p>
 
     <select name="paddock" id="paddock">
         #foreach($paddock in $paddocks)
