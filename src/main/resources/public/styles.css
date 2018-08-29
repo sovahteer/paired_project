@@ -151,9 +151,18 @@ input {
       text-align: left;
 }
 
+<<<<<<< HEAD
 .dinoTable {
     width: 50%;
     margin: 0 auto;
     padding-top: 100px;
     text-align: center;
 }
+=======
+.dinoTable th {
+}
+
+.dinoTable tr {
+}
+
+>>>>>>> feature/dinosaur_index_css
