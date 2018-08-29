@@ -173,3 +173,8 @@ input {
     margin: 0 auto;
     margin-top: 25px;
 }
+
+.dinoDeleteBtn {
+    height: auto;
+    width: auto;
+}
