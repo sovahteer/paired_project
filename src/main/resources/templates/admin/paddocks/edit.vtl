@@ -1,18 +1,21 @@
-<p class="pageHeader">Edit a Paddock</p>
+<div class="leaves-background">
+    <p class="pageHeader">Edit a Paddock</p>
 
-<form action="/admin/paddocks/$paddock.getId()" method="post">
+    <form action="/admin/paddocks/$paddock.getId()" method="post">
 
-    <label for="name">Name</label>
-    <input class="inputbox" type="text" name="name" id="name" required="true" value="$paddock.getName()">
+        <label for="name">Name</label>
+        <input class="inputbox" type="text" name="name" id="name" required="true" value="$paddock.getName()">
 
 
-    <label for="dietaryType">Diet</label>
-    <select id="dietaryType" name="dietaryType">
-        #foreach( $dietaryType in $dietaryTypes )
-        <option value="$dietaryType">$dietaryType.getHumanReadable()</option>
-        #end
-    </select>
+        <label for="dietaryType">Diet</label>
+        <select id="dietaryType" name="dietaryType">
+            #foreach( $dietaryType in $dietaryTypes )
+            <option value="$dietaryType">$dietaryType.getHumanReadable()</option>
+            #end
+        </select>
 
-    <input type="submit" value="Save" class="button">
+        <input type="submit" value="Save" class="button">
 
-</form>
+    </form>
+
+</div>
