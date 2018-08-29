@@ -221,12 +221,12 @@ input {
   position: absolute;
 }
 
-.map .location0 {
-    top: 50%;
-    left:50%;
+.map .location1 {
+    top: 57%;
+    left:67%;
 }
 
-.map .location1 {
-    top: 36%;
-    left: 15%;
+.map .location2 {
+    top: 20%;
+    left: 73%;
 }
