@@ -292,6 +292,10 @@ public class AdminController {
         post ("/admin/paddocks/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Paddock paddockToDelete = DBHelper.find(id, Paddock.class);
+            List<Dinosaur> dinosaurs = DBDinosaur.getAllDinoForPaddock(paddockToDelete);
+            for (Dinosaur dino: dinosaurs) {
+                DBHelper.delete(dino);
+            }
             DBHelper.delete(paddockToDelete);
             res.redirect("/admin/paddocks");
             return null;
@@ -305,6 +309,7 @@ public class AdminController {
             for (Dinosaur dino: dinosaurs) {
                 DBHelper.delete(dino);
             }
+            DBHelper.delete(paddock);
             res.redirect("/admin/paddocks");
             return null;
         }, new VelocityTemplateEngine());

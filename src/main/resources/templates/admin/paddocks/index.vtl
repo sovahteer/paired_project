@@ -13,11 +13,11 @@
         <td>
             #if($paddock.getDinosaurs().size() == 0)
                 <form action="/admin/paddocks/$paddock.getId()/delete" method="post">
-                    <input type="submit" value="delete" class="button">
+                    <input type="submit" value="Delete" class="button">
                 </form>
             #else
-                <form action="/admin/paddocks/$paddock.getId()/dinosaurs/delete" method="post">
-                    <input type="submit" value="Delete all Dinos">
+                <form action="/admin/paddocks/$paddock.getId()/delete" method="post">
+                    <input type="submit" value="Delete">
                 </form>
             #end
         </td>
