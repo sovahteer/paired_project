@@ -1,8 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
 body {
     background-image: url("/images/admin_background.png");
     background-color: #E55E10;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .logo img {
@@ -28,20 +34,86 @@ body {
   margin: 0 auto;
 }
 
-nav {
-background: #404040;
-position: relative;
+header {
+    background: #404040;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    filter: drop-shadow(1px 1px 1px #101010);
+}
 
+header img {
+    width: auto;
+    height: 50px;
+    margin-top: 5px;
+    padding-right: 10px;
+}
+
+header ul {
+    list-style-type: none;
+
+}
+
+header li {
+    margin-top: 5px;
+    margin-right: 20px;
+
+
+}
+
+header p {
+    font-family: 'Teko', sans-serif;
+    color: white;
+    padding-right: 20px;
+}
+
+nav {
+    position: relative;
+    height: 50px;
+    color:
+    margin: 0 !important;
+    filter: drop-shadow(1px 1px 1px #101010);
+    flex-grow: 1;
 }
 
 nav ul {
-  padding: 0;
-  list-style-type: none;
-  margin: 0 auto;
-  text-align: center
+    padding: 0;
+    list-style-type: none;
+    margin: 0 auto;
+    margin-left: 50px;
+    text-align: left;
 }
 
 nav li {
-  display: inline-block;
-  margin: 0 auto;
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-right: 50px;
 }
+
+nav a {
+    font-family: 'Teko', sans-serif;
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+  }
+
+.parkIndex {
+
+  }
+
+.parkIndex ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+.parkIndex li {
+    padding: 50px;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+}
+
