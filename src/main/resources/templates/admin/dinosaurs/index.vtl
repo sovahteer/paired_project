@@ -17,7 +17,10 @@
         #end
         <td><a href="/admin/dinosaurs/$dinosaur.getId()"><img src="/images/details_btn.png"></a></td>
         <td><a href="/admin/dinosaurs/$dinosaur.getId()/edit"><img src="/images/transfer_btn.png"></a></td>
-        <td><a href="/admin/dinosaurs/$dinosaur.getId()/delete"><img src="/images/delete_btn.png"></a></td>
+        <td><form action="/admin/dinosaurs/$dinosaur.getId()/delete" method="post">
+                <input class="delete_image" type="image" id="image" alt="Delete" src="/images/delete_btn.png"/>
+            </form>
+        </td>
     </tr>
     #end
 </table>
