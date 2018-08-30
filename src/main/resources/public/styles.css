@@ -270,9 +270,9 @@ body {
     position: absolute;
     left: 50%;
     right: 50%;
-    transform: translate(-50%, -1200%);
-    -moz-transform: translate(-50%, -1200%);
-    -webkit-transform: translate(-50%, -1200%);
+    transform: translate(-50%, -1600%);
+    -moz-transform: translate(-50%, -1600%);
+    -webkit-transform: translate(-50%, -1600%);
     text-align: center;
     color: white;
 
@@ -351,6 +351,11 @@ body {
     display: block;
     margin: 0 auto;
     text-align: center;
+    background-image: url("/images/map.jpg");
+    background-size: cover;
+    repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
   }
 
   .map div{
@@ -358,13 +363,46 @@ body {
   }
 
   .map .location1 {
-    top: 57%;
+    top: 67%;
     left:67%;
   }
 
   .map .location2 {
     top: 20%;
     left: 73%;
+
+  }
+
+  .map .location3 {
+    top: 45%;
+    left:27%;
+  }
+
+  .map .location4 {
+    top: 30%;
+    left: 40%;
+
+  }
+
+  .map .location5 {
+    top: 42%;
+    left:86%;
+  }
+
+  .map .location6 {
+    top: 75%;
+    left: 72%;
+
+  }
+
+  .map .location7 {
+    top: 37%;
+    left:37%;
+  }
+
+  .map .location8 {
+    top: 50%;
+    left: 58%;
 
   }
 
@@ -388,13 +426,54 @@ body {
     margin: auto;
   }
 
-    .paddock-content {
-        font-family: 'Teko', sans-serif;
-        width: 90%;
-        margin: 0 auto;
-        margin-top: 100px;
-        padding: 20px;
-        text-align: center;
+  .paddock-content {
+    font-family: 'Teko', sans-serif;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    text-align: center;
 
 
-        }
+  }
+
+  .paddock-details {
+    font-family: 'Teko', sans-serif;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+    background-color: white;
+    width: 80%;
+    padding: 20px;
+    border-radius: 5px;
+    opacity: 0.9;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .paddock-details th, td {
+    padding: 0 40px;
+  }
+  .visits-approval-button {
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    float: right;
+
+  }
+
+  .visits-approval-button *{
+    text-align: center;
+  }
+
+  .paddock-details th{
+    font-size: 25px;
+  }
+
+  .paddock-details td{
+    font-family: 'Roboto', sans-serif;
+  }

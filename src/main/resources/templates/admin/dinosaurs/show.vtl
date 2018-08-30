@@ -1,15 +1,17 @@
-<h1 class="pageHeader">$dinosaur.getSpecies().getName()</h1>
+<div class="paddock-details">
+    <h1 class="pageHeader">$dinosaur.getSpecies().getName()</h1>
 
-<table>
-    <tr>
-        <th>Age</th>
-        <th>Diet</th>
-        <th>Hunger Level</th>
-    </tr>
-    <tr>
-        <td>$dinosaur.displayMaturityLevel()</td>
-        <td>$dinosaur.getSpecies().getDietaryType().getHumanReadable()</td>
-        <td>$dinosaur.getHungerLevel().getHumanReadable()</td>
-    </tr>
-</table>
-<a href="/admin/dinosaurs">Go Back</a>
+    <table>
+        <tr>
+            <th>Age</th>
+            <th>Diet</th>
+            <th>Hunger Level</th>
+        </tr>
+        <tr>
+            <td>$dinosaur.displayMaturityLevel()</td>
+            <td>$dinosaur.getSpecies().getDietaryType().getHumanReadable()</td>
+            <td>$dinosaur.getHungerLevel().getHumanReadable()</td>
+        </tr>
+    </table>
+    <a href="/admin/dinosaurs"><img src="/images/go_back_btn.png"></a>
+</div>

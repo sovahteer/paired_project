@@ -1,24 +1,38 @@
-<div>
-    <dl>
-        <dt>Name:</dt>
-        <dd>$paddock.getName()</dd>
-        <dt>Diet:</dt>
-        <dd>$paddock.getDietaryType().getHumanReadable()</dd>
-        #if(!$paddock.isAccessibleToVisitors())
-            <p>No entry</p>
-            <form action="/admin/$paddock.getId()/approve", method="post">
-                <input type="submit" value="Allow visitors">
-            </form>
-
-        #else
-            <p>Visits allowed</p>
-            <form action="/admin/$paddock.getId()/no_entry", method="post">
-                <input type="submit" value="No entry">
-            </form>
-        #end
-    </dl>
-
+<div class="paddock-details">
     <table>
+        <tr>
+            <th>Name:</th>
+            <td>$paddock.getName()</td>
+        </tr>
+        <tr>
+            <th>Diet:</th>
+            <td>$paddock.getDietaryType().getHumanReadable()</td>
+        </tr>
+        #if(!$paddock.isAccessibleToVisitors())
+        <tr>
+
+                <th>No entry</th>
+                <td>
+                    <form action="/admin/$paddock.getId()/approve", method="post">
+                        <input class="visits-approval-button" type="submit" value="Allow visitors">
+                    </form>
+                </td>
+        </tr>
+                #else
+        <tr>
+                    <th>Visits allowed</th>
+                    <td>
+                        <form action="/admin/$paddock.getId()/no_entry", method="post">
+                            <input class="visits-approval-button" type="submit" value="No entry">
+                        </form>
+                    </td>
+        </tr>
+            #end
+        </tr>
+
+    </table>
+
+    <table class="paddock-details">
         <tr>
             <th>Species</th>
             <th>Diet</th>
@@ -37,7 +51,7 @@
 
         #end
     </table>
-    <a href="/admin/$paddock.getId()/system_check">System check</a>
+    <button class="visits-approval-button"><a href="/admin/$paddock.getId()/system_check">System check</a></button>
 </div>
 
 
