@@ -317,14 +317,13 @@ body {
   }
 
   .message-rampage {
-    transform: translate(19%, -600%);
-    -moz-transform: translate(19%, -600%);
-    -webkit-transform: translate(19%, -600%);
-    position: absolute;
-    right: 0;
-    left: 0;
-
+  padding-top: 50px;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 25px;
+    font-size: 30px;
   }
 
   .paddockTable th{
