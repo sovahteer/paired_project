@@ -58,15 +58,6 @@ public class Visitor {
         this.id = id;
     }
 
-//    @OneToOne(mappedBy = "visitor", fetch = FetchType.LAZY)
-//    public Visit getVisit() {
-//        return visit;
-//    }
-//
-//    public void setVisit(Visit visit) {
-//        this.visit = visit;
-//    }
-
     @OneToMany(mappedBy="visitor", fetch = FetchType.LAZY)
     public List<Visit> getVisits() {
         return visits;

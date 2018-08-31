@@ -133,20 +133,21 @@ public class Dinosaur {
         }
     }
 
-    public void eat(FoodType foodtype){
-        this.stomach += foodtype.getNutrition();
-        if (this.stomach > 100){
-            this.stomach = 100;
-        }
-        assignHungerLevel();
-    }
-
     public boolean checkIfPaddockAssigned() {
         if (this.paddock != null) {
             return true;
         } else {
             return false;
         }
+    }
+
+
+    public void eat(FoodType foodtype){
+        this.stomach += foodtype.getNutrition();
+        if (this.stomach > 100){
+            this.stomach = 100;
+        }
+        assignHungerLevel();
     }
 
     public void assignHungerLevel() {
